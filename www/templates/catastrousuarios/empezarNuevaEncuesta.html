@@ -46,7 +46,7 @@
 
 <ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
 	<!--Botón Cámara -->
-	<a class="tab-item active" id="FotoEditar">
+	<a class="tab-item active" id="FotoEditar" ng-click="FotoCatastroEditar()">
 		<i  class="icon ion-camera larger"></i>
 		Cámara
 	</a>
@@ -78,7 +78,6 @@
 	</a>
 </ion-footer-bar>
 <script>
-	$("#FotoEditar").attr("onClick", "FotoCatastroEditar()");
 	$("#btnAntEditar").attr("onClick", "anteriorPreguntaEditar()");
 	$("#btnSigEditar").attr("onClick", "siguientePreguntaEditar()");
 	$("#btnGuardarEditar").attr("onClick", "guardarEncuestaEditada()");

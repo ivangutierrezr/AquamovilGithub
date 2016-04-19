@@ -68,7 +68,7 @@
 		Ubicación
 	</a>
 	<!--Botón Cámara -->
-	<a class="tab-item active" id="FotoCat">
+	<a class="tab-item active" id="FotoCat" ng-click="FotoCatastro()">
 		<i  class="icon ion-camera larger"></i>
 		Cámara
 	</a>
@@ -103,7 +103,6 @@
 	<script>
 		validarEncuestasIncompletas();
 		$("#UbicarCat").attr("onClick", "geolicalizacionCat()");
-		$("#FotoCat").attr("onClick", "FotoCatastro()");
 		$("#btnAntCat").attr("onClick", "anteriorPregunta()");
 		$("#btnSigCat").attr("onClick", "siguientePregunta()");
 		$("#btnGuardarCat").attr("onClick", "guardarEncuesta()");

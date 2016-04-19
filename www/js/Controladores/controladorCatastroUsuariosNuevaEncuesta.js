@@ -1,6 +1,6 @@
 angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
 
-.controller('CatastroUsuariosnuevaencuesta', function($scope, $ionicLoading, $cordovaFile)
+.controller('CatastroUsuariosnuevaencuesta', function($scope, $ionicLoading, $cordovaFile, $cordovaCamera)
 {
     angular.element(document).ready(function () 
     {
@@ -14,4 +14,68 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
         }, function (error) {
         });
     });
+
+    /*--------------------------------------------------------------------------------*/
+
+  //Función para tomar foto de Catastro
+
+  $scope.FotoCatastroEditar = function()
+  {
+    var options = {
+      quality: 50,
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      encodingType: Camera.EncodingType.JPEG,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    };
+
+    $cordovaCamera.getPicture(options).then(function(sourcePath)
+    {
+      var sourceDirectory = sourcePath.substring(0, sourcePath.lastIndexOf('/') + 1);
+      var sourceFileName = sourcePath.substring(sourcePath.lastIndexOf('/') + 1, sourcePath.length);
+
+      var ruta = cordova.file.externalRootDirectory + 'AQuaMovil/Salidas/Fotos';
+
+      $scope.contarFotosCausal();
+
+      var idOperador = document.getElementById("idOperario").value;
+
+        while (idOperador.length < 10)
+        {
+          idOperador = "0" + idOperador;
+        }
+
+        var numeroEncuesta = parseInt(document.getElementById("numeroEncuestaEditar").value) + "";
+
+        var numeroFoto = (parseInt(document.getElementById("numeroFotosEditar").value) + 1);
+
+        var consecutivoFoto = (parseInt(document.getElementById("numeroFotosEditar").value) + 1) + "";
+
+        document.getElementById("numeroFotosEditar").value = numeroFoto;
+
+        while(consecutivoFoto.length < 2)
+        {
+          consecutivoFoto = "0" + consecutivoFoto;
+        }
+
+        //new file name
+        var newFileName = "FC-E" + numeroEncuesta + "" + idOperador + "" + consecutivoFoto + ".jpg";
+
+      $cordovaFile.moveFile(sourceDirectory, sourceFileName, ruta, nombreFoto)
+      .then(function(success) 
+      {
+        console.log("Imagen Guardada");
+      }, 
+      function(error) 
+      {
+        console.log(error);
+      });
+
+    }, 
+    function(err) 
+    {
+      console.log(err);
+    });
+  }
 });
