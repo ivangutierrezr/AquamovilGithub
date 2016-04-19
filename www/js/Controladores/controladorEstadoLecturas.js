@@ -1,9 +1,12 @@
 angular.module('starter.controladorestadolecturas', [])
 
 .controller('Estadolecturas', function($scope, $ionicLoading, $cordovaFile, $cordovaCamera, factoryEstadoLecturas)
-{
+{	
+
     angular.element(document).ready(function () 
     {
+    	$ionicLoading.show({});
+    	$("#contenedorListaUsuariosServicios").hide();
     	$scope.estadolectura = factoryEstadoLecturas.totalLecturas;
     	console.log("Logo");
         $cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/LogoImpresion.jpg")
@@ -56,6 +59,7 @@ angular.module('starter.controladorestadolecturas', [])
 				});    
 			});
 		}
+		$ionicLoading.hide();
     });
 
 	//Función para mostrar en pantalla el registro buscado

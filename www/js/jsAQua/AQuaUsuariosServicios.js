@@ -498,63 +498,6 @@ function permitirEditar()
 	}
 }
 
-function contarRegistros()
-{
-	var ciclo = document.getElementById("txtCiclo").value;
-	var ruta = document.getElementById("txtRuta").value;
-	var t;
-	dbShell.transaction(function(tx) 
-	{    		
-		tx.executeSql("select  Count(*) as Cantidad from UsuariosServicios Where Ciclo=? and Ruta=? ",[ciclo,ruta], 
-		function(tx, result)
-		{	
-			CantidadTotal = parseInt(result.rows.item(0)['Cantidad']);
-			var cantidadLecturas = document.getElementById("inputControlLecturas").value;
-
-			if(CantidadTotal != cantidadLecturas)
-			{
-				t = setTimeout("contarRegistros()", 2000);
-			}
-
-			else
-			{
-				clearTimeout(t);
-				pintarListaReg(ciclo,ruta);
-			}
-		});
-	});
-}
-
-function pintarListaReg(ciclo,ruta)
-{
-	dbShell.transaction(function(tx) 
-	{            
-		tx.executeSql("SELECT * FROM UsuariosServicios where Ciclo=? and Ruta=?", [ciclo,ruta],                
-		
-		function(tx, result)
-		{
-			for(var i = 0; i < result.rows.length; i++) 
-			{  
-				var idLista = i;
-				var lecturaActual = result.rows.item(i)['LecturaActual'];
-				var causalActual = result.rows.item(i)['CausalActual'];
-				var observacionActual = result.rows.item(i)['ObservacionActual'];
-				var id2 = "#"+idLista;
-
-				if(lecturaActual != "" || causalActual != "" || observacionActual != "")
-				{
-					$(id2).addClass('pintarLRDiligenciado')
-				}
-			}
-			var num = document.getElementById("txtNumRegistro").value;
-			var id = "#"+num;
-
-			$(id).removeClass('pintarLRDiligenciado');
-			$(id).addClass('pintarLR');
-		});    
-	});
-}
-
 // Funcion Para ir a Facturacion en Sitio
 
 /*----------------------------------------------------------------------------------*/

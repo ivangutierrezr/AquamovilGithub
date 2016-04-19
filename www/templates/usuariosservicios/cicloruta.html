@@ -7,18 +7,17 @@
 	<div align="center" id="listaCR" class="list" style="width:100%">
 		<ul>
 			<li ng-repeat="dato in listacicloruta">
-				<div class='row'><div id="divCR" class='col col-80'><a id='Ciclo{{dato.ciclo}}ruta{{dato.ruta}}' class='item item-divider pintarCRSinDiligenciar' ng-click='primeraLectura({{dato.ciclo}},{{dato.ruta}},{{dato.numDato}})' href='#/medidorlecturas'>Ciclo: {{dato.ciclo}} - Ruta: {{dato.ruta}}</a></div><div class='col col-20'><a id='idBotonDesc' ng-click='DescargarArchivo({{dato.ciclo}},{{dato.ruta}})' class='item item-divider' href='#' style='background-color: #0088C4; color: #fff; font-weight: bold; opacity: 1;'><i class='icon ion-arrow-down-c'></i></a></div></div>
+				<a id='Ciclo{{dato.ciclo}}ruta{{dato.ruta}}' class='item item-divider pintarCRSinDiligenciar' ng-click='primeraLectura({{dato.ciclo}},{{dato.ruta}},{{dato.numDato}})' href='#/medidorlecturas'>Ciclo: {{dato.ciclo}} - Ruta: {{dato.ruta}}</a><a id='idBotonDesc' ng-click='DescargarArchivo({{dato.ciclo}},{{dato.ruta}})' class='item item-divider' href='#' style='background-color: #0088C4; color: #fff; font-weight: bold; opacity: 1;'>Descargar</a><p style="background:transparent;" class='item item-divider'></p>
 			</li>
 		</ul>
 	</div>
 </ion-content>
 
-<ion-footer-bar align-title="center" class="bar-assertive">
-	<a class="tab-item active" href="#/menuprincipal" id="btnSalir">
- 		<div class="title">
- 			<i class="icon ion-share botonesFooter"></i>
- 		</div>
- 	</a>
+<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
+ 	<a class="tab-item active" id="btnSalir" href="#/menuprincipal">
+		<i class="icon ion-share larger" style="font-size:3.5em;"></i>
+		Salir
+	</a>
 </ion-footer-bar>
 
 	<script>

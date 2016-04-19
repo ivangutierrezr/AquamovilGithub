@@ -1,229 +1,347 @@
-<div class="bar bar-header bar-assertive" id="header_inicio" style="text-align:center; font-size:1em;">
-	<h1 font-size="4" class="title" style="text-align:center;">
-		<b>LECTURA DE MEDIDORES</b>
-	</h1>
-</div>
+<div ="contenedorUsuariosLecturas">
+	<div class="bar bar-header bar-assertive" id="header_inicio" style="text-align:center; font-size:1em;">
+		<h1 font-size="4" class="title" style="text-align:center;">
+			<b>LECTURA DE MEDIDORES</b>
+		</h1>
+	</div>
 
-<div class="bar bar-subheader bar-assertive" style="height:1.5em;">
-	<div class="row">
-		<!-- Input Fecha-->
-		<div class="col col-30" align="left">
-			<input style="font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="fecha" type="text" readonly>
-		</div>
-		<!-- Input Hora-->
-		<div class="col col-30" align="left">
-			<input style="font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="hora" type="text" readonly>
-		</div>
-		<!-- Input Ciclo-->
-		<div class="col col-20" align="left">
-			<input style="font-size:0.9em; font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtCiclo2" type="text" readonly>
-		</div>
-		<!-- Input Ruta-->
-		<div class="col col-20" align="left">
-			<input style="font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtRuta2" type="text" readonly>
-		</div>
-	</div>
-</div>
-
-<div id="contenido">
-	<div class="row">
-    	<!-- Contardor de Registros-->
-		<div class="col col-33" align="left">
-			<span style="font-weight:bold;   background-color: transparent; text-align:center; border: none; font-size:1em;  margin:0; padding:0;" id="Contador"></span>
-    	</div>
-    	<div class="col col-33">
-			<img src="img/logo.png" width="80%">
-    	</div>
-    	<!-- Username del operario-->
-    	<div class="col col-33" align="right">
-    		<span style="font-weight:bold; background-color: transparent; border: none; font-size:1em; text-align:right; margin:0; padding:0;" id="txtIdOperario"></span>
-    	</div>
-	</div>
-	<div class="row row-center" style="margin-top:-10px">
-		<!-- Botón Buscar-->
-		<div class="col col-25" align="center">	
-			<a onClick="contarRegistros()" href="#/estadolecturas"; style="font-size:2.5em; color:white;">
-				<i class="icon ion-search" style="color:#Ef473A;"></i>
-			</a>
-		</div>
-		<!-- Botón Validar-->
-		<div class="col col-25" align="center">
-			<a id="btnValidar" style="font-size:2.5em; color:white;">
-				<i class="icon ion-checkmark-round" style="color:#Ef473A;"></i>
-			</a>
-		</div>
-		<div class="col col-25" align="center">
-			<a id="btnIrAFacturacion" onClick="pasarAFacturacionEnSitio()" style="font-size:2.5em; color:white;">
-				<i class="icon ion-arrow-swap" style="color:#Ef473A;"></i><br>
-			</a>
-		</div>
-		<!-- Botón Mapa-->
-		<div class="col col-25" align="center" style="font-size:0.8em;">
-			<a style="font-size:3em; color:white;" ui-sref="mapa">
-				<i class="icon ion-location" style="color:#Ef473A;"></i>
-			</a>
-		</div>
-	</div>
-	<div id="datos-entrada">
-		<!-- Input Lectura Nueva-->
+	<div class="bar bar-subheader bar-assertive" style="height:1.5em;">
 		<div class="row">
-			<div class="col">
-				<input type="number" style="font-size:3em; text-align:center; height:1.2em;" id="txtLectura" placeholder="Lec." autofocus>
+			<!-- Input Fecha-->
+			<div class="col col-30" align="left">
+				<input style="font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="fecha" type="text" readonly>
+			</div>
+			<!-- Input Hora-->
+			<div class="col col-30" align="left">
+				<input style="font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="hora" type="text" readonly>
+			</div>
+			<!-- Input Ciclo-->
+			<div class="col col-20" align="left">
+				<input style="font-size:0.9em; font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtCiclo2" type="text" readonly>
+			</div>
+			<!-- Input Ruta-->
+			<div class="col col-20" align="left">
+				<input style="font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtRuta2" type="text" readonly>
 			</div>
 		</div>
+	</div>
+
+	<div id="contenido">
 		<div class="row">
-			<!-- Input Causal Nueva-->
-			<div class="col col-25" id="causal">
-				<input type="number" id="txtCausal" value="0" style="font-size:1.4em; text-align:center;" readonly>
-			</div>
-			<!-- Input Observación-->
-			<div class="col col-25" id="Observacion1">
-				<a id="btnObs1">
-					<input type="number" id="txtObservacion" value="0" style="font-size:1.4em; text-align:center;" readonly>
+	    	<!-- Contardor de Registros-->
+			<div class="col col-33" align="left">
+				<span style="font-weight:bold;   background-color: transparent; text-align:center; border: none; font-size:1em;  margin:0; padding:0;" id="Contador"></span>
+	    	</div>
+	    	<div class="col col-33">
+				<img src="img/logo.png" width="80%">
+	    	</div>
+	    	<!-- Username del operario-->
+	    	<div class="col col-33" align="right">
+	    		<span style="font-weight:bold; background-color: transparent; border: none; font-size:1em; text-align:right; margin:0; padding:0;" id="txtIdOperario"></span>
+	    	</div>
+		</div>
+		<div class="row row-center" style="margin-top:-10px">
+			<!-- Botón Buscar-->
+			<div class="col col-25" align="center">	
+				<a onClick="contarRegistros()" href="#/estadolecturas"; style="font-size:2.5em; color:white;">
+					<i class="icon ion-search" style="color:#Ef473A;"></i>
 				</a>
 			</div>
-			<!--input Observación 2 -->
-			<div class="col col-25">
-				<a id="btnObs2">
-					<input type="number" id="txtObservacion2" value="0" style="font-size:1.4em; text-align:center;" readonly>
+			<!-- Botón Validar-->
+			<div class="col col-25" align="center">
+				<a id="btnValidar" style="font-size:2.5em; color:white;">
+					<i class="icon ion-checkmark-round" style="color:#Ef473A;"></i>
 				</a>
 			</div>
-
-			<!--input Observación 3 -->
-			<div class="col col-25">
-				<a id="btnObs3">
-					<input type="number" id="txtObservacion3" value="0" style="font-size:1.4em; text-align:center;" readonly>
+			<div class="col col-25" align="center">
+				<a id="btnIrAFacturacion" onClick="pasarAFacturacionEnSitio()" style="font-size:2.5em; color:white;">
+					<i class="icon ion-arrow-swap" style="color:#Ef473A;"></i><br>
+				</a>
+			</div>
+			<!-- Botón Mapa-->
+			<div class="col col-25" align="center" style="font-size:0.8em;">
+				<a style="font-size:3em; color:white;" ui-sref="mapa">
+					<i class="icon ion-location" style="color:#Ef473A;"></i>
 				</a>
 			</div>
 		</div>
-		<div class="row" style="margin-top:-15px;">
-			<!-- Input Causal Nueva-->
-			<div class="col col-25" id="causal">
-				<span style="font-size:0.8em; opacity:0.5;">Causal</span>
+		<div id="datos-entrada">
+			<!-- Input Lectura Nueva-->
+			<div class="row">
+				<div class="col">
+					<input type="number" style="font-size:3em; height:1.2em;" id="txtLectura" placeholder="Lec." autofocus>
+				</div>
 			</div>
-			<!-- Input Observación-->
-			<div class="col col-25" id="Observacion1">
-				<span style="font-size:0.8em; opacity:0.5;">Obs.1</span>
-			</div>
-			<!--input Observación 2 -->
-			<div class="col col-25">
-				<span style="font-size:0.8em; opacity:0.5;">Obs.2</span>
-			</div>
+			<div class="row">
+				<!-- Input Causal Nueva-->
+				<div class="col col-25" id="causal">
+					<input type="number" id="txtCausal" value="0" style="font-size:1.4em; text-align:center;" readonly>
+				</div>
+				<!-- Input Observación-->
+				<div class="col col-25" id="Observacion1">
+					<a id="btnObs1">
+						<input type="number" id="txtObservacion" value="0" style="font-size:1.4em; text-align:center;" readonly>
+					</a>
+				</div>
+				<!--input Observación 2 -->
+				<div class="col col-25">
+					<a id="btnObs2">
+						<input type="number" id="txtObservacion2" value="0" style="font-size:1.4em; text-align:center;" readonly>
+					</a>
+				</div>
 
-			<!--input Observación 3 -->
-			<div class="col col-25">
-				<span style="font-size:0.8em; opacity:0.5;">Obs.3</span>
+				<!--input Observación 3 -->
+				<div class="col col-25">
+					<a id="btnObs3">
+						<input type="number" id="txtObservacion3" value="0" style="font-size:1.4em; text-align:center;" readonly>
+					</a>
+				</div>
+			</div>
+			<div class="row" style="margin-top:-15px;">
+				<!-- Input Causal Nueva-->
+				<div class="col col-25" id="causal">
+					<span style="font-size:0.8em; opacity:0.5;">Causal</span>
+				</div>
+				<!-- Input Observación-->
+				<div class="col col-25" id="Observacion1">
+					<span style="font-size:0.8em; opacity:0.5;">Obs.1</span>
+				</div>
+				<!--input Observación 2 -->
+				<div class="col col-25">
+					<span style="font-size:0.8em; opacity:0.5;">Obs.2</span>
+				</div>
+
+				<!--input Observación 3 -->
+				<div class="col col-25">
+					<span style="font-size:0.8em; opacity:0.5;">Obs.3</span>
+				</div>
 			</div>
 		</div>
+		<div id="datosU" class="row">
+			<div class="col col-67">
+				<br>
+				<!--Input Matricula Anterior -->
+				<input style="background-color: transparent; border: none; font-size:0.8em; height:1.1em; margin:0; padding:0;" id="txtIdUsuarioLecturaAnt" type="text" readonly>
+
+				<!--Input Id Usuario -->
+				<input style="font-weight:bold; border: 5px solid #ef473a;  background-color: #ef473a; color:white; width:5em; text-align:center; font-size:1.4em;  margin:0; padding:0; height:1.5em;" id="txtIdUsuarioLectura" type="text" placeholder="Id Usuario" readonly>
+
+				<!--Input Matricula Siguiente -->
+				<input style="background-color: transparent; border: none; font-size:0.8em;  margin:0; padding:0; height:1.1em;" id="txtIdUsuarioLecturaSig" type="text" readonly>
+			</div>
+
+			<div class="col col-33" style="margin-top:5px;" align="left">
+				<div id="aConsecutivo">
+					<!--Input Ciclo - Ruta - Consecutivo -->
+					<a id="btnCRC" style="height:3em;">
+						<input style="font-weight:bold; text-align:center; background-color: transparent; border: none; color:red; font-size:1.4em; height:1.5em;" id="txtCRC" readonly>
+					</a>
+					<br><br>
+				</div>
+			</div>
+		</div>
+		<!-- Ruta de la imagen para imprimir en el tiquete -->
+
+		<input id="rutaImagenLectura" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Numero En la BD (Control)-->
+		<input id="txtNumero" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Tipo Contador (Control) -->
+		<input id="txtTipoMedidor" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Editado (Control) -->
+		<input id="txtEditado" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Impreso (Control)-->
+		<input id="txtImpreso" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Latitud (Control)-->
+		<input id="latitud" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Longitud (Control) -->
+		<input id="longitud" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Altitud (Control) -->
+		<input id="altitud" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Ciclo Nuevo (Control)-->
+		<input id="txtCicloNuevo" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Ruta Nueva (Control)-->
+		<input id="txtRutaNueva" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input ConsecutivoNuevo (Control)-->
+		<input id="txtConsecutivoNuevo" type="hidden" style="font-size:1px;" readonly>
+
+		<!--Input Nombre Usuario -->
+		<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtNombre" type="text" placeholder="Nombre Usuario" readonly>
+
+		<!--Input Dirección Usuario -->
+		<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtDireccion" placeholder="Dirección Usuario" type="text" readonly>
+
+		<!--Input #Contador -->
+		<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtMedidor" placeholder="Número Contador" type="text" readonly>
+
+		<!--Input Uso -->
+		<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtUso" placeholder="Uso" type="text" readonly>
+
+		<!--Input Categoria -->
+		<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtCategoria" placeholder="Categoria" type="text" readonly>
 	</div>
-	<div id="datosU" class="row">
-		<div class="col col-67">
-			<br>
-			<!--Input Matricula Anterior -->
-			<input style="background-color: transparent; border: none; font-size:0.8em; height:1.1em; margin:0; padding:0;" id="txtIdUsuarioLecturaAnt" type="text" readonly>
 
-			<!--Input Id Usuario -->
-			<input style="font-weight:bold; border: 5px solid #ef473a;  background-color: #ef473a; color:white; width:5em; text-align:center; font-size:1.4em;  margin:0; padding:0; height:1.5em;" id="txtIdUsuarioLectura" type="text" placeholder="Id Usuario" readonly>
+	<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
+		<!--Botón imprimir -->
+		<a class="tab-item active" id="imprimir">
+			<i  class="icon ion-printer disable larger" style="font-size:3.5em;">
+			</i>
+			Imprimir
+		</a>
+		<!--Botón Cámara -->
+		<a class="tab-item active" id="camara" ng-click="Foto()">
+			<i class="icon ion-android-camera larger" style="font-size:3.5em;">
+			</i>
+			Foto
+		</a>
+		<!--Botón Lectura Anterior -->
+		<a class="tab-item active" id="btnAnt">
+			<i class="icon ion-chevron-left larger" style="font-size:3.5em;">
+			</i>
+			Anterior
+		</a>
 
-			<!--Input Matricula Siguiente -->
-			<input style="background-color: transparent; border: none; font-size:0.8em;  margin:0; padding:0; height:1.1em;" id="txtIdUsuarioLecturaSig" type="text" readonly>
-		</div>
+		<!--Botón Lectura Siguiente-->
+		<a class="tab-item active" id="btnSig">
+			<i class="icon ion-chevron-right larger" style="font-size:3.5em;">
+			</i>
+			Siguiente
+		</a>
 
-		<div class="col col-33" style="margin-top:5px;" align="left">
-			<div id="aConsecutivo">
-				<!--Input Ciclo - Ruta - Consecutivo -->
-				<a id="btnCRC" style="height:3em;">
-					<input style="font-weight:bold; text-align:center; background-color: transparent; border: none; color:red; font-size:1.4em; height:1.5em;" id="txtCRC" readonly>
-				</a>
-				<br><br>
-			</div>
-		</div>
-	</div>
-	<!-- Ruta de la imagen para imprimir en el tiquete -->
-
-	<input id="rutaImagenLectura" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Numero En la BD (Control)-->
-	<input id="txtNumero" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Tipo Contador (Control) -->
-	<input id="txtTipoMedidor" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Editado (Control) -->
-	<input id="txtEditado" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Impreso (Control)-->
-	<input id="txtImpreso" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Latitud (Control)-->
-	<input id="latitud" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Longitud (Control) -->
-	<input id="longitud" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Altitud (Control) -->
-	<input id="altitud" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Ciclo Nuevo (Control)-->
-	<input id="txtCicloNuevo" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Ruta Nueva (Control)-->
-	<input id="txtRutaNueva" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input ConsecutivoNuevo (Control)-->
-	<input id="txtConsecutivoNuevo" type="hidden" style="font-size:1px;" readonly>
-
-	<!--Input Nombre Usuario -->
-	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtNombre" type="text" placeholder="Nombre Usuario" readonly>
-
-	<!--Input Dirección Usuario -->
-	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtDireccion" placeholder="Dirección Usuario" type="text" readonly>
-
-	<!--Input #Contador -->
-	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtMedidor" placeholder="Número Contador" type="text" readonly>
-
-	<!--Input Uso -->
-	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtUso" placeholder="Uso" type="text" readonly>
-
-	<!--Input Categoria -->
-	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtCategoria" placeholder="Categoria" type="text" readonly>
+		<!--Botón Salir-->
+		<a class="tab-item active" id="btnSalirCargue">
+			<i class="icon ion-share larger" style="font-size:3.5em;"></i>
+			Salir
+		</a>
+	</ion-footer-bar>
 </div>
+<div id="contenedorListaUsuariosServicios">
+	<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+		<b align="center">BUSQUEDA DE REGISTROS</b>
+		<input ng-model="buscarRegistro" style="font-weight:bold; border: none; color:black; font-size:15px; border-radius:30px; text-align:center;" placeholder="Buscar" type="text">
+	</ion-header-bar>
 
-<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
-	<!--Botón imprimir -->
-	<a class="tab-item active" id="imprimir">
-		<i  class="icon ion-printer disable larger" style="font-size:3.5em;">
-		</i>
-		Imprimir
-	</a>
-	<!--Botón Cámara -->
-	<a class="tab-item active" id="camara" ng-click="Foto()">
-		<i class="icon ion-android-camera larger" style="font-size:3.5em;">
-		</i>
-		Foto
-	</a>
-	<!--Botón Lectura Anterior -->
-	<a class="tab-item active" id="btnAnt">
-		<i class="icon ion-chevron-left larger" style="font-size:3.5em;">
-		</i>
-		Anterior
-	</a>
+	<ion-header-bar align-title="center" class="bar bar-subheader bar-assertive">
+		<div class="row" style="width:85%; margin:auto;">
+			<div class="col col-20" style="text-align:center;">
+				<b>ID</b>
+			</div>					
+			<div class="col col-20" style="text-align:center;">
+				<b>RUTA</b>
+			</div>
+			<div class="col col-20" style="text-align:center;">
+				<b>CON.</b>
+			</div>
+			<div class="col col-40" style="text-align:center;">
+				<b>LECTURA</b>
+			</div>
+		</div>
+	</ion-header-bar>
 
-	<!--Botón Lectura Siguiente-->
-	<a class="tab-item active" id="btnSig">
-		<i class="icon ion-chevron-right larger" style="font-size:3.5em;">
-		</i>
-		Siguiente
-	</a>
+	<ion-content padding="true" overflow-scroll="true" onLoad="pintarLista()">
+		<input id="inputControlLecturas" type="number" readonly style="display:none;">
+		<div id="listaId" class="list">
+			<ul>
+				<li id="listaLecturas" ng-repeat="dato in estadolectura | filter: buscarRegistro">
+					<div id='divLR'>
+						<a id='{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistro({{dato.idLista}},{{dato.idUsuario}},{{dato.ciclo}},{{dato.ruta}})' href='#/medidorlecturas'>
+							<div class='row'>
+								<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
+								<div class="col col-20" style="text-align:center;">{{dato.ruta}}</div>
+								<div class="col col-20" style="text-align:center;">{{dato.consecutivo}}</div>
+								<div class="col col-40" style="text-align:center;">{{dato.lecturaActual}}</div>
+							</div>
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</ion-content>
 
-	<!--Botón Salir-->
-	<a class="tab-item active" id="btnSalirCargue">
-		<i class="icon ion-share larger" style="font-size:3.5em;"></i>
-		Salir
-	</a>
-</ion-footer-bar>
+	<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
+	 	<a class="tab-item active" onCLick="cambiarALecturaMedidores()">
+			<i class="icon ion-share larger" style="font-size:3.5em;"></i>
+			Regresar
+		</a>
+	</ion-footer-bar>
+</div>
 
 	<script>
+		function cambiarALecturaMedidores() 
+		{
+			 $("#contenedorListaUsuariosServicios").hide();
+			 $("#contenedorUsuariosLecturas").show();
+		}
+		
+		function contarRegistros()
+		{
+			var ciclo = document.getElementById("txtCiclo").value;
+			var ruta = document.getElementById("txtRuta").value;
+			var t;
+			dbShell.transaction(function(tx) 
+			{    		
+				tx.executeSql("select  Count(*) as Cantidad from UsuariosServicios Where Ciclo=? and Ruta=? ",[ciclo,ruta], 
+				function(tx, result)
+				{	
+					CantidadTotal = parseInt(result.rows.item(0)['Cantidad']);
+					var cantidadLecturas = document.getElementById("inputControlLecturas").value;
+
+					if(CantidadTotal != cantidadLecturas)
+					{
+						t = setTimeout("contarRegistros()", 2000);
+		
+						$("#contenedorUsuariosLecturas").hide();
+						$("#contenedorListaUsuariosServicios").show();
+					}
+
+					else
+					{
+						clearTimeout(t);
+						pintarListaReg(ciclo,ruta);
+					}
+				});
+			});
+		}
+
+		function pintarListaReg(ciclo,ruta)
+		{
+			dbShell.transaction(function(tx) 
+			{            
+				tx.executeSql("SELECT * FROM UsuariosServicios where Ciclo=? and Ruta=?", [ciclo,ruta],                
+				
+				function(tx, result)
+				{
+					for(var i = 0; i < result.rows.length; i++) 
+					{  
+						var idLista = i;
+						var lecturaActual = result.rows.item(i)['LecturaActual'];
+						var causalActual = result.rows.item(i)['CausalActual'];
+						var observacionActual = result.rows.item(i)['ObservacionActual'];
+						var id2 = "#"+idLista;
+
+						if(lecturaActual != "" || causalActual != "" || observacionActual != "")
+						{
+							$(id2).addClass('pintarLRDiligenciado')
+						}
+					}
+					var num = document.getElementById("txtNumRegistro").value;
+					var id = "#"+num;
+
+					$(id).removeClass('pintarLRDiligenciado');
+					$(id).addClass('pintarLR');
+				});    
+			});
+		}
+
 		$("#btnSalirCargue").attr("onClick", "regresar()");
 
 		horayfecha();
