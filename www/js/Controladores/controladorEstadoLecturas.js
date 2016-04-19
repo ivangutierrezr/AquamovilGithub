@@ -1,71 +1,77 @@
 angular.module('starter.controladorestadolecturas', [])
 
-.controller('Estadolecturas', function($scope, $ionicLoading, $cordovaFile, $cordovaCamera, factoryEstadoLecturas)
+.controller('Estadolecturas', function($scope, $ionicLoading, $cordovaFile, $cordovaCamera)
 {	
 
+	$scope.estadolectura = [];
     angular.element(document).ready(function () 
     {
+    	$("#contenedorUsuariosLecturas").hide();
+		$("#contenido").hide();
+		$("#contenedorListaUsuariosServicios").hide();
     	$ionicLoading.show({});
-    	$("#contenedorListaUsuariosServicios").hide();
-    	$scope.estadolectura = factoryEstadoLecturas.totalLecturas;
-    	console.log("Logo");
-        $cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/LogoImpresion.jpg")
-        .then(function (archivo) {
-          console.log(archivo);
-          var ruta = archivo.nativeURL;
-          document.getElementById("rutaImagenLectura").value = ruta;
-        }, function (error) {
-        });
 
-    	if ($scope.estadolectura.length == 0) 
-    	{
-	    	var cicloGuardado = document.getElementById("txtCiclo").value;
-			var rutaGuardada = document.getElementById("txtRuta").value;
-	    	dbShell.transaction(function(tx) 
-			{            
-				tx.executeSql("SELECT * FROM UsuariosServicios where Ciclo=? and Ruta=?", [cicloGuardado,rutaGuardada],                
-				
-				function(tx, result)
-				{
-					for(var i = 0; i < result.rows.length; i++) 
-					{  
-						var idLista = i;
-						var idUsuario = result.rows.item(i)['IdUsuario'];
-						var numeroMedidor = result.rows.item(i)['NumeroMedidor'];
-						var lecturaActual = result.rows.item(i)['LecturaActual'];
-						var causalActual = result.rows.item(i)['CausalActual'];
-						var ciclo = result.rows.item(i)['Ciclo'];
-						var ruta = result.rows.item(i)['Ruta'];
-						var observacionActual = result.rows.item(i)['ObservacionActual'];
-						var consecutivo = result.rows.item(i)['Consecutivo'];   
-						
-						$scope.newEstadoLecturas =
-						{
-							idLista: idLista,
-							idUsuario: idUsuario,
-							numeroMedidor: numeroMedidor,
-							lecturaActual: lecturaActual,
-							causalActual: causalActual,
-							ciclo: ciclo,
-							ruta: ruta,
-							observacionActual: observacionActual,
-							consecutivo: consecutivo 
-						};
+    	var cicloGuardado = document.getElementById("txtCiclo").value;
+		var rutaGuardada = document.getElementById("txtRuta").value;
+    	dbShell.transaction(function(tx) 
+		{            
+			tx.executeSql("SELECT * FROM UsuariosServicios where Ciclo=? and Ruta=?", [cicloGuardado,rutaGuardada],                
+			
+			function(tx, result)
+			{
+				for(var i = 0; i < result.rows.length; i++) 
+				{  
+					console.log(result.rows.length);
+					var idLista = i;
+					var idUsuario = result.rows.item(i)['IdUsuario'];
+					var numeroMedidor = result.rows.item(i)['NumeroMedidor'];
+					var lecturaActual = result.rows.item(i)['LecturaActual'];
+					var causalActual = result.rows.item(i)['CausalActual'];
+					var ciclo = result.rows.item(i)['Ciclo'];
+					var ruta = result.rows.item(i)['Ruta'];
+					var observacionActual = result.rows.item(i)['ObservacionActual'];
+					var consecutivo = result.rows.item(i)['Consecutivo'];   
+					
+					$scope.newEstadoLecturas =
+					{
+						idLista: idLista,
+						idUsuario: idUsuario,
+						numeroMedidor: numeroMedidor,
+						lecturaActual: lecturaActual,
+						causalActual: causalActual,
+						ciclo: ciclo,
+						ruta: ruta,
+						observacionActual: observacionActual,
+						consecutivo: consecutivo 
+					};
 
-						$scope.estadolectura.push($scope.newEstadoLecturas);
-						$("#inputControlLecturas").val($scope.estadolectura.length);
-					}
-					console.log($("#inputControlLecturas").val());
-				});    
-			});
-		}
-		$ionicLoading.hide();
+					$scope.estadolectura.push($scope.newEstadoLecturas);
+					$("#inputControlLecturas").val($scope.estadolectura.length);
+				}
+
+				console.log($("#inputControlLecturas").val());
+				$ionicLoading.hide();
+				$("#contenedorUsuariosLecturas").show();
+				$("#contenido").show();
+			});    
+		});
+
+		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/LogoImpresion.jpg")
+	        .then(function (archivo) {
+	          console.log(archivo);
+	          var ruta = archivo.nativeURL;
+	          document.getElementById("rutaImagenLectura").value = ruta;
+	        }, function (error) {
+	        });
     });
 
 	//Función para mostrar en pantalla el registro buscado
 
 	$scope.ubicarRegistro = function(a,b,ciclo,ruta) 
 	{	
+		$("#contenedorUsuariosLecturas").show();
+		$("#contenido").show();
+		$("#contenedorListaUsuariosServicios").hide();
 	    dbShell.transaction(function(tx) 
 		{  
 			var a1 = a;
@@ -299,17 +305,17 @@ angular.module('starter.controladorestadolecturas', [])
 			$cordovaFile.moveFile(sourceDirectory, sourceFileName, ruta, nombreFoto)
 			.then(function(success) 
 			{
-		 		console.log("Imagen Guardada");
+		 		
 			}, 
 			function(error) 
 			{
-		 		console.log(error);
+		 		
 			});
 
 		}, 
 		function(err) 
 		{
-			console.log(err);
+			
 		});
 		}
 	}
@@ -321,15 +327,12 @@ angular.module('starter.controladorestadolecturas', [])
 
 		fotosReg = fotosReg + 1;
 
-		console.log(fotosReg);
-
 		dbShell.transaction(function(tx) 
 		{    		
 			tx.executeSql("Update UsuariosServicios set NumeroFotos=? where Numero=?",[fotosReg,numeroReg],
 			function(tx, result)
 			{
 				document.getElementById("contadorFotos").value = fotosReg;
-				console.log(fotosReg);
 				swal("Correcto", "Foto Guardada", "success");
 			});
 		});

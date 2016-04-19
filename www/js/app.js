@@ -42,12 +42,6 @@ var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorc
       controller: 'Cicloruta'
     })
 
-    .state('estadolecturas', {
-      url: '/estadolecturas',
-      templateUrl: 'templates/usuariosservicios/estadolecturas.html',
-      controller: 'Estadolecturas'
-    })
-
     .state('medidorlecturas', {
       url: '/medidorlecturas',
       templateUrl: 'templates/usuariosservicios/medidorlecturas.html',
@@ -143,14 +137,6 @@ var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorc
   factoryObservaciones.observacion = {};
 
   return factoryObservaciones;
-})
-
-.factory('factoryEstadoLecturas', function(){
-  var factoryEstadoLecturas = {};
-  factoryEstadoLecturas.totalLecturas = [];
-  factoryEstadoLecturas.lecturas = {};
-
-  return factoryEstadoLecturas;
 })
 
 .run(function($ionicPlatform, $cordovaFile) 

@@ -43,7 +43,7 @@
 		<div class="row row-center" style="margin-top:-10px">
 			<!-- Botón Buscar-->
 			<div class="col col-25" align="center">	
-				<a onClick="contarRegistros()" href="#/estadolecturas"; style="font-size:2.5em; color:white;">
+				<a onClick="contarRegistros()" style="font-size:2.5em; color:white;">
 					<i class="icon ion-search" style="color:#Ef473A;"></i>
 				</a>
 			</div>
@@ -247,7 +247,7 @@
 		</div>
 	</ion-header-bar>
 
-	<ion-content padding="true" overflow-scroll="true" onLoad="pintarLista()">
+	<ion-content padding="true" overflow-scroll="true">
 		<input id="inputControlLecturas" type="number" readonly style="display:none;">
 		<div id="listaId" class="list">
 			<ul>
@@ -280,14 +280,18 @@
 		{
 			 $("#contenedorListaUsuariosServicios").hide();
 			 $("#contenedorUsuariosLecturas").show();
+			 $("#contenido").show();
 		}
 		
 		function contarRegistros()
 		{
+			$("#contenedorUsuariosLecturas").hide();
+			$("#contenido").hide();	
+			$("#contenedorListaUsuariosServicios").show();
 			var ciclo = document.getElementById("txtCiclo").value;
 			var ruta = document.getElementById("txtRuta").value;
 			var t;
-			dbShell.transaction(function(tx) 
+			/*dbShell.transaction(function(tx) 
 			{    		
 				tx.executeSql("select  Count(*) as Cantidad from UsuariosServicios Where Ciclo=? and Ruta=? ",[ciclo,ruta], 
 				function(tx, result)
@@ -298,9 +302,7 @@
 					if(CantidadTotal != cantidadLecturas)
 					{
 						t = setTimeout("contarRegistros()", 2000);
-		
-						$("#contenedorUsuariosLecturas").hide();
-						$("#contenedorListaUsuariosServicios").show();
+	
 					}
 
 					else
@@ -309,11 +311,13 @@
 						pintarListaReg(ciclo,ruta);
 					}
 				});
-			});
+			});*/
+			pintarListaReg(ciclo,ruta);
 		}
 
 		function pintarListaReg(ciclo,ruta)
 		{
+			$("#listaLecturas div a").removeClass('pintarLR')
 			dbShell.transaction(function(tx) 
 			{            
 				tx.executeSql("SELECT * FROM UsuariosServicios where Ciclo=? and Ruta=?", [ciclo,ruta],                
@@ -344,7 +348,7 @@
 
 		$("#btnSalirCargue").attr("onClick", "regresar()");
 
-		horayfecha();
+		//horayfecha();
 		function horayfecha()
 		{
 			var date = new Date();

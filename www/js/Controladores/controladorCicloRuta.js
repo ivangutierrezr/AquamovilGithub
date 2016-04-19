@@ -52,6 +52,8 @@ angular.module('starter.controladorcicloruta', [])
 
 	$scope.primeraLectura = function(ciclo,ruta,a)
 	{
+		document.getElementById('txtCiclo').value = ciclo;
+		document.getElementById('txtRuta').value = ruta;
 		var dato = a;
 		console.log(dato); 
 		dbShell.transaction(function(tx) 
@@ -157,11 +159,9 @@ angular.module('starter.controladorcicloruta', [])
 					document.getElementById('txtidUsuarioLecturaCtrl').value = result.rows.item(dato)['IdUsuario'];
 
 					var Ciclotx = result.rows.item(dato)['Ciclo'];	
-					document.getElementById('txtCiclo').value = Ciclotx;
 					document.getElementById('txtCiclo2').value = "Ciclo: " + Ciclotx;
 
 					var Rutatx = result.rows.item(dato)['Ruta'];
-					document.getElementById('txtRuta').value = Rutatx;
 					document.getElementById('txtRuta2').value = "Ruta: " + Rutatx;
 					
 					document.getElementById('txtCRC').value = result.rows.item(dato)['Consecutivo'];					
