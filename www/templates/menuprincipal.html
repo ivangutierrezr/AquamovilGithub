@@ -1,0 +1,215 @@
+<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+	<h1 class="title"><b>MENÚ AQUAMÓVIL</b></h1>
+</ion-header-bar>
+
+<ion-content padding="true" overflow-scroll="true">
+	<div class="list" id="listaMP">
+		<a class="item item-icon-left disableMP" id="irALecturaMedidores" href="#">
+			<i class="icon ion-clipboard"></i>
+			Lectura de Medidores
+		</a>
+
+		<div class="list" id="MenulecturaMedidores" style="display:none; width:90%; float:right; font-size:0.9em;">
+			<a class="item item-icon-left disableMP" id="botonRealizarLecturas" href="#">
+			<i class="icon ion-android-clipboard"></i>
+				Realizar Lecturas
+			</a>
+			<a class="item item-icon-left disableMP" id="botonReporteProgreso" href="#">
+			<i class="icon ion-arrow-graph-up-right"></i>
+				Reporte de Progreso
+			</a>
+		</div>
+
+		<a class="item item-icon-left disableMP" id="irAFacturacionEnSitio" href="#">
+			<i class="icon ion-ios-paper-outline"></i>
+			Facturación en Sitio
+		</a>
+
+		<div class="list" id="MenuFacturacionEnSitio" style="display:none; width:90%; float:right; font-size:0.9em;">
+			<a class="item item-icon-left disableMP" id="botonRealizarFacturas" href="#">
+			<i class="icon ion-printer"></i>
+				Realizar Facturación
+			</a>
+			<!-- <a class="item item-icon-left disableMP" id="botonReporteProgresoFacturas" href="#">
+			<i class="icon ion-arrow-graph-up-right"></i>
+				Reporte de Facturación
+			</a>-->
+		</div>
+
+		<a class="item item-icon-left disableMP" id="irACatastroUsuarios" href="#">
+			<i class="icon ion-compose"></i>
+			Catastro de Usuarios
+		</a>
+
+		<div class="list" id="MenuCatastroUsuarios" style="display:none; width:90%; float:right; font-size:0.9em;">
+			<a class="item item-icon-left disableMP" id="botonRealizarEncuestas" href="#">
+			<i class="icon ion-edit"></i>
+				Realizar Encuestas
+			</a>
+			<a class="item item-icon-left disableMP" id="botonEditarEncuestas" href="#">
+			<i class="icon ion-shuffle"></i>
+				Editar Encuestas
+			</a>
+			<a class="item item-icon-left disableMP" id="botonDescargarEncuestas" href="#">
+			<i class="icon ion-archive"></i>
+				Descargar Encuestas Diligenciadas
+			</a>
+			<input id="numeroPaquete" type="number" style="font-size:1px; display:none;" readonly>
+			<input id="tamanoPaquete" type="number" style="font-size:1px; display:none;" readonly>
+		    <input id="minimoDescarga" type="number" style="font-size:1px; display:none;" readonly>
+		    <input id="maximoDescarga" type="number" style="font-size:1px; display:none;" readonly>
+		    <input id="idProcesoDescargaCatastro" type="number" style="font-size:1px; display:none;" readonly>
+		</div>
+
+		<a class="item item-icon-left disableMP" id="irATrabajoDeCampo" href="#">
+			<i class="icon ion-briefcase"></i>
+			Trabajo de Campo
+		</a>
+
+		<div class="list" id="MenuTrabajoDeCampo" style="display:none; width:90%; float:right; font-size:0.9em;">
+			<a class="item item-icon-left disableMP" href="#">
+			<i class="icon ion-load-a"></i>
+				En Construcción
+			</a>
+		</div>
+
+		<a class="item item-icon-left disableMP" id="irACargarDeArchivos" href="#">
+			<i class="icon ion-upload"></i>
+			Carga de Archivos
+		</a>
+
+		<a class="item item-icon-left" href="#/informacion" id="irAInformacion">
+			<i class="icon ion-information-circled"></i>
+			Información
+		</a>
+	</div>
+</ion-content>
+
+<ion-footer-bar align-title="center" class="bar-assertive">
+	<a class="tab-item active" onClick="resetear()">
+ 		<div class="title">
+ 			<i class="icon ion-share botonesFooter"></i>
+ 		</div>
+ 	</a>
+</ion-footer-bar>
+
+	<script>
+		/*--------------------------------------------------------------------------------*/
+		//Función para menú desplegable
+		$("#irALecturaMedidores").click(function (){
+			$("#MenulecturaMedidores").slideToggle();
+			$("#irALecturaMedidores i").toggleClass('ion-ios-redo');
+
+			$("#MenuFacturacionEnSitio").slideUp();
+			$("#irAFacturacionEnSitio i").removeClass('ion-ios-redo');
+			$("#irAFacturacionEnSitio i").addClass('ios-paper-outline');
+
+			$("#MenuCatastroUsuarios").slideUp();
+			$("#irACatastroUsuarios i").removeClass('ion-ios-redo');
+			$("#irACatastroUsuarios i").addClass('ion-compose');
+
+			$("#MenuTrabajoDeCampo").slideUp();
+			$("#irATrabajoDeCampo i").removeClass('ion-ios-redo');
+			$("#irATrabajoDeCampo i").addClass('ion-briefcase');
+
+			$("#MenulecturaMedidores").css("text-align", "right");
+			$("#MenulecturaMedidores a").css("text-align", "left");
+		});
+
+		$("#irAFacturacionEnSitio").click(function (){
+			$("#MenuFacturacionEnSitio").slideToggle();
+			$("#irAFacturacionEnSitio i").toggleClass('ion-ios-redo');
+
+			$("#MenulecturaMedidores").slideUp();
+			$("#irALecturaMedidores i").removeClass('ion-ios-redo');
+			$("#irALecturaMedidores i").addClass('ion-clipboard');
+
+			$("#MenuCatastroUsuarios").slideUp();
+			$("#irACatastroUsuarios i").removeClass('ion-ios-redo');
+			$("#irACatastroUsuarios i").addClass('ion-compose');
+
+			$("#MenuTrabajoDeCampo").slideUp();
+			$("#irATrabajoDeCampo i").removeClass('ion-ios-redo');
+			$("#irATrabajoDeCampo i").addClass('ion-briefcase');
+
+			$("#MenuFacturacionEnSitio").css("text-align", "right");
+			$("#MenuFacturacionEnSitio a").css("text-align", "left");
+		});
+
+		$("#irACatastroUsuarios").click(function (){
+			$("#MenuCatastroUsuarios").slideToggle();
+			$("#irACatastroUsuarios i").toggleClass('ion-ios-redo');
+
+			$("#MenulecturaMedidores").slideUp();
+			$("#irALecturaMedidores i").removeClass('ion-ios-redo');
+			$("#irALecturaMedidores i").addClass('ion-clipboard');
+
+			$("#MenuFacturacionEnSitio").slideUp();
+			$("#irAFacturacionEnSitio i").removeClass('ion-ios-redo');
+			$("#irAFacturacionEnSitio i").addClass('ios-paper-outline');
+
+			$("#MenuTrabajoDeCampo").slideUp();
+			$("#irATrabajoDeCampo i").removeClass('ion-ios-redo');
+			$("#irATrabajoDeCampo i").addClass('ion-briefcase');
+
+			$("#MenuCatastroUsuarios").css("text-align", "right");
+			$("#MenuCatastroUsuarios a").css("text-align", "left");
+		});
+
+		$("#irATrabajoDeCampo").click(function (){
+			$("#MenuTrabajoDeCampo").slideToggle();
+			$("#irATrabajoDeCampo i").toggleClass('ion-ios-redo');
+
+			$("#MenulecturaMedidores").slideUp();
+			$("#irALecturaMedidores i").removeClass('ion-ios-redo');
+			$("#irALecturaMedidores i").addClass('ion-clipboard');
+
+			$("#MenuFacturacionEnSitio").slideUp();
+			$("#irAFacturacionEnSitio i").removeClass('ion-ios-redo');
+			$("#irAFacturacionEnSitio i").addClass('ios-paper-outline');
+
+			$("#MenuCatastroUsuarios").slideUp();
+			$("#irACatastroUsuarios i").removeClass('ion-ios-redo');
+			$("#irACatastroUsuarios i").addClass('ion-compose');
+
+			$("#MenuTrabajoDeCampo").css("text-align", "right");
+			$("#MenuTrabajoDeCampo a").css("text-align", "left");
+		});
+
+		$("#irACargarDeArchivos").click(function (){
+			$("#MenulecturaMedidores").slideUp();
+			$("#irALecturaMedidores i").removeClass('ion-ios-redo');
+			$("#irALecturaMedidores i").addClass('ion-clipboard');
+
+			$("#MenuFacturacionEnSitio").slideUp();
+			$("#irAFacturacionEnSitio i").removeClass('ion-ios-redo');
+			$("#irAFacturacionEnSitio i").addClass('ios-paper-outline');
+
+			$("#MenuCatastroUsuarios").slideUp();
+			$("#irACatastroUsuarios i").removeClass('ion-ios-redo');
+			$("#irACatastroUsuarios i").addClass('ion-compose');
+
+			$("#MenuTrabajoDeCampo").slideUp();
+			$("#irATrabajoDeCampo i").removeClass('ion-ios-redo');
+			$("#irATrabajoDeCampo i").addClass('ion-briefcase');
+		});
+
+		$("#irAInformacion").click(function (){
+			$("#MenulecturaMedidores").slideUp();
+			$("#irALecturaMedidores i").removeClass('ion-ios-redo');
+			$("#irALecturaMedidores i").addClass('ion-clipboard');
+
+			$("#MenuFacturacionEnSitio").slideUp();
+			$("#irAFacturacionEnSitio i").removeClass('ion-ios-redo');
+			$("#irAFacturacionEnSitio i").addClass('ios-paper-outline');
+
+			$("#MenuCatastroUsuarios").slideUp();
+			$("#irACatastroUsuarios i").removeClass('ion-ios-redo');
+			$("#irACatastroUsuarios i").addClass('ion-compose');
+
+			$("#MenuTrabajoDeCampo").slideUp();
+			$("#irATrabajoDeCampo i").removeClass('ion-ios-redo');
+			$("#irATrabajoDeCampo i").addClass('ion-briefcase');
+		});
+
+	</script>

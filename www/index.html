@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--Index-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    
+    <link rel="stylesheet" href="css/aquamovil.css">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sweet-alert.css">
+
+    <script src="js/jsAQua/jquery-2.1.4.min.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="cordova.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCaRylAxDFTN0Hu1hzKOdP9-DStPdimFiU"></script>
+    <script src="js/app.js"></script>
+    
+    <script src="js/Controladores/controladorMapa.js"></script>
+    <script src="js/Controladores/controladorCicloRuta.js"></script>
+    <script src="js/Controladores/controladorEstadoLecturas.js"></script>
+    <script src="js/Controladores/controladorCausales.js"></script>
+    <script src="js/Controladores/controladorObservacionuno.js"></script>
+    <script src="js/Controladores/controladorObservaciondos.js"></script>
+    <script src="js/Controladores/controladorObservaciontres.js"></script>
+    <script src="js/Controladores/controladorObservacionunoCargue.js"></script>
+    <script src="js/Controladores/controladorObservaciondosCargue.js"></script>
+    <script src="js/Controladores/controladorObservaciontresCargue.js"></script>
+    <script src="js/Controladores/controladorCicloRutaFacturacion.js"></script>
+    <script src="js/Controladores/controladorCatastroUsuarios.js"></script>
+    <script src="js/Controladores/controladorCargaInicial.js"></script>
+    <script src="js/Controladores/controladorFacturacionEnSitio.js"></script>
+    <script src="js/Controladores/controladorCatastroUsuariosNuevaEncuesta.js"></script>
+
+    <script src="js/jsAQua/jquery.csv.js"></script>
+    <script src="js/jsAQua/funcionesGenerales.js"></script>
+    <script src="js/jsAQua/CODE128.js"></script>
+    <script src="js/jsAQua/JsBarcode.js"></script>
+    <script src="js/jsAQua/funcionesAuxiliares.js"></script>
+    <script src="js/jsAQua/AQuaUsuariosServicios.js"></script>
+    <script src="js/jsAQua/AQuaCausales.js"></script>
+    <script src="js/jsAQua/AQuaObservaciones.js"></script>
+    <script src="js/jsAQua/AQuaReportes.js"></script>
+    <script src="js/jsAQua/AQuaRequisitos.js"></script>
+    <script src="js/jsAQua/AQuaFacturacionEnSitio.js"></script>
+    <script src="js/jsAQua/AQuaCatastroUsuarios.js"></script>
+    <script src="js/jsAQua/sweet-alert.min.js"></script>
+
+  <script>
+
+        /**
+     * cordova FileChooser plugin
+     */
+     (function(cordova){
+        var FileChooser = function() {
+
+        };
+
+        FileChooser.prototype.open = function(params, success, fail) {
+            return cordova.exec(function(args) {
+                success(args);
+            }, function(args) {
+                fail(args);
+            }, 'FileChooser', 'open', [params||{}]);
+        };
+
+        window.filechooser = new FileChooser();
+        
+        // backwards compatibility
+        window.plugins = window.plugins || {};
+        window.plugins.filechooser = window.filechooser;
+    })(window.PhoneGap || window.Cordova || window.cordova);
+
+    var success = function( data ) {
+        var filepath = data.filepath;
+        function win(r) {
+            console.log("Code = " + r.responseCode);
+            console.log("Response = " + r.response);
+            console.log("Sent = " + r.bytesSent);
+        }
+
+        function fail(error) {
+            console.log("An error has occurred: Code = " + error.code);
+            console.log("upload error source " + error.source);
+            console.log("upload error target " + error.target);
+        }
+
+        var uri = encodeURI("http://localhost/upload/processupload.php");
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=filepath.substr(filepath.lastIndexOf('/')+1);
+
+        var ft = new FileTransfer();
+        ft.onprogress = function(progressEvent) {
+            if (progressEvent.lengthComputable) {
+                loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+            } 
+            else {
+                loadingStatus.increment();
+            }
+        };
+
+        ft.upload(filepath, uri, win, fail, options);  
+    };
+
+  </script>
+
+  <script>
+    function justNumbers(e)
+    {
+      var keynum = window.event ? window.event.keyCode : e.which;
+      if ((keynum == 8) || (keynum == 46))
+      return true;
+      return /\d/.test(String.fromCharCode(keynum));
+    }
+  </script>
+
+  </head>
+  <body ng-app="starter">
+    <ion-nav-view>
+    </ion-nav-view>
+
+    <!--Input ContadorFotos (Control)-->
+    <input type="text" id="contadorFotos" style="font-size:1px; display:none;" readonly>
+
+    <!--Input idOperario (Control)-->
+    <input id="idOperario" type="text" style="font-size:1px; display:none;" readonly>
+
+    <!--Input nombreOperario (Control)-->
+    <input id="nombreOperario" type="text" style="font-size:1px; display:none;" readonly>
+
+    <!--Input Ciclo (Control) -->
+    <input id="txtCiclo" type="number" style="font-size:1px;" readonly>
+
+    <!--Input Ruta (Control) -->
+    <input id="txtRuta" type="number" style="font-size:1px;" readonly>
+
+    <!--Input Numero Registro (Control)-->
+    <input id="txtNumRegistro" type="text" style="font-size:1px; display:none;" readonly>
+
+    <!--Input idUsuarioLectura (Control) -->
+    <input id="txtidUsuarioLecturaCtrl" type="hidden" style="font-size:1px;" readonly>
+
+     <!--Input consumo (Control) -->
+    <input id="consumo" type="number" style="display:none;" readonly>
+
+     <!--Input conceptoCritica (Control) -->
+    <input id="conceptoCritica" type="text" style="display:none;" readonly>
+
+    <!--Input Periodo Actual (Control)-->
+    <input id="periodoActual" type="number" style="font-size:1px; display:none;" readonly>
+
+    <!--Input Nombre Empresa (Control)-->
+    <input id="nombreEmpresa" type="text" style="font-size:1px; display:none;" readonly>
+
+    <!--Input Critica Alta Menor a 6 mts cubicos (Control)-->
+    <input id="criticaAltaMenor6" type="number" style="font-size:1px; display:none;" readonly>
+
+    <!--Input Critica Baja Menor a 35 mts cubicos (Control)-->
+    <input id="criticaBajaMenor35" type="number" style="font-size:1px; display:none;" readonly>
+
+    <!--Input Critica Alta Menor a 35 mts cubicos (Control)-->
+    <input id="criticaAltaMenor35" type="number" style="font-size:1px; display:none;" readonly>
+
+    <!--Input Critica Baja Mayor a 35 mts cubicos (Control)-->
+    <input id="criticaBajaMayor35" type="number" style="font-size:1px; display:none;" readonly>
+
+    <!--Input Critica Alta Mayor a 35 mts cubicos (Control)-->
+    <input id="criticaAltaMayor35" type="number" style="font-size:1px; display:none;" readonly>
+
+    <!--Input Número de Encuestas realizadas por el operario (Control)-->
+    <input id="numeroEncuesta" type="number" style="font-size:1px; display:none;" readonly>
+    
+    <!--Input Número de Pregunta Actual (Control)-->
+    <input id="numeroPregunta" type="number" style="font-size:1px; display:none;" readonly>
+
+    
+  </body>
+</html>

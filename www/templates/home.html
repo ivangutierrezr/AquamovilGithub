@@ -1,0 +1,58 @@
+<!-- PÁGINA DE INICIO-->
+<!-- ENCABEZADO DE LA PÁGINA-->
+<div class="bar bar-header bar-assertive" id="header_inicio">
+	<h1 class="title">AQuaMóvil 1_5®</h1>
+</div>
+
+<!--CONTENIDO-->
+<div id="contenidoInicio">
+	
+	<!--LOGO DE AQUAMÓVIL-->
+	<img  id="logo" src="img/logo.png" alt="logo_aquaviva">
+	<br>
+
+	<div class="list">
+
+		<!--INPUT NOMBRE DE USUARIO-->
+		<label class="item item-input">	
+		<input type="text" style="font-size: 1em;" id="User" placeholder="Nombre de Usuario">
+		</label>
+
+		<!--INPUT NOMBRE DE CONTRASEÑA-->
+		<label class="item item-input">
+		<input  id="Pass" style="font-size: 1em;" type="password" placeholder="Clave de Acceso">
+		</label>
+		<br>
+		
+		<!-- BOTON DE INGRESO -->
+		<a id="btnIngresar" onClick="inicioSesion()" class="button button-assertive">ENTRAR</a>
+
+		<!--INPUT CIERRE DE LA APLICACIÓN--> 
+		<a id="salir" class="button button-assertive">SALIR</a><br>	
+	</div>
+	
+	<!--LOGO DE MISIÓN VIDA-->
+	<figure id="logoMisionVida"> 
+		<img id="imglogoMisionVida">
+	</figure>
+</div>
+
+	<script>
+		//función para salir de la app
+
+		$('#salir').click(function() {
+
+			swal({
+				title: "Atención",
+				text: "¿Desea Salir de la aplicación?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#0088C4",
+				confirmButtonText: "Salir",
+				cancelButtonText: "Cancelar",
+				closeOnConfirm: false }, 
+				function(){
+					navigator.app.exitApp();
+				});
+		});
+	</script>

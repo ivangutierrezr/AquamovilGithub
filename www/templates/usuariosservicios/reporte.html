@@ -1,0 +1,85 @@
+<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+	<b><h1 class="title">REPORTE DE PROGRESO</h1></b>
+</ion-header-bar>
+<ion-header-bar align-title="center" class="bar bar-subheader bar-assertive">
+	<div class="row">
+		<div class="col col-10" style="font-size:1.5em; text-align:center;">
+			<b>C</b>
+		</div>					
+		<div class="col col-10" style="font-size:1.5em; text-align:center;">
+			<b>R</b>
+		</div>
+		<div class="col col-40" style="font-size:1.5em; text-align:center;">
+			<b>Proc.</b>
+		</div>
+		<div class="col col-30" style="font-size:1.5em; text-align:center;">
+			<b>%</b>
+		</div>
+	</div>
+</ion-header-bar>
+
+<ion-content padding="true" overflow-scroll="true">
+	<div class="row" id="contenedorRegistros">
+		<div class="col col-10">
+			<div align="center" id="listaCiclo" class="list">
+			</div>
+		</div>
+
+		<div class="col col-10">
+			<div align="center" id="listaRuta" class="list">
+			</div>
+		</div>
+		<div class="col col-40">
+			<div align="center" class="list">
+				<ul id="listaDeProceso"></ul>
+			</div>
+		</div>
+
+		<div class="col col-30">
+			<div align="center" class="list">
+				<ul id="listaDePorcentaje"></ul>
+			</div>
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer-bar align-title="center" class="bar-assertive">
+	<a class="tab-item active" onClick="resetearListaReportes()">
+ 		<div class="title">
+ 			<i class="icon ion-share botonesFooter"></i>
+ 		</div>
+ 	</a>
+</ion-footer-bar>
+
+	<script>
+		function resetearListaReportes()
+		{
+			var place = document.getElementById("listaDeProceso");
+			for (var a = 0; place.getElementsByTagName("li").length > a; a+1)
+			{           
+				place.removeChild(place.getElementsByTagName("li")[0]);
+			}
+
+			var place1 = document.getElementById("listaDePorcentaje");
+			for (var a = 0; place1.getElementsByTagName("li").length > a; a+1)
+			{           
+				place1.removeChild(place1.getElementsByTagName("li")[0]);
+			}
+
+			var place2 = document.getElementById("listaCiclo");
+			for (var a = 0; place2.getElementsByTagName("ul").length > a; a+1)
+			{           
+				place2.removeChild(place2.getElementsByTagName("ul")[0]);
+			}
+
+			var place3 = document.getElementById("listaRuta");
+			for (var a = 0; place3.getElementsByTagName("ul").length > a; a+1)
+			{           
+				place3.removeChild(place3.getElementsByTagName("ul")[0]);
+			}
+
+			window.location.href="#/menuprincipal";
+		}
+
+
+	</script>

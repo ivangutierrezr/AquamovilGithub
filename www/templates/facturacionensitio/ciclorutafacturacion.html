@@ -1,0 +1,105 @@
+<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+	<b><h1 class="title">ESCOJA CICLO Y RUTA</b></h1>
+</ion-header-bar>
+
+<ion-content padding="true" overflow-scroll="true">
+	<input id="inputControlCRFact" type="number" readonly style="display:none;">
+	<div align="center" id="listaCRFact" class="list">
+		<ul>
+			<li ng-repeat="dato in listaciclorutafact">
+				<div class='row'><div id="divCRFact" class='col col-100'><a id='CicloFact{{dato.ciclo}}rutaFact{{dato.ruta}}' class='item item-divider pintarCRSinDiligenciar' ng-click='primeraFactura({{dato.ciclo}},{{dato.ruta}},{{dato.numDato}})' ui-sref='facturacionensitio'>Ciclo: {{dato.ciclo}} - Ruta: {{dato.ruta}}</a></div></div>
+			</li>
+		</ul>
+	</div>
+</ion-content>
+
+<ion-footer-bar align-title="center" class="bar-assertive">
+	<a class="tab-item active" ui-sref="menuprincipal" id="btnSalir">
+ 		<div class="title">
+ 			<i class="icon ion-share botonesFooter"></i>
+ 		</div>
+ 	</a>
+</ion-footer-bar>
+
+	<script>
+
+		contarRegistrosCRFact();
+		function contarRegistrosCRFact()
+		{
+			var idbd = document.getElementById("idOperario").value;
+			var t;
+			dbShell.transaction(function(tx) 
+			{    		
+				tx.executeSql("select  Count(*) as Cantidad FROM AsignacionRutas where Oper=?", [idbd],
+				function(tx, result)
+				{	
+					var CantidadTotal = parseInt(result.rows.item(0)['Cantidad']);
+					var cantidadCR = document.getElementById("inputControlCRFact").value;
+
+					if(CantidadTotal != cantidadCR)
+					{
+						t = setTimeout("contarRegistrosCRFact()", 1000);
+					}
+
+					else
+					{
+						clearTimeout(t);
+						crDiligenciadosFact();
+					}
+				});
+			});
+		}
+
+		function crDiligenciadosFact()
+		{
+			var idbd = document.getElementById("idOperario").value;
+	    	dbShell.transaction( function(tx) 
+			{            
+				tx.executeSql("SELECT * FROM AsignacionRutas where Oper=?", [idbd],                
+				function(tx, result)
+				{                  
+					for(var i=0; i < result.rows.length; i++) 
+					{   
+						if(result.rows.length != 0)
+						{
+							var ciclo = result.rows.item(i)['Ciclo'];
+							var ruta = result.rows.item(i)['Ruta'];
+							pintarCRFact(ciclo,ruta);
+							console.log(ciclo);
+							console.log(ruta);
+						}
+					}              
+				});    
+			});
+		}
+
+		function pintarCRFact(ciclo,ruta)
+		{
+			dbShell.transaction(function(tx) 
+			{            
+				tx.executeSql("SELECT * FROM UsuariosServicios where Ciclo=? and Ruta=?", [ciclo,ruta],                
+				function(tx, result)
+				{
+					var id = "CicloFact"+ciclo+"rutaFact"+ruta;
+					var contador = 0;         
+					for(var i = 0; i < result.rows.length; i++) 
+					{   
+						var a1 = result.rows.item(i)['LecturaActual'];
+						var a2 = result.rows.item(i)['CausalActual'];
+						var a3 = result.rows.item(i)['ObservacionActual'];
+
+						if(a1 != '' || a2 >= 1)
+						{
+							contador = i+1;
+						}
+
+						if(contador == result.rows.length)
+						{
+							$("#divCRFact #"+id).removeClass('pintarCRSinDiligenciar');
+							$("#divCRFact #"+id).addClass('pintarCRDiligenciado');
+						}	
+					}		             
+				});    
+			});    
+		}
+	</script>

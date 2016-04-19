@@ -1,0 +1,634 @@
+body
+{
+	background: #FFDC8B;
+}
+
+.scroll {
+  height: 100%;
+}
+
+input{
+    width: 100%;
+    border-radius: 20px;
+    padding: 0;
+}
+
+#txtLectura::-webkit-input-placeholder
+{
+    padding-top: 0.4em;
+    color: red !important;  
+    text-align: center !important;
+    opacity: 0.5;
+}
+
+#txtLectura
+{
+    color: red !important;  
+    border-radius: 30px;
+}
+
+#txtCausal::-webkit-input-placeholder
+{
+    color: black !important;  
+    text-align: center !important;
+    opacity: 0.5;
+}
+
+#txtCausal
+{
+    color: black !important;  
+    border-radius: 30px;
+}
+
+#txtObservacion::-webkit-input-placeholder
+{
+    color: black !important;  
+    text-align: center !important;
+    opacity: 0.5;
+}
+
+#txtObservacion
+{
+    color: black !important;  
+    border-radius: 30px;
+}
+
+#txtObservacion2::-webkit-input-placeholder
+{
+    color: black !important;  
+    text-align: center !important;
+    opacity: 0.5;
+}
+
+#txtObservacion2
+{
+    color: black !important;  
+    border-radius: 30px;
+}
+
+#txtObservacion3::-webkit-input-placeholder
+{
+    color: black !important;  
+    text-align: center !important;
+    opacity: 0.5;
+}
+
+#txtObservacion3
+{
+    color: black !important;  
+    border-radius: 30px;
+}
+
+#contenidoInicio
+{
+    width: 90%;
+    margin: 100px auto 0 auto;
+    text-align: center;
+}
+
+
+#contenido
+{
+	width: 95%;
+	margin: 70px auto 70px auto;
+	text-align: center;
+    overflow-y: auto; 
+}
+
+#contenidoFact
+{
+    width: 95%;
+    margin: 0 auto 0 auto;
+}
+
+#contentFact
+{
+    margin: 0 0 10px 0;
+}
+
+#contenidoMapa
+{
+    width: 95%;
+    margin: 90px auto 70px auto;
+    text-align: center;
+}
+
+#contenido2
+{
+    width: 90%;
+    margin: 45px auto 0 auto;
+    text-align: center;
+}
+
+#contenido3
+{
+    width: 90%;
+    margin: 63px auto 0 auto;
+    text-align: center;
+}
+
+#contenido4
+{
+    width: 100%;
+    margin: 8em auto 0 auto;
+    text-align: center;
+}
+
+#contenidoMenuAdmin
+{
+    width: 90%;
+    margin: 45px auto 0 auto;
+    text-align: center;    
+}
+
+#contenidoRegistros
+{
+    width: 100%;
+    margin: 63px auto 0 auto;
+    text-align: center;
+}
+
+#contenidoBusquedas
+{
+    width: 100%;
+    margin: 200px auto 4.5em auto;
+    text-align: center;
+}
+
+#contenidoLista
+{
+    width: 90%;
+    text-align: left;
+    margin: 0 auto 4.5em auto;
+    overflow-y: auto; 
+}
+
+#ContenidoInformacion
+{
+    width: 80%;
+    height: 100%;
+    font-size: 1.2em;
+    position: relative;
+    text-align: center;
+    margin: auto;
+    top: 1.5em;
+    color:white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,1);
+}
+
+#contenido2 footer
+{
+    position: absolute;
+    bottom: 4.5em;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    color:white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,1);
+}
+
+.ui-input-clear, .ui-btn ui-icon-delete
+{
+    color: white;
+    background: #EF473A;
+    padding-top: 2px;
+    border-radius: 50%;
+}
+
+
+figure 
+{
+    margin: 0;
+    padding: 0;
+}
+
+#Cargue
+{
+    width: 100%;
+    
+}
+
+#logo
+{
+	width: 200px;
+	
+	margin-bottom: 30px;
+}
+
+#header_inicio
+{
+	box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
+    position:fixed;
+    margin-top: 0;
+}
+
+a{
+	text-decoration: none;
+
+}
+
+#textohome
+{
+	text-align: center;
+}
+
+#lista1
+{
+	text-align: center;
+	left : 0;
+    margin: auto;
+    position: fixed;
+}
+
+#lista2
+{
+    text-align: center;
+    left : 0;
+    margin: auto;
+    position: fixed;
+    background: #FFDC8B;
+    border: 2px solid #FFDC8B;
+    padding-bottom: 1em;
+    height: 150px;
+}
+
+#lista3
+{
+    text-align: center;
+    left : 0;
+    margin: auto;
+    position: fixed;
+    height: 20px;
+}
+
+#pie_usuarioMenuAdmin{
+    position: fixed;
+    padding:2px;
+    height:3em;
+}
+
+#pie_usuarioMenuAdmin a{
+    font-size: 2.5em;
+    color: white;
+    opacity: 1;
+}
+
+#pie_usuarioMenuAdmin i{
+    font-size: 1em;
+    margin-bottom: 1px;
+    color: white;
+}
+
+#pie_usuario{
+    position: fixed;
+    padding:2px;
+    height:4em;
+}
+
+#pie_usuario a{
+	font-size: 1em;
+	color: white;
+	opacity: 1;
+}
+
+#pie_usuario i{
+	font-size: 2em;
+	margin-bottom: 1px;
+	color: white;
+}
+
+#logos i{
+	margin-bottom: 60px;
+	color: white;
+}
+
+#datosU
+{
+	text-align: left;
+	margin: -20px 0px 0px 0px;
+    padding: 0;
+}
+
+#slide
+{
+    float: left;
+    clear: left;
+    width: 300px;
+    margin: 15px;
+  }
+#slide .ui-slider-range { background: #729fcf; }
+#slide .ui-slider-handle { border-color: #729fcf; } 
+
+#btnIngresar, #btnCargarArchivo, #btnCargarUser{
+	border-radius: 20px;
+	width: 40%;
+	font-size: 15px;
+}
+
+#btnActualizar{
+	border-radius: 20px;
+	font-size: 15px;
+	background-color: #Ef473A;
+	color: white;
+	padding: 5px;
+}
+
+#salir {
+	border-radius: 20px;
+	width: 40%;
+	margin-left: 5%;
+	font-size: 15px;
+}
+
+.item-input {
+	border-radius: 30px;
+	padding: 0;
+}
+
+.buscar {
+	font-size:1em;
+	width: 100%;
+}
+
+#contenedorRegistros
+{
+    width: 100%;
+    margin: 0 auto 0 auto;
+    padding:0;
+    background:rgba(239,71,58,1);
+    border: 1px solid white;
+}
+
+#contenedorRegistros .col-20, #contenedorRegistros .col-30
+{
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+#contenedorRegistros ul
+{
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+#contenedorRegistros ul li
+{
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    background: transparent;
+    margin: 5px 0 5px 0;
+}
+
+#listaCR div
+{
+    margin: 0;
+}
+
+#listaCR .disableDesc
+{
+    background: gray;
+    opacity: 0.5;
+}
+
+#listaMP a
+{
+    color: white;
+    text-align: left;
+    font-size: 1.1em;
+    background: rgba(239,71,58,1);
+    border: 1px solid transparent;
+    margin: 0;
+    border-bottom: 1px solid white;
+}
+
+#listaMP div
+{
+    margin: 0;
+}
+
+#listaMP .disableMP
+{
+    background: gray;
+    opacity: 0.5;
+}
+
+#archivosGenerales a, #lecturaMedidores a, #FacturacionEnSitio a, #CatastroUsuarios a, #TrabajoDeCampo a, #MenulecturaMedidores a, #MenuFacturacionEnSitio a, #MenuCatastroUsuarios a, #MenuTrabajoDeCampo a
+{
+    color: white;
+    text-align: center;
+    font-size: 1.1em;
+    background: #0088C4;
+    border: 1px solid transparent;
+    margin: 0;
+    border-bottom: 1px solid white;
+}
+
+#listaCau a
+{
+    color: black;
+    text-align: left;
+    font-size: 0.9em;
+    background: transparent;
+    border: 1px solid white;
+    padding: 0;
+    margin: 0;
+}
+
+#listaObs a
+{
+    color: black;
+    text-align: left;
+    font-size: 0.9em;
+    background: transparent;
+    border: 1px solid white;
+    padding: 0;
+    margin: 0;
+}
+
+#listaObs2 a
+{
+    color: black;
+    text-align: left;
+    font-size: 0.9em;
+    background: transparent;
+    border: 1px solid white;
+    padding: 0;
+    margin: 0;
+}
+
+#listaObs3 a
+{
+    color: black;
+    text-align: left;
+    font-size: 0.9em;
+    background: transparent;
+    border: 1px solid white;
+    padding: 0;
+    margin: 0;
+}
+
+#listaObsCargue a
+{
+    color: black;
+    text-align: left;
+    font-size: 0.9em;
+    background: transparent;
+    border: 1px solid white;
+    padding: 0;
+    margin: 0;
+}
+
+#listaObs2Cargue a
+{
+    color: black;
+    text-align: left;
+    font-size: 0.9em;
+    background: transparent;
+    border: 1px solid white;
+    padding: 0;
+    margin: 0;
+}
+
+#listaObs3Cargue a
+{
+    color: black;
+    text-align: left;
+    font-size: 0.9em;
+    background: transparent;
+    border: 1px solid white;
+    padding: 0;
+    margin: 0;
+}
+
+#listaId a
+{
+    color: black;
+    text-align: left;
+    font-size: 0.9em;
+    background: transparent;
+    border: 1px solid white;
+    padding: 0;
+    margin: 0;
+}
+
+#CargaLec {
+	position: relative;
+	z-index: -2;
+}
+
+/*Botón Información*/
+
+.disable{
+    opacity: 0.5;
+}
+
+#aConsecutivo
+{
+    position: relative;
+    height: 6em;
+    width: 100%;
+    background: url("../img/ovalo2.png");
+    background-size: 85px 85px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#aConsecutivo a
+{
+    top: 2em;
+    left: 0;
+    position: absolute;   
+    text-align: center;
+    z-index: 5;
+}
+
+.botonesFooter
+{
+    font-size: 2.4em !important;
+}
+
+#subheaderCausal, #subheaderObs1, #subheaderObs2, #subheaderObs3, #subheaderObs1Cargue, #subheaderObs2Cargue, #subheaderObs3Cargue
+{
+    height: 80px;
+}
+
+#contenidoCausal, #contenidoObs1, #contenidoObs2, #contenidoObs3, #contenidoObs1Cargue, #contenidoObs2Cargue, #contenidoObs3Cargue
+{
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+}
+
+.pintarLRDiligenciado
+{
+    background: #0088C4 !important;
+    color: #FFF !important;
+    font-weight: bold  !important;
+    opacity: 1 !important;
+}
+
+.pintarLR
+{
+    background: #Ef473A !important;
+    color: #FFF !important;
+    font-weight: bold  !important;
+    opacity: 1 !important;
+}
+
+.pintarCRDiligenciado
+{
+    background: #0088C4 !important;
+    color: #FFF !important;
+    font-weight: bold !important;
+    opacity: 1 !important;
+}
+
+.pintarCRSinDiligenciar
+{
+    color: white !important;
+    background: #Ef473A !important;
+    opacity: 0.5;
+}
+
+#listaCR a
+{
+    text-align: center;
+    font-size: 1.3em;
+    border: 1px solid transparent;
+    margin: 0;
+}
+
+#listaCRFact a
+{
+    text-align: center;
+    font-size: 1.3em;
+    border: 1px solid transparent;
+    margin: 0;
+}
+
+.infoBox 
+{
+    border:1px solid black;
+    background-color: white;
+}
+
+.paddingIzquierdo
+{
+    padding: 1em 0 1em 1em;
+}
+
+.liquidacion 
+{
+    border-left: 1px solid black;
+}
+
+.totalAPagar 
+{
+    font-size: 1.2em;
+}
+
+#map {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}

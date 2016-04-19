@@ -1,0 +1,105 @@
+<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+	<h1 class="title"><b>ESCOJA CICLO Y RUTA</b></h1>
+</ion-header-bar>
+
+<ion-content padding="true" overflow-scroll="true">
+	<input id="inputControlCR" type="number" readonly style="display:none;">
+	<div align="center" id="listaCR" class="list" style="width:100%">
+		<ul>
+			<li ng-repeat="dato in listacicloruta">
+				<div class='row'><div id="divCR" class='col col-80'><a id='Ciclo{{dato.ciclo}}ruta{{dato.ruta}}' class='item item-divider pintarCRSinDiligenciar' ng-click='primeraLectura({{dato.ciclo}},{{dato.ruta}},{{dato.numDato}})' href='#/medidorlecturas'>Ciclo: {{dato.ciclo}} - Ruta: {{dato.ruta}}</a></div><div class='col col-20'><a id='idBotonDesc' ng-click='DescargarArchivo({{dato.ciclo}},{{dato.ruta}})' class='item item-divider' href='#' style='background-color: #0088C4; color: #fff; font-weight: bold; opacity: 1;'><i class='icon ion-arrow-down-c'></i></a></div></div>
+			</li>
+		</ul>
+	</div>
+</ion-content>
+
+<ion-footer-bar align-title="center" class="bar-assertive">
+	<a class="tab-item active" href="#/menuprincipal" id="btnSalir">
+ 		<div class="title">
+ 			<i class="icon ion-share botonesFooter"></i>
+ 		</div>
+ 	</a>
+</ion-footer-bar>
+
+	<script>
+
+		contarRegistrosCR();
+		function contarRegistrosCR()
+		{
+			var idbd = document.getElementById("idOperario").value;
+			var t;
+			dbShell.transaction(function(tx) 
+			{    		
+				tx.executeSql("select  Count(*) as Cantidad FROM AsignacionRutas where Oper=?", [idbd],
+				function(tx, result)
+				{	
+					var CantidadTotal = parseInt(result.rows.item(0)['Cantidad']);
+					var cantidadCR = document.getElementById("inputControlCR").value;
+
+					if(CantidadTotal != cantidadCR)
+					{
+						t = setTimeout("contarRegistrosCR()", 1000);
+					}
+
+					else
+					{
+						clearTimeout(t);
+						crDiligenciados();
+					}
+				});
+			});
+		}
+
+		function crDiligenciados()
+		{
+			var idbd = document.getElementById("idOperario").value;
+	    	dbShell.transaction( function(tx) 
+			{            
+				tx.executeSql("SELECT * FROM AsignacionRutas where Oper=?", [idbd],                
+				function(tx, result)
+				{                  
+					for(var i=0; i < result.rows.length; i++) 
+					{   
+						if(result.rows.length != 0)
+						{
+							var ciclo = result.rows.item(i)['Ciclo'];
+							var ruta = result.rows.item(i)['Ruta'];
+							pintarCR(ciclo,ruta);
+							console.log(ciclo);
+							console.log(ruta);
+						}
+					}              
+				});    
+			});
+		}
+
+		function pintarCR(ciclo,ruta)
+		{
+			dbShell.transaction(function(tx) 
+			{            
+				tx.executeSql("SELECT * FROM UsuariosServicios where Ciclo=? and Ruta=?", [ciclo,ruta],                
+				function(tx, result)
+				{
+					var id = "Ciclo"+ciclo+"ruta"+ruta;
+					var contador = 0;         
+					for(var i = 0; i < result.rows.length; i++) 
+					{   
+						var a1 = result.rows.item(i)['LecturaActual'];
+						var a2 = result.rows.item(i)['CausalActual'];
+						var a3 = result.rows.item(i)['ObservacionActual'];
+
+						if(a1 != '' || a2 >= 1)
+						{
+							contador = i+1;
+						}
+
+						if(contador == result.rows.length)
+						{
+							$("#divCR #"+id).removeClass('pintarCRSinDiligenciar');
+							$("#divCR #"+id).addClass('pintarCRDiligenciado');
+						}	
+					}		             
+				});    
+			});    
+		}
+	</script>

@@ -1,0 +1,348 @@
+<ion-header-bar align-title="center" class="bar bar-header bar-assertive"><h1 class="title"><b>MENÚ ADMINISTRADOR</b></h1></ion-header-bar>
+
+<ion-content padding="true" overflow-scroll="true">
+	<div class="list" id="listaMP">
+		<a class="item item-icon-left" id="botonArchivosGenerales" href="#">
+			<i class="icon ion-chevron-down"></i>
+			Archivos Generales
+		</a>
+
+		<div class="list" id="archivosGenerales" style="display:none; width:90%; float:right; font-size:0.9em;">
+			<a class="item item-icon-left item-icon-right" ng-click="borrarUsuarios()"  id="botonUsuarios2" href="#">
+			<i class="icon ion-person"></i>
+				Usuarios Operativos
+			<i id="confirmado1" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+			<a class="item item-icon-left item-icon-right" ng-click="confirmarNuevosUsuariosServicios()" id="botonUsuariosServicios" href="#">
+			<i class="icon ion-ios-home"></i>
+				Usuarios Servicios
+			<i id="confirmado2" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+			<a class="item item-icon-left item-icon-right" ng-click="borrarAsignacionRutas()" href="#" id="botonAsignacionRutas">
+			<i class="icon ion-android-bicycle"></i>
+				Asignación Rutas
+			<i id="confirmado3" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+			<a class="item item-icon-left item-icon-right" ng-click="borrarPermisosAquamovil()" href="#" id="botonPermisosAquamovil2">
+			<i class="icon ion-ios-locked"></i>
+				Permisos AQuaMóvil
+			<i id="confirmado4" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+			<a class="item item-icon-left item-icon-right" ng-click="borrarParametros()" id="botonParametros" href="#">
+			<i class="icon ion-calendar"></i>
+				Parametros AQuaMóvil
+			<i id="confirmado5" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+		</div>
+
+		<a class="item item-icon-left" id="botonLecturaMedidores" href="#">
+			<i class="icon ion-chevron-down"></i>
+			Lectura Medidores
+		</a>
+
+		<div class="list" id="lecturaMedidores" style="display:none; width:90%; float:right; font-size:0.9em;">
+			<a class="item item-icon-left item-icon-right" ng-click="borrarCausales()" id="botonCausales" href="#">
+			<i class="icon ion-alert-circled"></i>
+				Causales
+			<i id="confirmado6" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+			<a class="item item-icon-left item-icon-right" ng-click="borrarObservaciones()" id="botonObservaciones" href="#">
+			<i class="icon ion-eye"></i>
+				Observaciones
+			<i id="confirmado7" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+		</div>
+
+		<a class="item item-icon-left" id="botonFacturacionEnSitio" href="#">
+			<i class="icon ion-chevron-down"></i>
+			Facturación en Sitio
+		</a>
+
+		<div class="list" id="FacturacionEnSitio" style="display:none; width:90%; float:right; font-size:0.9em;">
+			<a class="item item-icon-left item-icon-right" ng-click="borrarAcumuladosAnteriores()" id="botonAcumuladosAnteriores" href="#">
+			<i class="icon ion-stats-bars"></i>
+				Acumulados Anteriores
+			<i id="confirmado8" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+			<a class="item item-icon-left item-icon-right" ng-click="borrarCargosFacturacion()" id="botonCargosFacturacion" href="#">
+			<i class="icon ion-social-usd"></i>
+				Cargos Facturación
+			<i id="confirmado9" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+			<a class="item item-icon-left item-icon-right" ng-click="borrarIndicesSubsidiosAportes()" id="botonIndicesSubsidiosAportes" href="#">
+			<i class="icon ion-fork-repo"></i>
+				Indices Subsidios Aportes
+			<i id="confirmado10" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+			<a class="item item-icon-left item-icon-right" ng-click="borrarPeriodos()" id="botonPeriodos" href="#">
+			<i class="icon ion-android-calendar"></i>
+				Periodos
+			<i id="confirmado11" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+		</div>
+
+		<a class="item item-icon-left" id="botonCatastroUsuarios" href="#">
+			<i class="icon ion-chevron-down"></i>
+			Catastro de Usuarios
+		</a>
+
+		<div class="list" id="CatastroUsuarios" style="display:none; width:90%; float:right; font-size:0.9em;">
+			<a class="item item-icon-left item-icon-right" ng-click="confirmarNuevoProyectoCatastro()" id="botonProyectoCatastro" href="#">
+			<i class="icon ion-chatbubble-working"></i>
+				Proyecto
+			<i id="confirmado12" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+			<a class="item item-icon-left item-icon-right" ng-click="borrarOpcionesCatastro()" id="botonOpcionesCatastro" href="#">
+			<i class="icon ion-grid"></i>
+				Opciones
+			<i id="confirmado13" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+		</div>
+
+		<a class="item item-icon-left" id="botonTrabajoDeCampo" href="#">
+			<i class="icon ion-chevron-down"></i>
+			Trabajo de Campo
+		</a>
+
+		<div class="list" id="TrabajoDeCampo" style="display:none; width:90%; float:right; font-size:0.9em;">
+			<a class="item item-icon-left item-icon-right" href="#">
+			<i class="icon ion-load-a"></i>
+				En Construcción
+			<i id="confirmadoX" class="icon ion-checkmark-round" style="display:none"></i>
+			</a>
+		</div>
+		<a class="item item-icon-left" style="background:#29A655" id="botonRestablecer">
+		<i class="icon ion-refresh"></i>
+			Restablecer Aplicación
+		</a>
+	</div>
+</ion-content>
+
+<ion-footer-bar align-title="center" class="bar-assertive">
+	<a class="tab-item active" onClick="resetearMenu()" href="#/menuprincipal" id="btnSalir">
+ 		<div class="title">
+ 			<i class="icon ion-share botonesFooter"></i>
+ 		</div>
+ 	</a>
+</ion-footer-bar>
+
+
+	<script>
+
+		$("#botonArchivosGenerales").click(function (){
+			$("#archivosGenerales").slideToggle();
+			$("#botonArchivosGenerales i").toggleClass('ion-chevron-up');
+
+			$("#lecturaMedidores").slideUp();
+			$("#botonLecturaMedidores i").removeClass('ion-chevron-up');
+			$("#botonLecturaMedidores i").addClass('ion-chevron-down');
+
+			$("#FacturacionEnSitio").slideUp();
+			$("#botonFacturacionEnSitio i").removeClass('ion-chevron-up');
+			$("#botonFacturacionEnSitio i").addClass('ion-chevron-down');
+
+			$("#CatastroUsuarios").slideUp();
+			$("#botonCatastroUsuarios i").removeClass('ion-chevron-up');
+			$("#botonCatastroUsuarios i").addClass('ion-chevron-down');
+
+			$("#TrabajoDeCampo").slideUp();
+			$("#botonTrabajoDeCampo i").removeClass('ion-chevron-up');
+			$("#botonTrabajoDeCampo i").addClass('ion-chevron-down');
+
+			$("#archivosGenerales").css("text-align", "right");
+			$("#archivosGenerales a").css("text-align", "left");
+		});
+
+		$("#botonLecturaMedidores").click(function (){
+			$("#lecturaMedidores").slideToggle();
+			$("#botonLecturaMedidores i").toggleClass('ion-chevron-up');
+
+			$("#archivosGenerales").slideUp();
+			$("#botonArchivosGenerales i").removeClass('ion-chevron-up');
+			$("#botonArchivosGenerales i").addClass('ion-chevron-down');
+
+			$("#FacturacionEnSitio").slideUp();
+			$("#botonFacturacionEnSitio i").removeClass('ion-chevron-up');
+			$("#botonFacturacionEnSitio i").addClass('ion-chevron-down');
+
+			$("#CatastroUsuarios").slideUp();
+			$("#botonCatastroUsuarios i").removeClass('ion-chevron-up');
+			$("#botonCatastroUsuarios i").addClass('ion-chevron-down');
+
+			$("#TrabajoDeCampo").slideUp();
+			$("#botonTrabajoDeCampo i").removeClass('ion-chevron-up');
+			$("#botonTrabajoDeCampo i").addClass('ion-chevron-down');
+
+			$("#lecturaMedidores").css("text-align", "right");
+			$("#lecturaMedidores a").css("text-align", "left");
+		});
+
+		$("#botonFacturacionEnSitio").click(function (){
+			$("#FacturacionEnSitio").slideToggle();
+			$("#botonFacturacionEnSitio i").toggleClass('ion-chevron-up');
+
+			$("#archivosGenerales").slideUp();
+			$("#botonArchivosGenerales i").removeClass('ion-chevron-up');
+			$("#botonArchivosGenerales i").addClass('ion-chevron-down');
+
+			$("#lecturaMedidores").slideUp();
+			$("#botonLecturaMedidores i").removeClass('ion-chevron-up');
+			$("#botonLecturaMedidores i").addClass('ion-chevron-down');
+
+			$("#CatastroUsuarios").slideUp();
+			$("#botonCatastroUsuarios i").removeClass('ion-chevron-up');
+			$("#botonCatastroUsuarios i").addClass('ion-chevron-down');
+
+			$("#TrabajoDeCampo").slideUp();
+			$("#botonTrabajoDeCampo i").removeClass('ion-chevron-up');
+			$("#botonTrabajoDeCampo i").addClass('ion-chevron-down');
+
+			$("#FacturacionEnSitio").css("text-align", "right");
+			$("#FacturacionEnSitio a").css("text-align", "left");
+		});
+
+		$("#botonCatastroUsuarios").click(function (){
+			$("#CatastroUsuarios").slideToggle();
+			$("#botonCatastroUsuarios i").toggleClass('ion-chevron-up');
+
+			$("#archivosGenerales").slideUp();
+			$("#botonArchivosGenerales i").removeClass('ion-chevron-up');
+			$("#botonArchivosGenerales i").addClass('ion-chevron-down');
+
+			$("#lecturaMedidores").slideUp();
+			$("#botonLecturaMedidores i").removeClass('ion-chevron-up');
+			$("#botonLecturaMedidores i").addClass('ion-chevron-down');
+
+			$("#FacturacionEnSitio").slideUp();
+			$("#botonFacturacionEnSitio i").removeClass('ion-chevron-up');
+			$("#botonFacturacionEnSitio i").addClass('ion-chevron-down');
+
+			$("#TrabajoDeCampo").slideUp();
+			$("#botonTrabajoDeCampo i").removeClass('ion-chevron-up');
+			$("#botonTrabajoDeCampo i").addClass('ion-chevron-down');
+
+			$("#CatastroUsuarios").css("text-align", "right");
+			$("#CatastroUsuarios a").css("text-align", "left");
+		});
+
+		$("#botonTrabajoDeCampo").click(function (){
+			$("#TrabajoDeCampo").slideToggle();
+			$("#botonTrabajoDeCampo i").toggleClass('ion-chevron-up');
+
+			$("#archivosGenerales").slideUp();
+			$("#botonArchivosGenerales i").removeClass('ion-chevron-up');
+			$("#botonArchivosGenerales i").addClass('ion-chevron-down');
+
+			$("#lecturaMedidores").slideUp();
+			$("#botonLecturaMedidores i").removeClass('ion-chevron-up');
+			$("#botonLecturaMedidores i").addClass('ion-chevron-down');
+
+			$("#FacturacionEnSitio").slideUp();
+			$("#botonFacturacionEnSitio i").removeClass('ion-chevron-up');
+			$("#botonFacturacionEnSitio i").addClass('ion-chevron-down');
+
+			$("#CatastroUsuarios").slideUp();
+			$("#botonCatastroUsuarios i").removeClass('ion-chevron-up');
+			$("#botonCatastroUsuarios i").addClass('ion-chevron-down');
+
+			$("#TrabajoDeCampo").css("text-align", "right");
+			$("#TrabajoDeCampo a").css("text-align", "left");
+		});
+
+		$('#botonRestablecer').click(function(){
+			swal({
+				title: "Atención",
+				text: "¿Está seguro que desea restablecer la aplicación?, los archivos borrados no serán recuperados",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#0088C4",
+				confirmButtonText: "Aceptar",
+				cancelButtonText: "Cancelar",
+				closeOnConfirm: false,
+				closeOnCancel: false }, 
+				function(isConfirm)
+				{
+					if (isConfirm) 
+					{
+						dbShell.transaction(function(tx)
+						{
+							tx.executeSql("Drop Table Usuarios");
+							tx.executeSql("Drop Table PermisosAquamovil");
+							tx.executeSql("Drop Table UsuariosServicios");
+							tx.executeSql("Drop Table AsignacionRutas");
+							tx.executeSql("Drop Table Causales");
+							tx.executeSql("Drop Table Observaciones");
+							tx.executeSql("Drop Table Parametros");
+							tx.executeSql("Drop Table AcumuladosAnteriores");
+							tx.executeSql("Drop Table CargosFacturacion");
+							tx.executeSql("Drop Table IndicesSubsidiosAportes");
+							tx.executeSql("Drop Table Periodos");
+							tx.executeSql("Drop Table ProyectoCatastro");
+							tx.executeSql("Drop Table OpcionesCatastro");
+							tx.executeSql("Drop Table InformacionEncuesta");
+							tx.executeSql("Drop Table RespuestasCerradas");
+							tx.executeSql("Drop Table RespuestasAbiertas");
+							tx.executeSql("Drop Table AuxiliarCatastro");
+							tx.executeSql("Drop Table ControlNumero");
+							CrearTablaUsuarios();
+							CrearTablaPermisosAquamovil();
+							CrearTablaUsuariosServicios();
+							CrearTablaAsignacionRutas();
+							CrearTablaCausales();
+							CrearTablaObservaciones();
+							CrearTablaParametros();
+							CrearTablaAcumuladosAnteriores();
+							CrearTablaCargosFacturacion();
+							CrearTablaIndicesSubsidiosAportes();
+							CrearTablaPeriodos();
+							CrearTablaProyectoCatastro();
+							CrearTablaOpcionesCatastro();
+							CrearTablaInformacionEncuestas();
+							CrearTablaRespuestasCerradas();
+							CrearTablaRespuestasAbiertas();
+							CrearTablaAuxiliarCatastro();
+							confimarUsuariosOperativos();
+							confimarUsuariosServicios();
+							confimarAsignacionRutas();
+							confimarPermisosAquamovil();
+							confimarParametros();
+							confimarCausales();
+							confimarObservaciones();
+							confimarAcumuladosAnteriores();
+							confimarCargosFacturacion();
+							confimarIndicesSubsidiosAportes();
+							confimarPeriodos();
+							confimarProyectoCatastro();
+							confimarOpcionesCatastro();
+
+							$("#divCR li").removeClass('pintarCRDiligenciado');
+							$("#divCR li").addClass('pintarCRSinDiligenciar');
+						});
+						swal("Correcto", "Aplicación Restablecida", "success");
+
+						document.getElementById("User").value="";
+						document.getElementById("Pass").value="";
+						window.location.href = "#/home";
+					} 
+
+					else 
+					{
+						swal("Cancelado", "Archivos Conservados", "error");
+					}
+				});
+		});
+
+		confimarUsuariosOperativos();
+		confimarUsuariosServicios();
+		confimarAsignacionRutas();
+		confimarPermisosAquamovil();
+		confimarParametros();
+		confimarCausales();
+		confimarObservaciones();
+		confimarAcumuladosAnteriores();
+		confimarCargosFacturacion();
+		confimarIndicesSubsidiosAportes();
+		confimarPeriodos();
+		confimarProyectoCatastro();
+		confimarOpcionesCatastro();
+	</script>

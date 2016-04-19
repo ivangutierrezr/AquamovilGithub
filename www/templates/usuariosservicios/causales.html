@@ -1,0 +1,55 @@
+<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+	<b align="center">CAUSAL DE NO LECTURA</b>
+	<input ng-model="buscarCausal" placeholder="Buscar" type="text" style="font-weight:bold; border: none; color:black; font-size:15px; border-radius:30px; text-align:center;">
+</ion-header-bar>
+
+<ion-header-bar align-title="center" id="subheaderCausal" class="bar bar-subheader bar-assertive">
+	<div class="row" id="divCaus" style="font-weight:bold; border: none; color:black; font-size:1em;">
+		<div class="col col-25">
+			<input style="font-weight:bold; border: none; background-color: transparent; color:white; font-size:1.5em; border-radius:30px; text-align:center;" id="txtCodCausal" type="text">
+		</div>
+		<div class="col col-75">
+			<input style="font-weight:bold; text-align:center; background-color: transparent; border: none; color:white; text-decoration: underline; font-size:1.2em; width:95%;" id="txtNomCausal" type="text" readonly>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-20" style="text-align:center;">
+			<b>ID</b>
+		</div>					
+		<div class="col col-80" style="text-align:center;">
+			<b>DESCRIPCIÓN</b>
+		</div>
+	</div>
+</ion-header-bar>
+
+<ion-content padding="true" id="contenidoCausal" overflow-scroll="true">
+	<div id="contenidoLista">
+		<ul id="listaCau">
+			<li id="c{{dato.id}}" ng-click="mostrarCausal({{dato.id}})" ng-repeat="dato in causal | filter: buscarCausal"> 
+				<a class='item item-divider'><div class='row'><div class='col col-10'>{{dato.idCausal}}</div><div class='col col-90' style='text-align:left;'>{{dato.nombreCausal | uppercase}}</div></div></a>
+			</li>
+		</ul>
+	</div>
+</ion-content>
+
+<ion-footer-bar class="tabs tabs-assertive tabs-icon-top">
+	<a class="tab-item active" id="verificarCausal" ng-click="verficarFotoCausal()">
+		<i class="icon ion-checkmark larger"></i>
+		Confirmar
+ 	</a>
+ 	<a class="tab-item active" onCLick="resetearCausal()" href="#/medidorlecturas">
+		<i class="icon ion-share larger"></i>
+		Volver
+ 	</a>
+</ion-footer-bar>
+
+	<script>
+		function resetearCausal()
+		{
+			$("li").css("background-color", "transparent")
+			$("li a div").css("color", "#000")
+			$("li a div").css("font-weight", "normal");
+			document.getElementById("txtCodCausal").value = "";
+			document.getElementById("txtNomCausal").value = ""; 
+		}
+	</script>

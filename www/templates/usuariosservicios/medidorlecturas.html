@@ -1,0 +1,564 @@
+<div class="bar bar-header bar-assertive" id="header_inicio" style="text-align:center; font-size:1em;">
+	<h1 font-size="4" class="title" style="text-align:center;">
+		<b>LECTURA DE MEDIDORES</b>
+	</h1>
+</div>
+
+<div class="bar bar-subheader bar-assertive" style="height:1.5em;">
+	<div class="row">
+		<!-- Input Fecha-->
+		<div class="col col-30" align="left">
+			<input style="font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="fecha" type="text" readonly>
+		</div>
+		<!-- Input Hora-->
+		<div class="col col-30" align="left">
+			<input style="font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="hora" type="text" readonly>
+		</div>
+		<!-- Input Ciclo-->
+		<div class="col col-20" align="left">
+			<input style="font-size:0.9em; font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtCiclo2" type="text" readonly>
+		</div>
+		<!-- Input Ruta-->
+		<div class="col col-20" align="left">
+			<input style="font-size:0.9em; margin-top: -27px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtRuta2" type="text" readonly>
+		</div>
+	</div>
+</div>
+
+<div id="contenido">
+	<div class="row">
+    	<!-- Contardor de Registros-->
+		<div class="col col-33" align="left">
+			<span style="font-weight:bold;   background-color: transparent; text-align:center; border: none; font-size:1em;  margin:0; padding:0;" id="Contador"></span>
+    	</div>
+    	<div class="col col-33">
+			<img src="img/logo.png" width="80%">
+    	</div>
+    	<!-- Username del operario-->
+    	<div class="col col-33" align="right">
+    		<span style="font-weight:bold; background-color: transparent; border: none; font-size:1em; text-align:right; margin:0; padding:0;" id="txtIdOperario"></span>
+    	</div>
+	</div>
+	<div class="row row-center" style="margin-top:-10px">
+		<!-- Botón Buscar-->
+		<div class="col col-25" align="center">	
+			<a onClick="contarRegistros()" href="#/estadolecturas"; style="font-size:2.5em; color:white;">
+				<i class="icon ion-search" style="color:#Ef473A;"></i>
+			</a>
+		</div>
+		<!-- Botón Validar-->
+		<div class="col col-25" align="center">
+			<a id="btnValidar" style="font-size:2.5em; color:white;">
+				<i class="icon ion-checkmark-round" style="color:#Ef473A;"></i>
+			</a>
+		</div>
+		<div class="col col-25" align="center">
+			<a id="btnIrAFacturacion" onClick="pasarAFacturacionEnSitio()" style="font-size:2.5em; color:white;">
+				<i class="icon ion-arrow-swap" style="color:#Ef473A;"></i><br>
+			</a>
+		</div>
+		<!-- Botón Mapa-->
+		<div class="col col-25" align="center" style="font-size:0.8em;">
+			<a style="font-size:3em; color:white;" ui-sref="mapa">
+				<i class="icon ion-location" style="color:#Ef473A;"></i>
+			</a>
+		</div>
+	</div>
+	<div id="datos-entrada">
+		<!-- Input Lectura Nueva-->
+		<div class="row">
+			<div class="col">
+				<input type="number" style="font-size:3em; text-align:center; height:1.2em;" id="txtLectura" placeholder="Lec." autofocus>
+			</div>
+		</div>
+		<div class="row">
+			<!-- Input Causal Nueva-->
+			<div class="col col-25" id="causal">
+				<input type="number" id="txtCausal" value="0" style="font-size:1.4em; text-align:center;" readonly>
+			</div>
+			<!-- Input Observación-->
+			<div class="col col-25" id="Observacion1">
+				<a id="btnObs1">
+					<input type="number" id="txtObservacion" value="0" style="font-size:1.4em; text-align:center;" readonly>
+				</a>
+			</div>
+			<!--input Observación 2 -->
+			<div class="col col-25">
+				<a id="btnObs2">
+					<input type="number" id="txtObservacion2" value="0" style="font-size:1.4em; text-align:center;" readonly>
+				</a>
+			</div>
+
+			<!--input Observación 3 -->
+			<div class="col col-25">
+				<a id="btnObs3">
+					<input type="number" id="txtObservacion3" value="0" style="font-size:1.4em; text-align:center;" readonly>
+				</a>
+			</div>
+		</div>
+		<div class="row" style="margin-top:-15px;">
+			<!-- Input Causal Nueva-->
+			<div class="col col-25" id="causal">
+				<span style="font-size:0.8em; opacity:0.5;">Causal</span>
+			</div>
+			<!-- Input Observación-->
+			<div class="col col-25" id="Observacion1">
+				<span style="font-size:0.8em; opacity:0.5;">Obs.1</span>
+			</div>
+			<!--input Observación 2 -->
+			<div class="col col-25">
+				<span style="font-size:0.8em; opacity:0.5;">Obs.2</span>
+			</div>
+
+			<!--input Observación 3 -->
+			<div class="col col-25">
+				<span style="font-size:0.8em; opacity:0.5;">Obs.3</span>
+			</div>
+		</div>
+	</div>
+	<div id="datosU" class="row">
+		<div class="col col-67">
+			<br>
+			<!--Input Matricula Anterior -->
+			<input style="background-color: transparent; border: none; font-size:0.8em; height:1.1em; margin:0; padding:0;" id="txtIdUsuarioLecturaAnt" type="text" readonly>
+
+			<!--Input Id Usuario -->
+			<input style="font-weight:bold; border: 5px solid #ef473a;  background-color: #ef473a; color:white; width:5em; text-align:center; font-size:1.4em;  margin:0; padding:0; height:1.5em;" id="txtIdUsuarioLectura" type="text" placeholder="Id Usuario" readonly>
+
+			<!--Input Matricula Siguiente -->
+			<input style="background-color: transparent; border: none; font-size:0.8em;  margin:0; padding:0; height:1.1em;" id="txtIdUsuarioLecturaSig" type="text" readonly>
+		</div>
+
+		<div class="col col-33" style="margin-top:5px;" align="left">
+			<div id="aConsecutivo">
+				<!--Input Ciclo - Ruta - Consecutivo -->
+				<a id="btnCRC" style="height:3em;">
+					<input style="font-weight:bold; text-align:center; background-color: transparent; border: none; color:red; font-size:1.4em; height:1.5em;" id="txtCRC" readonly>
+				</a>
+				<br><br>
+			</div>
+		</div>
+	</div>
+	<!-- Ruta de la imagen para imprimir en el tiquete -->
+
+	<input id="rutaImagenLectura" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Numero En la BD (Control)-->
+	<input id="txtNumero" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Tipo Contador (Control) -->
+	<input id="txtTipoMedidor" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Editado (Control) -->
+	<input id="txtEditado" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Impreso (Control)-->
+	<input id="txtImpreso" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Latitud (Control)-->
+	<input id="latitud" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Longitud (Control) -->
+	<input id="longitud" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Altitud (Control) -->
+	<input id="altitud" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Ciclo Nuevo (Control)-->
+	<input id="txtCicloNuevo" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Ruta Nueva (Control)-->
+	<input id="txtRutaNueva" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input ConsecutivoNuevo (Control)-->
+	<input id="txtConsecutivoNuevo" type="hidden" style="font-size:1px;" readonly>
+
+	<!--Input Nombre Usuario -->
+	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtNombre" type="text" placeholder="Nombre Usuario" readonly>
+
+	<!--Input Dirección Usuario -->
+	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtDireccion" placeholder="Dirección Usuario" type="text" readonly>
+
+	<!--Input #Contador -->
+	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtMedidor" placeholder="Número Contador" type="text" readonly>
+
+	<!--Input Uso -->
+	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtUso" placeholder="Uso" type="text" readonly>
+
+	<!--Input Categoria -->
+	<input style="width:95%; float:left; line-height:down; background-color: transparent;  border: none; font-size:1em; height:1.2em;" id="txtCategoria" placeholder="Categoria" type="text" readonly>
+</div>
+
+<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
+	<!--Botón imprimir -->
+	<a class="tab-item active" id="imprimir">
+		<i  class="icon ion-printer disable larger" style="font-size:3.5em;">
+		</i>
+		Imprimir
+	</a>
+	<!--Botón Cámara -->
+	<a class="tab-item active" id="camara" ng-click="Foto()">
+		<i class="icon ion-android-camera larger" style="font-size:3.5em;">
+		</i>
+		Foto
+	</a>
+	<!--Botón Lectura Anterior -->
+	<a class="tab-item active" id="btnAnt">
+		<i class="icon ion-chevron-left larger" style="font-size:3.5em;">
+		</i>
+		Anterior
+	</a>
+
+	<!--Botón Lectura Siguiente-->
+	<a class="tab-item active" id="btnSig">
+		<i class="icon ion-chevron-right larger" style="font-size:3.5em;">
+		</i>
+		Siguiente
+	</a>
+
+	<!--Botón Salir-->
+	<a class="tab-item active" id="btnSalirCargue">
+		<i class="icon ion-share larger" style="font-size:3.5em;"></i>
+		Salir
+	</a>
+</ion-footer-bar>
+
+	<script>
+		$("#btnSalirCargue").attr("onClick", "regresar()");
+
+		horayfecha();
+		function horayfecha()
+		{
+			var date = new Date();
+			var d  = date.getDate();
+			var day = (d < 10) ? '0' + d : d;
+			var w = date.getMonth() + 1;
+			var month = (w < 10) ? '0' + w : w;
+			var yy = date.getYear();
+			var year = (yy < 1000) ? yy + 1900 : yy;
+
+			document.getElementById('fecha').value=day + "/" + month + "/" + year;
+
+			var dia = new Date();
+			var h=dia.getHours();
+			var m=dia.getMinutes();
+			var s=dia.getSeconds();
+			var min = checkTime(m);
+			var seg = checkTime(s);
+			document.getElementById('hora').value=h+":"+min+":"+seg;
+
+			geolicalizacion();
+			setTimeout("horayfecha()", 500)
+		}
+		
+		function checkTime(i)
+		{
+		    if(i<10)
+		    {
+		        i = "0" + i;
+		    }
+		    return i;
+		}
+
+		/*--------------------------------------------------------------------------------*/
+		//Función para Latitud, longitud y altura
+
+		function geolicalizacion() 
+		{
+			navigator.geolocation.watchPosition(onInfoGeo, onErrorGeo);
+		}
+
+		function onInfoGeo(position)
+		{
+			var lat = position.coords.latitude;
+			var lon = position.coords.longitude;
+			var alti = position.coords.altitude;
+			document.getElementById('latitud').value = lat; 
+			document.getElementById('longitud').value = lon; 
+			document.getElementById('altitud').value = alti; 
+		}
+
+		function onErrorGeo(error){
+			console.log(error.code);
+		}
+
+		/*----------------------------------------------------------------------------------*/
+		// Funcion para verificar que la lectura ingresada concuerde con los promedios, o que por otro lado, obligue a ingresar una observación o causal, según si la lectura es alta, baja o no se pudo registrar lectura
+		function validarLectura() 
+		{
+			var LecturaActual = document.getElementById("txtLectura").value;
+			var idUsuario = document.getElementById("txtIdUsuarioLectura").value;
+			var TipoMed = document.getElementById("txtTipoMedidor").value;
+			var RangoLectura = 0;
+			var Control = 0;
+
+			if (TipoMed == 1)
+			{
+				var RangoLectura = 9999;
+			}	
+			if (TipoMed == 2)
+			{
+				var RangoLectura = 99999;
+			}
+			if (TipoMed == 3)
+			{
+				var RangoLectura = 999999;
+			}
+
+			dbShell.transaction(function(tx)
+			{    		
+				tx.executeSql("select * from UsuariosServicios Where IdUsuario=? ",[idUsuario], 
+				function(tx, result)
+				{		
+					if(LecturaActual < 0 || LecturaActual > RangoLectura){
+						swal("Lectura inválida","","error");
+						document.getElementById('txtLectura').value = "";
+						Control = 1;	
+					}
+					else
+					{		
+						if(LecturaActual == '')
+						{
+							swal("Lectura Vacia","Ingrese Causal","warning");
+							document.getElementById("conceptoCritica").value = "Lectura Vacia";
+							document.getElementById("consumo").value = "";
+							window.location.href = "#/causales";
+							Control = 1;		
+						}
+						else{
+							var LecturaAnterior = result.rows.item(0)['LecturaAnterior'];
+							var ConsumoMedio = parseInt(result.rows.item(0)['ConsumoMedio']);
+							var Consumo = LecturaActual - LecturaAnterior;
+							var critica1 = parseFloat(document.getElementById("criticaAltaMenor6").value).toFixed(2);
+							var critica2 = parseFloat(document.getElementById("criticaBajaMenor35").value).toFixed(2);
+							var critica3 = parseFloat(document.getElementById("criticaAltaMenor35").value).toFixed(2);
+							var critica4 = parseFloat(document.getElementById("criticaBajaMayor35").value).toFixed(2);
+							var critica5 = parseFloat(document.getElementById("criticaAltaMayor35").value).toFixed(2);			
+							var criticaPorConsumo1 = critica1*ConsumoMedio;
+							var criticaPorConsumo2 = critica2*ConsumoMedio;
+							var criticaPorConsumo3 = critica3*ConsumoMedio;
+							var criticaPorConsumo4 = critica4*ConsumoMedio;
+							var criticaPorConsumo5 = critica5*ConsumoMedio;
+							if(Consumo < 0)
+							{
+								var txtConsumoRegistrado;
+								if (TipoMed == 1)
+								{
+									txtConsumoRegistrado = Consumo + 10000;
+								}	
+								if (TipoMed == 2)
+								{
+									txtConsumoRegistrado = Consumo + 100000;
+								}
+								if (TipoMed == 3)
+								{
+									txtConsumoRegistrado = Consumo + 1000000;
+								}
+
+								if(txtConsumoRegistrado >= criticaPorConsumo1)
+								{
+									document.getElementById("conceptoCritica").value = "Medidor Posiblemente en Retroceso";
+									document.getElementById("consumo").value = "";
+									swal("Medidor Posiblemente en Retroceso","Ingrese Observacion","warning");
+									validarObservacion();
+									Control = 1;
+								}
+
+								if(txtConsumoRegistrado < criticaPorConsumo1)
+								{
+									if(ConsumoMedio > 35)
+									{
+										if(txtConsumoRegistrado > criticaPorConsumo5 && txtConsumoRegistrado > 0){
+											swal("Alto Consumo","Ingrese Observacion","warning");
+											document.getElementById("conceptoCritica").value = "Alto Consumo";
+											document.getElementById("consumo").value = txtConsumoRegistrado;
+											validarObservacion();
+											Control = 1;					
+										}						
+										if(txtConsumoRegistrado < criticaPorConsumo4 && txtConsumoRegistrado > 0)
+										{
+											document.getElementById("conceptoCritica").value = "Bajo Consumo";
+											document.getElementById("consumo").value = txtConsumoRegistrado;	
+											validarLecturaBaja();
+											Control = 1;
+										}
+									}	
+
+									if(ConsumoMedio > 6 && ConsumoMedio <= 35)
+									{
+										if(txtConsumoRegistrado > criticaPorConsumo3 && txtConsumoRegistrado > 0)
+										{
+											swal("Alto Consumo","Ingrese Observacion","warning");
+											document.getElementById("conceptoCritica").value = "Alto Consumo";
+											document.getElementById("consumo").value = txtConsumoRegistrado;
+											validarObservacion();	
+											Control = 1;
+										}						
+										if(txtConsumoRegistrado < criticaPorConsumo2 && txtConsumoRegistrado > 0)
+										{
+											document.getElementById("conceptoCritica").value = "Bajo Consumo";
+											document.getElementById("consumo").value = txtConsumoRegistrado;
+											validarLecturaBaja();
+											Control = 1;							
+										}	
+									}
+
+									if(ConsumoMedio <= 6)
+									{
+										if(txtConsumoRegistrado > criticaPorConsumo1 && txtConsumoRegistrado > 0)
+										{
+											document.getElementById("conceptoCritica").value = "Alto Consumo";
+											document.getElementById("consumo").value = txtConsumoRegistrado;
+											swal("Alto Consumo","Ingrese Observacion","warning");
+											validarObservacion();	
+											Control = 1;
+										}
+									}
+
+									if (Control == 0)
+									{
+										document.getElementById("conceptoCritica").value = "Consumo Normal";
+										document.getElementById("consumo").value = txtConsumoRegistrado;
+										console.log(txtConsumoRegistrado);
+										ActualizarArchivo();  
+									}
+								}								
+							}
+
+							if(Consumo == 0){
+								swal("Consumo Cero","Ingrese Observacion","warning");
+								document.getElementById("conceptoCritica").value = "Consumo Cero";
+								document.getElementById("consumo").value = Consumo;
+								validarObservacion();
+								Control = 1;
+							}
+
+							if(Consumo > 0)
+							{
+								if(ConsumoMedio > 35)
+								{
+									if(Consumo > criticaPorConsumo5 && Consumo > 0)
+									{
+										swal("Alto Consumo","Ingrese Observacion","warning");
+										document.getElementById("conceptoCritica").value = "Alto Consumo";
+										document.getElementById("consumo").value = Consumo;
+										validarObservacion();
+										Control = 1;					
+									}						
+									if(Consumo < criticaPorConsumo4 && Consumo > 0)
+									{
+										document.getElementById("conceptoCritica").value = "Bajo Consumo";
+										document.getElementById("consumo").value = Consumo;	
+										validarLecturaBaja();
+										Control = 1;
+									}
+								}					
+								if(ConsumoMedio > 6 && ConsumoMedio <= 35)
+								{
+									if(Consumo > criticaPorConsumo3 && Consumo > 0)
+									{
+										swal("Alto Consumo","Ingrese Observacion","warning");
+										document.getElementById("conceptoCritica").value = "Alto Consumo";
+										document.getElementById("consumo").value = Consumo;
+										validarObservacion();	
+										Control = 1;
+									}						
+									if(Consumo < criticaPorConsumo2 && Consumo > 0)
+									{
+										document.getElementById("conceptoCritica").value = "Bajo Consumo";
+										document.getElementById("consumo").value = Consumo;
+										validarLecturaBaja();
+										Control = 1;							
+									}	
+								}
+								if(ConsumoMedio <= 6)
+								{
+									if(Consumo > criticaPorConsumo1 && Consumo > 0)
+									{
+										document.getElementById("conceptoCritica").value = "Alto Consumo";
+										document.getElementById("consumo").value = Consumo;
+										swal("Alto Consumo","Ingrese Observacion","warning");
+										validarObservacion();	
+										Control = 1;
+									}
+								}
+								if (Control == 0)
+								{
+									document.getElementById("conceptoCritica").value = "Consumo Normal";
+									document.getElementById("consumo").value = Consumo;
+									validarLecturaGuardada();
+									ActualizarArchivo();  
+								}
+							}
+						}
+					}
+				});
+			});	
+		}
+
+		function validarLecturaGuardada()
+		{
+			dbShell.transaction(function(tx) 
+			{  
+				var numero = document.getElementById("txtNumero").value;
+
+				tx.executeSql("SELECT * FROM UsuariosServicios where Numero=?",[numero], 
+				function(tx, result)
+				{
+					var lect = result.rows.item(0)['LecturaActual'];
+					var cau = result.rows.item(0)['CausalActual'];
+
+					console.log(lect);
+					console.log(cau);
+
+					if(lect != '' || cau > 0)
+					{
+						document.getElementById("txtCausal").value = 0;
+						document.getElementById("txtObservacion").value = 0;
+						document.getElementById("txtObservacion2").value = 0;
+						document.getElementById("txtObservacion3").value = 0;
+						ActualizarArchivo();
+					}
+
+					else
+					{
+						ActualizarArchivo();
+					}
+				});
+			});
+		}
+
+		/*--------------------------------------------------------------------------------*/
+		//Función que valida si la lectura ingresada es baja pero no requiere observación
+
+		function validarLecturaBaja()
+		{
+			swal({   title: "Bajo Consumo",
+				text: "Desea Agregar Observación?",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",   
+				confirmButtonText: "Si",   
+				cancelButtonText: "No",   
+				closeOnConfirm: true,   
+				closeOnCancel: true }, 
+				function(isConfirm)
+				{   
+					if (isConfirm) 
+					{   
+						swal({
+						title: "",   
+						text: "",   
+						timer: 100,   
+						showConfirmButton: false 
+						}); 
+						validarObservacion();
+					} 
+
+					else 
+					{     
+						ActualizarArchivo(); 
+					} 
+				});
+		}
+	</script>

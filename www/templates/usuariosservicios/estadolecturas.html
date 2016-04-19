@@ -1,0 +1,55 @@
+<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+	<b align="center">BUSQUEDA DE REGISTROS</b>
+	<input ng-model="buscarRegistro" style="font-weight:bold; border: none; color:black; font-size:15px; border-radius:30px; text-align:center;" placeholder="Buscar" type="text">
+</ion-header-bar>
+
+<ion-header-bar align-title="center" class="bar bar-subheader bar-assertive">
+	<div class="row" style="width:85%; margin:auto;">
+		<div class="col col-20" style="text-align:center;">
+			<b>ID</b>
+		</div>					
+		<div class="col col-20" style="text-align:center;">
+			<b>RUTA</b>
+		</div>
+		<div class="col col-20" style="text-align:center;">
+			<b>CON.</b>
+		</div>
+		<div class="col col-40" style="text-align:center;">
+			<b>LECTURA</b>
+		</div>
+	</div>
+</ion-header-bar>
+
+<ion-content padding="true" overflow-scroll="true" onLoad="pintarLista()">
+	<input id="inputControlLecturas" type="number" readonly style="display:none;">
+	<div id="listaId" class="list">
+		<ul>
+			<li id="listaLecturas" ng-repeat="dato in estadolectura | filter: buscarRegistro">
+				<div id='divLR'>
+					<a id='{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistro({{dato.idLista}},{{dato.idUsuario}},{{dato.ciclo}},{{dato.ruta}})' href='#/medidorlecturas'>
+						<div class='row'>
+							<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
+							<div class="col col-20" style="text-align:center;">{{dato.ruta}}</div>
+							<div class="col col-20" style="text-align:center;">{{dato.consecutivo}}</div>
+							<div class="col col-40" style="text-align:center;">{{dato.lecturaActual}}</div>
+						</div>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</ion-content>
+
+<ion-footer-bar align-title="center" class="bar-assertive">
+	<a class="tab-item active" href="#/medidorlecturas">
+		<div class="title">
+ 			<i class="icon ion-share botonesFooter"></i>
+ 		</div>
+ 	</a>
+</ion-footer-bar>
+
+	<script>
+
+		contarRegistros();
+
+	</script>

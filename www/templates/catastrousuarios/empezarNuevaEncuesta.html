@@ -1,0 +1,165 @@
+<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+	<h1 class="title"><b>CATASTRO USUARIOS</b></h1>
+</ion-header-bar>
+<ion-header-bar align-title="center" id="subheaderEditar" class="bar bar-subheader bar-assertive">
+	<div class="row">
+		<!-- Input Fecha-->
+		<div class="col col-40" align="center">
+			<input style="font-size:0.9em; margin-top: -10px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top; text-align: center;" id="fechaEditar" type="text" readonly>
+		</div>
+		<!-- Logo Empresa-->
+		<div class="col col-20" align="center">
+			<img id="logoEmpresaESPNuevaEncuesta" style="width:50%; margin-top: -10px;">
+		</div>
+		<!-- Input Hora-->
+		<div class="col col-40" align="center">
+			<input style="font-size:0.9em; margin-top: -10px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top; text-align: center;" id="horaEditar" type="text" readonly>
+		</div>
+	</div>
+</ion-header-bar>
+
+<ion-content padding="true" overflow-scroll="true" id="contentEditar" style="margin-bottom:10px;">
+	<div id="contenidoEditar" style="width:90%; margin:0 auto 0 auto;">
+		<!--Input Impreso (Control)-->
+		<input id="numeroFotosEditar" type="number" style="font-size:1px; display:none;" readonly>
+
+		<!--Input horaInicialEditar (Control)-->
+		<input id="horaInicialEditar" type="text" style="font-size:1px; display:none;" readonly>
+
+		<div id="preguntasEditar">
+			<ul id="listaPreguntasEditar">
+				
+			</ul>
+		</div>
+		<p id="mensajeErrorEditar" style="font-size:1em; text-align:center; color:#ef473a; font-weight:bold;"></p>
+	</div>
+
+	<!--Input Número de Encuestas realizadas por el operario (Control)-->
+    <input id="numeroEncuestaEditar" type="number" style="font-size:1px; display:none;" readonly>
+    
+    <!--Input Número de Pregunta Actual (Control)-->
+    <input id="numeroPreguntaEditar" type="number" style="font-size:1px; display:none;" readonly>
+
+    <!--Input Número de Total preguntas (Control)-->
+    <input id="totalPreguntasEditar" type="number" style="font-size:1px; display:none;" readonly>
+</ion-content>
+
+<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
+	<!--Botón Cámara -->
+	<a class="tab-item active" id="FotoEditar">
+		<i  class="icon ion-camera larger"></i>
+		Cámara
+	</a>
+	<!--Botón Lectura Anterior -->
+	<a class="tab-item active" id="btnAntEditar">
+		<i class="icon ion-chevron-left larger" style="font-size:3.5em;">
+		</i>
+		Anterior
+	</a>
+
+	<!--Botón Lectura Siguiente-->
+	<a class="tab-item active" id="btnSigEditar">
+		<i class="icon ion-chevron-right larger" style="font-size:3.5em;">
+		</i>
+		Siguiente
+	</a>
+
+	<!--Botón Lectura Siguiente-->
+	<a class="tab-item active" id="btnGuardarEditar">
+		<i class="icon ion-checkmark-round larger" style="font-size:3.5em;">
+		</i>
+		Guardar Edición
+	</a>
+
+	<!--Botón Salir-->
+	<a class="tab-item active" id="btnSalirEditar">
+		<i class="icon ion-share larger" style="font-size:3.5em;"></i>
+		Salir
+	</a>
+</ion-footer-bar>
+<script>
+	$("#FotoEditar").attr("onClick", "FotoCatastroEditar()");
+	$("#btnAntEditar").attr("onClick", "anteriorPreguntaEditar()");
+	$("#btnSigEditar").attr("onClick", "siguientePreguntaEditar()");
+	$("#btnGuardarEditar").attr("onClick", "guardarEncuestaEditada()");
+	$("#btnSalirEditar").attr("onClick", "salirDeCatastroEditar()");
+
+	function salirDeCatastroEditar()
+	{
+		swal(
+		{
+			title: "Atención",
+			text: "¿Desea salir al menu principal?",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#0088C4",
+			confirmButtonText: "Si",
+			cancelButtonText: "No",
+			closeOnConfirm: false,
+			closeOnCancel: false 
+		}, 
+		function(isConfirm)
+		{
+			if (isConfirm) 
+			{
+				$("#contenidoEditar #preguntasEditar #listaPreguntasEditar li").remove();
+				document.getElementById("numeroFotosEditar").value = 0;
+				document.getElementById("numeroEncuestaEditar").value = 0;
+				document.getElementById("numeroPreguntaEditar").value = 0;
+				document.getElementById("totalPreguntasEditar").value = 0;
+				swal({
+				title: "Correcto",
+				text: "Regresando al menu principal",
+				type: "success",
+				timer: 2000,
+				showConfirmButton: false
+				});
+				regresarAlMenuDesdeCatastroEditar();			
+			}
+
+			else 
+			{
+				swal({
+				title: "Correcto",
+				text: "Regresando a la encuesta",
+				type: "success",
+				timer: 2000,
+				showConfirmButton: false
+				});   
+			} 
+		});
+	}
+
+	horayfechaEditar();
+	function horayfechaEditar()
+	{
+		var date = new Date();
+		var d  = date.getDate();
+		var day = (d < 10) ? '0' + d : d;
+		var w = date.getMonth() + 1;
+		var month = (w < 10) ? '0' + w : w;
+		var yy = date.getYear();
+		var year = (yy < 1000) ? yy + 1900 : yy;
+
+		document.getElementById('fechaEditar').value=day + "/" + month + "/" + year;
+
+		var dia = new Date();
+		var h=dia.getHours();
+		var m=dia.getMinutes();
+		var s=dia.getSeconds();
+		var min = checkTimeEditar(m);
+		var seg = checkTimeEditar(s);
+		document.getElementById('horaEditar').value=h+":"+min+":"+seg;
+
+		setTimeout("horayfechaEditar()", 500)
+	}
+	
+	function checkTimeEditar(i)
+	{
+	    if(i<10)
+	    {
+	        i = "0" + i;
+	    }
+	    return i;
+	}
+</script>

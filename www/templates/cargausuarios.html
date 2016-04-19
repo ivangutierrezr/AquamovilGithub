@@ -1,0 +1,31 @@
+<!-- TÍTULO DE LA PÁGINA -->
+<div class="bar bar-header bar-assertive" id="header_inicio">
+	<h1 class="title">
+		MENÚ DE PRIMER USUARIO
+	</h1>
+</div>
+
+<div id="contenido3">
+	<div class="list" id="listaMP" style="width:100%; font-size:0.9em;">
+		<a class="item item-icon-left item-icon-right" ng-click="borrarUsuarios()" id="botonUsuarios" href="#">
+		<!-- BOTÓN PARA CARGA DE USUARIOS OPERATIVOS -->
+		<i class="icon ion-person"></i>
+			Usuarios Operativos
+		<i id="confirmadoUsuarios" class="icon ion-checkmark-round" style="display:none"></i>
+		</a>
+		<a class="item item-icon-left item-icon-right" ng-click="borrarPermisosAquamovil()" href="#" id="botonPermisosAquamovil">
+		<!-- BOTÓN PARA CARGA DE PERMISOS -->
+		<i class="icon ion-ios-locked"></i>
+			Permisos AQuaMóvil
+		<i id="confirmadoPermisos" class="icon ion-checkmark-round" style="display:none"></i>
+		</a>
+	</div>
+
+</div>
+
+<div id="pie_usuario" class="tabs tabs-assertive tabs-icon-top">
+	<!-- BOTÓN PARA CANCELAR LA CARGA Y REGRESAR AL HOME -->
+	<a class="tab-item" onClick="resetearPrimerUsuario()" id="btnSalir">
+	<i class="icon ion-share" style="font-size:3.7em;"></i>
+	</a>
+</div>
