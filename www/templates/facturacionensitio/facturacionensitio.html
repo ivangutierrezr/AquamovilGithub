@@ -76,7 +76,8 @@
 			<input id="txtFechaLimiteDePagoFactura" type="hidden" style="font-size:1px;" readonly>
 
 			<!-- -->
-
+			
+			<input id="txtUsoFact" type="hidden" style="font-size:1px;" readonly>
 			<input id="txtEdadAcueducto" type="hidden" style="font-size:1px;" readonly>
 			<input id="totalAcueducto" type="hidden" style="font-size:1px;" readonly>
 			<input id="totalAlcantarillado" type="hidden" style="font-size:1px;" readonly>
@@ -85,6 +86,12 @@
 
 			<input id="subTotalPresente" type="hidden" style="font-size:1px;" readonly>
 			<input id="subTotalAcumuladosAnteriores" type="hidden" style="font-size:1px;" readonly>
+
+			<input id="AcumuladosAnterioresAcueducto" type="hidden" style="font-size:1px;" readonly>
+
+			<input id="AcumuladosAnterioresAlcantarillado" type="hidden" style="font-size:1px;" readonly>
+
+			<input id="AcumuladosAnterioresAseo" type="hidden" style="font-size:1px;" readonly>
 
 			<input id="totalAPagar" type="hidden" style="font-size:1px;" readonly>
 
@@ -307,8 +314,6 @@
 		
 		function contarRegistrosFact()
 		{
-			$("#contenedorUsuariosLecturasFact").hide();
-			$("#contenedorListaUsuariosServiciosFact").show();
 			var ciclo = document.getElementById("txtCiclo").value;
 			var ruta = document.getElementById("txtRuta").value;
 			pintarListaRegFact(ciclo,ruta);
@@ -341,9 +346,12 @@
 
 					$(id).removeClass('pintarLRDiligenciado');
 					$(id).addClass('pintarLR');
+					$("#contenedorUsuariosLecturasFact").hide();
+					$("#contenedorListaUsuariosServiciosFact").show();
 				});    
 			});
 		}
+
 		$("#btnSalirFact").attr("onClick", "regresarFact()");
 
 		horayfechaFact();

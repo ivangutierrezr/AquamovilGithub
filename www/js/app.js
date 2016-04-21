@@ -174,6 +174,7 @@ var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorc
     $cordovaFile.createDir(cordova.file.externalRootDirectory, "AQuaMovil", false)
     .then(function (success) {
       if (success) {
+        console.log(success)
         console.log('Directorio Creado')
       }
       }, function (error) {

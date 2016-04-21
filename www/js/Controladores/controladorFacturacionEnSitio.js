@@ -5,6 +5,7 @@ angular.module('starter.controladordacturacionensitio', [])
   $scope.listaFacturas = [];
   angular.element(document).ready(function () 
   {
+    $("#contenedorListaUsuariosServiciosFact").hide();
     var cicloGuardado = document.getElementById("txtCiclo").value;
     var rutaGuardada = document.getElementById("txtRuta").value;
     dbShell.transaction(function(tx) 
@@ -33,14 +34,11 @@ angular.module('starter.controladordacturacionensitio', [])
           $scope.listaFacturas.push($scope.newListaFacturas);
           $("#inputControlFacturas").val($scope.listaFacturas.length);
         }
-        console.log($scope.listaFacturas.length);
-        $("#contenedorListaUsuariosServiciosFact").hide();
       });    
     });
-    console.log("Logo");
+
     $cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/LogoImpresion.jpg")
     .then(function (archivo) {
-      console.log(archivo);
       var ruta = archivo.nativeURL;
       document.getElementById("rutaImagenFactura").value = ruta;
     }, function (error) {
@@ -48,7 +46,6 @@ angular.module('starter.controladordacturacionensitio', [])
 
     $cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Logo.png")
     .then(function (archivo) {
-      console.log(archivo);
       var ruta2 = archivo.nativeURL;
       $("#logoEmpresaESP").attr('src', ruta2);
       $("#logoEmpresaESP").attr('width', "100%");
@@ -61,7 +58,6 @@ angular.module('starter.controladordacturacionensitio', [])
     $("#contenedorListaUsuariosServiciosFact").hide();
     $("#contenedorUsuariosLecturasFact").show();
     var dato = parseInt(a);
-    console.log(dato);
     document.getElementById('txtNumRegistro').value = dato;
     document.getElementById('txtCiclo').value = parseInt(ciclo);
     document.getElementById('txtRuta').value = parseInt(ruta);
@@ -161,6 +157,7 @@ angular.module('starter.controladordacturacionensitio', [])
 
             var Uso;
             var IdUsotx = result.rows.item(dato)['IdUso'];
+            document.getElementById('txtUsoFact').value=IdUsotx;
 
             if(IdUsotx == 1)
             {

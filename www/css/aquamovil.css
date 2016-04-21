@@ -511,28 +511,6 @@ a{
     margin: 0;
 }
 
-#listaId a
-{
-    color: black;
-    text-align: left;
-    font-size: 0.9em;
-    background: transparent;
-    border: 1px solid white;
-    padding: 0;
-    margin: 0;
-}
-
-#listaIdFact a
-{
-    color: black;
-    text-align: left;
-    font-size: 0.9em;
-    background: transparent;
-    border: 1px solid white;
-    padding: 0;
-    margin: 0;
-}
-
 #CargaLec {
 	position: relative;
 	z-index: -2;

@@ -285,14 +285,10 @@
 		{
 			 $("#contenedorListaUsuariosServicios").hide();
 			 $("#contenedorUsuariosLecturas").show();
-			 $("#contenido").show();
 		}
 		
 		function contarRegistros()
 		{
-			$("#contenedorUsuariosLecturas").hide();
-			$("#contenido").hide();	
-			$("#contenedorListaUsuariosServicios").show();
 			var ciclo = document.getElementById("txtCiclo").value;
 			var ruta = document.getElementById("txtRuta").value;
 			pintarListaReg(ciclo,ruta);
@@ -325,6 +321,8 @@
 
 					$(id).removeClass('pintarLRDiligenciado');
 					$(id).addClass('pintarLR');
+					$("#contenedorUsuariosLecturas").hide();
+					$("#contenedorListaUsuariosServicios").show();
 				});    
 			});
 		}
@@ -384,7 +382,7 @@
 		}
 
 		function onErrorGeo(error){
-			console.log(error.code);
+			
 		}
 
 		/*----------------------------------------------------------------------------------*/
@@ -524,7 +522,6 @@
 									{
 										document.getElementById("conceptoCritica").value = "Consumo Normal";
 										document.getElementById("consumo").value = txtConsumoRegistrado;
-										console.log(txtConsumoRegistrado);
 										ActualizarArchivo();  
 									}
 								}								
@@ -612,9 +609,6 @@
 				{
 					var lect = result.rows.item(0)['LecturaActual'];
 					var cau = result.rows.item(0)['CausalActual'];
-
-					console.log(lect);
-					console.log(cau);
 
 					if(lect != '' || cau > 0)
 					{

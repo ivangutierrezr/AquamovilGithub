@@ -6,8 +6,6 @@ angular.module('starter.controladorestadolecturas', [])
 	$scope.estadolectura = [];
     angular.element(document).ready(function () 
     {
-    	$("#contenedorUsuariosLecturas").hide();
-		$("#contenido").hide();
 		$("#contenedorListaUsuariosServicios").hide();
     	$ionicLoading.show({});
 
@@ -21,7 +19,6 @@ angular.module('starter.controladorestadolecturas', [])
 			{
 				for(var i = 0; i < result.rows.length; i++) 
 				{  
-					console.log(result.rows.length);
 					var idLista = i;
 					var idUsuario = result.rows.item(i)['IdUsuario'];
 					var numeroMedidor = result.rows.item(i)['NumeroMedidor'];
@@ -48,17 +45,12 @@ angular.module('starter.controladorestadolecturas', [])
 					$scope.estadolectura.push($scope.newEstadoLecturas);
 					$("#inputControlLecturas").val($scope.estadolectura.length);
 				}
-
-				console.log($("#inputControlLecturas").val());
 				$ionicLoading.hide();
-				$("#contenedorUsuariosLecturas").show();
-				$("#contenido").show();
 			});    
 		});
 
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/LogoImpresion.jpg")
 	        .then(function (archivo) {
-	          console.log(archivo);
 	          var ruta = archivo.nativeURL;
 	          document.getElementById("rutaImagenLectura").value = ruta;
 	        }, function (error) {
@@ -70,7 +62,6 @@ angular.module('starter.controladorestadolecturas', [])
 	$scope.ubicarRegistro = function(a,b,ciclo,ruta) 
 	{	
 		$("#contenedorUsuariosLecturas").show();
-		$("#contenido").show();
 		$("#contenedorListaUsuariosServicios").hide();
 	    dbShell.transaction(function(tx) 
 		{  

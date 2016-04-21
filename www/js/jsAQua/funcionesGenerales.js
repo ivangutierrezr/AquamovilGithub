@@ -225,6 +225,11 @@ function mostrarParametros()
 			var critica2 = result.rows.item(1)['ValorParametro'];
 			var critica3 = result.rows.item(2)['ValorParametro'];
 
+			var limiteSuperiorBasico = result.rows.item(6)['ValorParametro'];
+			var limiteSuperiorComplementario = result.rows.item(7)['ValorParametro'];
+			var tasaInteresResidencial = result.rows.item(8)['ValorParametro'];
+			var tasaInteresNoResidencial = result.rows.item(9)['ValorParametro'];
+
 			document.getElementById("nombreEmpresa").value = result.rows.item(3)['ValorParametro'];
 
 			var criticaAltaMenor6 = 1 + critica1;
@@ -238,6 +243,10 @@ function mostrarParametros()
 			document.getElementById("criticaAltaMenor35").value = criticaAltaMenor35;
 			document.getElementById("criticaBajaMayor35").value = criticaBajaMayor35;
 			document.getElementById("criticaAltaMayor35").value = criticaAltaMayor35;
+			document.getElementById("limiteSuperiorBasico").value = limiteSuperiorBasico;
+			document.getElementById("limiteSuperiorComplementario").value = limiteSuperiorComplementario;
+			document.getElementById("tasaInteresResidencial").value = tasaInteresResidencial;
+			document.getElementById("tasaInteresNoResidencial").value = tasaInteresNoResidencial;
 		});
 	});
 }

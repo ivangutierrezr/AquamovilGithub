@@ -318,7 +318,7 @@ function Imprimir()
 			document.getElementById("txtImpreso").value = "si";
 			permitirEditar();
 			console.log('Guardado Impreso');
-			//EjecutarImpresion();
+			EjecutarImpresion();
 		});
 	});
 }
@@ -633,6 +633,7 @@ function pasarAFacturacion(ciclo,ruta,a)
 
 					var Uso;
 					var IdUsotx = result.rows.item(dato)['IdUso'];
+					document.getElementById('txtUsoFact').value=IdUsotx;
 
 					if(IdUsotx == 1)
 					{

@@ -147,6 +147,7 @@ angular.module('starter.controladorciclorutafacturacion', [])
 
 						var Uso;
 						var IdUsotx = result.rows.item(dato)['IdUso'];
+						document.getElementById('txtUsoFact').value=IdUsotx;
 
 						if(IdUsotx == 1)
 						{
