@@ -32,9 +32,9 @@ angular.module('starter.controladordacturacionensitio', [])
 
           $scope.listaFacturas.push($scope.newListaFacturas);
           $("#inputControlFacturas").val($scope.listaFacturas.length);
-          console.log($scope.listaFacturas.length);
-          $("#contenedorListaUsuariosServiciosFact").hide();
         }
+        console.log($scope.listaFacturas.length);
+        $("#contenedorListaUsuariosServiciosFact").hide();
       });    
     });
     console.log("Logo");

@@ -270,21 +270,11 @@
 
 	<ion-content padding="true" overflow-scroll="true">
 		<input id="inputControlFacturas" type="number" readonly style="display:none;">
-		<div id="listaIdFact" class="list">
-			<ul>
-				<ion-item id="listarFacturas" item-width="100%" collection-repeat="dato in listaFacturas | filter: buscarRegistroFact">
-					<div id='divLRFact'>
-						<a id='listaUsuariosFact{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistroFacturacion({{dato.ciclo}},{{dato.ruta}},{{dato.idLista}})'>
-							<div class='row'>
-								<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
-								<div class="col col-40" style="text-align:center;">{{dato.ruta}}</div>
-								<div class="col col-40" style="text-align:center;">{{dato.consecutivo}}</div>
-							</div>
-						</a>
-					</div>
-				</ion-item>
-			</ul>
-		</div>
+		<ion-list>
+			<ion-item id="listarFacturas" item-width="100%" collection-repeat="dato in listaFacturas | filter: buscarRegistroFact">
+				{{dato.idUsuario}}
+			</ion-item>
+		</ion-list>
 	</ion-content>
 
 	<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
@@ -317,7 +307,7 @@
 
 		function pintarListaRegFact(ciclo,ruta)
 		{
-			$("#listarFacturas div a").removeClass('pintarLR')
+			$("#listarFacturas a").removeClass('pintarLR')
 			dbShell.transaction(function(tx) 
 			{            
 				tx.executeSql("SELECT * FROM UsuariosServicios where Ciclo=? and Ruta=?", [ciclo,ruta],                
