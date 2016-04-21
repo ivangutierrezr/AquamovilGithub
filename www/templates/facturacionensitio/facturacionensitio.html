@@ -270,8 +270,9 @@
 
 	<ion-content class="padding scroll">
 		<input id="inputControlFacturas" type="number" readonly style="display:none;">
-		<ion-list>
-			<ion-item id="listarFacturas" ng-repeat="dato in listaFacturas | filter: buscarRegistroFact">
+
+		<div id="listaId" class="list">
+			<li id="listarFacturas" ng-repeat="dato in listaFacturas | filter: buscarRegistroFact">
 				<a id='listaUsuariosFact{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistroFacturacion({{dato.ciclo}},{{dato.ruta}},{{dato.idLista}})'>
 					<div class='row'>
 						<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
@@ -279,8 +280,8 @@
 						<div class="col col-40" style="text-align:center;">{{dato.consecutivo}}</div>
 					</div>
 				</a>
-			</ion-item>
-		</ion-list>
+			</li>
+		</div>
 	</ion-content>
 
 	<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
@@ -296,15 +297,11 @@
 		{
 			$("#contenedorListaUsuariosServiciosFact").hide();
 			$("#contenedorUsuariosLecturasFact").show();
-			$("#botoneraFacturacion").show();
-			$("#contentFact").show();
 		}
 		
 		function contarRegistrosFact()
 		{
 			$("#contenedorUsuariosLecturasFact").hide();
-			$("#botoneraFacturacion").hide();
-			$("#contentFact").hide();
 			$("#contenedorListaUsuariosServiciosFact").show();
 			var ciclo = document.getElementById("txtCiclo").value;
 			var ruta = document.getElementById("txtRuta").value;

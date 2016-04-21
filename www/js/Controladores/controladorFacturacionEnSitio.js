@@ -60,8 +60,6 @@ angular.module('starter.controladordacturacionensitio', [])
   {
     $("#contenedorListaUsuariosServiciosFact").hide();
     $("#contenedorUsuariosLecturasFact").show();
-    $("#botoneraFacturacion").show();
-    $("#contentFact").show();
     var dato = parseInt(a);
     console.log(dato);
     document.getElementById('txtNumRegistro').value = dato;
