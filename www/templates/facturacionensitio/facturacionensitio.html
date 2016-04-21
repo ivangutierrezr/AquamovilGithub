@@ -268,11 +268,17 @@
 		</div>
 	</ion-header-bar>
 
-	<ion-content padding="true" overflow-scroll="true">
+	<ion-content class="padding scroll">
 		<input id="inputControlFacturas" type="number" readonly style="display:none;">
 		<ion-list>
 			<ion-item id="listarFacturas" ng-repeat="dato in listaFacturas | filter: buscarRegistroFact">
-				{{dato.idUsuario}}
+				<a id='listaUsuariosFact{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistroFacturacion({{dato.ciclo}},{{dato.ruta}},{{dato.idLista}})'>
+					<div class='row'>
+						<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
+						<div class="col col-40" style="text-align:center;">{{dato.ruta}}</div>
+						<div class="col col-40" style="text-align:center;">{{dato.consecutivo}}</div>
+					</div>
+				</a>
 			</ion-item>
 		</ion-list>
 	</ion-content>
