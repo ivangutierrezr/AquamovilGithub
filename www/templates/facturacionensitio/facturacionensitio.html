@@ -272,7 +272,7 @@
 		<input id="inputControlFacturas" type="number" readonly style="display:none;">
 
 		<div id="listaId" class="list">
-			<li id="listarFacturas" ng-repeat="dato in listaFacturas | filter: buscarRegistroFact">
+			<li style="list-style:none;" id="listarFacturas" ng-repeat="dato in listaFacturas | filter: buscarRegistroFact">
 				<a id='listaUsuariosFact{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistroFacturacion({{dato.ciclo}},{{dato.ruta}},{{dato.idLista}})'>
 					<div class='row'>
 						<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
