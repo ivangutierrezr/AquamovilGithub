@@ -23,7 +23,7 @@
 		</div>
 	</ion-header-bar>
 
-	<div id="botoneraFacturacion" style="position:fixed; background:#FFDC8B; top:100px; z-index:4">
+	<div id="botoneraFacturacion" style="position:fixed; background:#FFDC8B; width:100%; top:100px; z-index:4">
 		<div class="row row-center" style="margin-top:-10px">
 			<!-- Botón Buscar-->
 			<div class="col col-33" align="center">	
@@ -272,7 +272,7 @@
 		<input id="inputControlFacturas" type="number" readonly style="display:none;">
 		<div id="listaIdFact" class="list">
 			<ul>
-				<li id="listarFacturas" ng-repeat="dato in listaFacturas | filter: buscarRegistroFact">
+				<li id="listarFacturas" collection-repeat="dato in listaFacturas | filter: buscarRegistroFact">
 					<div id='divLRFact'>
 						<a id='listaUsuariosFact{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistroFacturacion({{dato.ciclo}},{{dato.ruta}},{{dato.idLista}})'>
 							<div class='row'>

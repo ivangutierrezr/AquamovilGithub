@@ -251,7 +251,7 @@
 		<input id="inputControlLecturas" type="number" readonly style="display:none;">
 		<div id="listaId" class="list">
 			<ul>
-				<li id="listaLecturas" ng-repeat="dato in estadolectura | filter: buscarRegistro">
+				<li id="listaLecturas" collection-repeat="dato in estadolectura | filter: buscarRegistro">
 					<div id='divLR'>
 						<a id='{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistro({{dato.idLista}},{{dato.idUsuario}},{{dato.ciclo}},{{dato.ruta}})'>
 							<div class='row'>
