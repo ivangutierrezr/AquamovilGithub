@@ -232,13 +232,6 @@ figure
 	margin-bottom: 30px;
 }
 
-#header_inicio
-{
-	box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
-    position:fixed;
-    margin-top: 0;
-}
-
 a{
 	text-decoration: none;
 
