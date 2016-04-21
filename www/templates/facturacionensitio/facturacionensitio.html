@@ -271,7 +271,7 @@
 	<ion-content padding="true" overflow-scroll="true">
 		<input id="inputControlFacturas" type="number" readonly style="display:none;">
 		<ion-list>
-			<ion-item id="listarFacturas" item-width="100%" collection-repeat="dato in listaFacturas | filter: buscarRegistroFact">
+			<ion-item id="listarFacturas" collection-repeat="dato in listaFacturas | filter: buscarRegistroFact">
 				{{dato.idUsuario}}
 			</ion-item>
 		</ion-list>
