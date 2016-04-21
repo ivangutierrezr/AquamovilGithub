@@ -227,8 +227,14 @@
 </div>
 <div id="contenedorListaUsuariosServicios">
 	<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
-		<b align="center">BUSQUEDA DE REGISTROS</b>
-		<input ng-model="buscarRegistro" style="font-weight:bold; border: none; color:black; font-size:15px; border-radius:30px; text-align:center;" placeholder="Buscar" type="text">
+		<div class="row">
+			<div class="col col-33">
+				<b align="center">BUSQUEDA DE REGISTROS</b>
+			</div>
+			<div class="col col-67">
+				<input ng-model="buscarRegistro" style="font-weight:bold; border: none; color:black; font-size:15px; border-radius:30px; text-align:center;" placeholder="Buscar" type="text">
+			</div>
+		</div>		
 	</ion-header-bar>
 
 	<ion-header-bar align-title="center" class="bar bar-subheader bar-assertive">
@@ -251,20 +257,18 @@
 	<ion-content padding="true" overflow-scroll="true">
 		<input id="inputControlLecturas" type="number" readonly style="display:none;">
 		<div id="listaId" class="list">
-			<ul>
-				<li id="listaLecturas" collection-repeat="dato in estadolectura | filter: buscarRegistro">
-					<div id='divLR'>
-						<a id='{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistro({{dato.idLista}},{{dato.idUsuario}},{{dato.ciclo}},{{dato.ruta}})'>
-							<div class='row'>
-								<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
-								<div class="col col-20" style="text-align:center;">{{dato.ruta}}</div>
-								<div class="col col-20" style="text-align:center;">{{dato.consecutivo}}</div>
-								<div class="col col-40" style="text-align:center;">{{dato.lecturaActual}}</div>
-							</div>
-						</a>
-					</div>
-				</li>
-			</ul>
+			<li style="list-style:none;" id="listaLecturas" ng-repeat="dato in estadolectura | filter: buscarRegistro">
+				<div id='divLR'>
+					<a id='{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistro({{dato.idLista}},{{dato.idUsuario}},{{dato.ciclo}},{{dato.ruta}})'>
+						<div class='row'>
+							<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
+							<div class="col col-20" style="text-align:center;">{{dato.ruta}}</div>
+							<div class="col col-20" style="text-align:center;">{{dato.consecutivo}}</div>
+							<div class="col col-40" style="text-align:center;">{{dato.lecturaActual}}</div>
+						</div>
+					</a>
+				</div>
+			</li>
 		</div>
 	</ion-content>
 

@@ -250,8 +250,14 @@
 
 <div id="contenedorListaUsuariosServiciosFact">
 	<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
-		<b align="center">BUSQUEDA DE REGISTROS</b>
-		<input ng-model="buscarRegistroFact" style="font-weight:bold; border: none; color:black; font-size:15px; border-radius:30px; text-align:center;" placeholder="Buscar" type="text">
+		<div class="row">
+			<div class="col col-33">
+				<b align="center">BUSQUEDA DE REGISTROS</b>
+			</div>
+			<div class="col col-67">
+				<input ng-model="buscarRegistroFact" style="font-weight:bold; border: none; color:black; font-size:15px; border-radius:30px; text-align:center;" placeholder="Buscar" type="text">
+			</div>
+		</div>	
 	</ion-header-bar>
 
 	<ion-header-bar align-title="center" class="bar bar-subheader bar-assertive">
@@ -271,7 +277,7 @@
 	<ion-content class="padding scroll">
 		<input id="inputControlFacturas" type="number" readonly style="display:none;">
 
-		<div id="listaId" class="list">
+		<div id="listaIdFacturacion" class="list">
 			<li style="list-style:none;" id="listarFacturas" ng-repeat="dato in listaFacturas | filter: buscarRegistroFact">
 				<a id='listaUsuariosFact{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistroFacturacion({{dato.ciclo}},{{dato.ruta}},{{dato.idLista}})'>
 					<div class='row'>
