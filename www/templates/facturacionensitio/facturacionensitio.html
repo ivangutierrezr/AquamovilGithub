@@ -1,252 +1,350 @@
-<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
-	<h1 class="title"><b>FACTURACIÓN EN SITIO</b></h1>
-</ion-header-bar>
-<ion-header-bar align-title="center" id="subheaderFact" class="bar bar-subheader bar-assertive">
-	<div class="row">
-		<!-- Input Fecha-->
-		<div class="col col-30" align="left">
-			<input style="font-size:0.9em; margin-top: -15px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="fechaFact" type="text" readonly>
-		</div>
-		<!-- Input Hora-->
-		<div class="col col-30" align="left">
-			<input style="font-size:0.9em; margin-top: -15px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="horaFact" type="text" readonly>
-		</div>
-		<!-- Input Ciclo-->
-		<div class="col col-20" align="left">
-			<input style="font-size:0.9em; font-size:0.9em; margin-top: -15px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtCiclo2Fact" type="text" readonly>
-		</div>
-		<!-- Input Ruta-->
-		<div class="col col-20" align="left">
-			<input style="font-size:0.9em; margin-top: -15px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtRuta2Fact" type="text" readonly>
-		</div>
-	</div>
-</ion-header-bar>
-
-		<div style="position:fixed; background:#FFDC8B; top:100px; z-index:4">
-			<div class="row row-center" style="margin-top:-10px">
-				<!-- Botón Buscar-->
-				<div class="col col-33" align="center">	
-					<a href="" style="font-size:2.5em; color:white;">
-						<i class="icon ion-search" style="color:#Ef473A;"></i>
-					</a>
-				</div>
-				<!-- Botón para ir a Lectura Medidores-->
-				<div class="col col-33" align="center">
-					<a id="btnIrALecturaMedidores" onClick="pasarALecturaMedidores()" style="font-size:2.5em; color:white;">
-						<i class="icon ion-arrow-swap" style="color:#Ef473A;"></i><br>
-					</a>
-				</div>
-				<!-- Botón Mapa-->
-				<div class="col col-33" align="center" style="font-size:0.8em;">
-					<a style="font-size:3em; color:white;" ui-sref="mapa">
-						<i class="icon ion-location" style="color:#Ef473A;"></i>
-					</a>
-				</div>
+<div ="contenedorUsuariosLecturasFact">
+	<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+		<h1 class="title"><b>FACTURACIÓN EN SITIO</b></h1>
+	</ion-header-bar>
+	<ion-header-bar align-title="center" id="subheaderFact" class="bar bar-subheader bar-assertive">
+		<div class="row">
+			<!-- Input Fecha-->
+			<div class="col col-30" align="left">
+				<input style="font-size:0.9em; margin-top: -15px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="fechaFact" type="text" readonly>
 			</div>
+			<!-- Input Hora-->
+			<div class="col col-30" align="left">
+				<input style="font-size:0.9em; margin-top: -15px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="horaFact" type="text" readonly>
+			</div>
+			<!-- Input Ciclo-->
+			<div class="col col-20" align="left">
+				<input style="font-size:0.9em; font-size:0.9em; margin-top: -15px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtCiclo2Fact" type="text" readonly>
+			</div>
+			<!-- Input Ruta-->
+			<div class="col col-20" align="left">
+				<input style="font-size:0.9em; margin-top: -15px; padding:0; background-color: transparent; color: white; border: none; vertical-align: top;" id="txtRuta2Fact" type="text" readonly>
+			</div>
+		</div>
+	</ion-header-bar>
 
-			<div class="row row-center" style="margin-top:-10px">
-				<!-- Usuario Anterior-->
-				<div class="col col-33" align="center">	
-					<input style="background-color: transparent; border: none; font-size:0.8em; height:1.5em; margin:0; padding:0; text-align:center;" id="txtIdUsuarioLecturaAntFact" type="text" readonly>
-				</div>
-				<!-- Usuario Actual-->
-				<div class="col col-33" align="center">
-					<input style="font-weight:bold; border: 5px solid #ef473a;  background-color: #ef473a; color:white; width:5em; text-align:center; font-size:1.4em;  margin:0; padding:0; height:1.5em;" id="txtIdUsuarioLecturaFact" type="text" placeholder="Id Usuario" readonly>
-				</div>
-				<!-- Usuario Siguiente-->
-				<div class="col col-33" align="center">
-					<input style="background-color: transparent; border: none; font-size:0.8em;  margin:0; padding:0; height:1.5em; text-align:center;" id="txtIdUsuarioLecturaSigFact" type="text" readonly>
-				</div>			
+	<div id="botoneraFacturacion" style="position:fixed; background:#FFDC8B; top:100px; z-index:4">
+		<div class="row row-center" style="margin-top:-10px">
+			<!-- Botón Buscar-->
+			<div class="col col-33" align="center">	
+				<a href="" style="font-size:2.5em; color:white;" onClick="contarRegistrosFact()">
+					<i class="icon ion-search" style="color:#Ef473A;"></i>
+				</a>
+			</div>
+			<!-- Botón para ir a Lectura Medidores-->
+			<div class="col col-33" align="center">
+				<a id="btnIrALecturaMedidores" onClick="pasarALecturaMedidores()" style="font-size:2.5em; color:white;">
+					<i class="icon ion-arrow-swap" style="color:#Ef473A;"></i><br>
+				</a>
+			</div>
+			<!-- Botón Mapa-->
+			<div class="col col-33" align="center" style="font-size:0.8em;">
+				<a style="font-size:3em; color:white;" ui-sref="mapa">
+					<i class="icon ion-location" style="color:#Ef473A;"></i>
+				</a>
 			</div>
 		</div>
 
-<ion-content padding="true" overflow-scroll="true" id="contentFact" style="margin-top:80px;">
-	<div id="contenidoFact">
-		<!--Input Impreso (Control)-->
-		<input id="txtImpresoFact" type="hidden" style="font-size:1px;" readonly>
-
-		<!--Input Numero En la BD (Control)-->
-		<input id="txtNumeroFact" type="hidden" style="font-size:1px;" readonly>
-
-		<!-- Datos para impresión -->
-
-		<input id="txtNumeroFactReal" type="hidden" style="font-size:1px;" readonly>
-		<input id="txtFechaFactura" type="hidden" style="font-size:1px;" readonly>
-		<input id="txtFechaLimiteDePagoFactura" type="hidden" style="font-size:1px;" readonly>
-
-		<!-- -->
-
-		<input id="txtEdadAcueducto" type="hidden" style="font-size:1px;" readonly>
-		<input id="totalAcueducto" type="hidden" style="font-size:1px;" readonly>
-		<input id="totalAlcantarillado" type="hidden" style="font-size:1px;" readonly>
-		<input id="totalAseo" type="hidden" style="font-size:1px;" readonly>
-		<input id="totalSubsidiosAportes" type="hidden" style="font-size:1px;" readonly>
-
-		<input id="subTotalPresente" type="hidden" style="font-size:1px;" readonly>
-		<input id="subTotalAcumuladosAnteriores" type="hidden" style="font-size:1px;" readonly>
-
-		<input id="totalAPagar" type="hidden" style="font-size:1px;" readonly>
-
-		<!-- Ruta de la imagen para imprimir en el tiquete -->
-
-		<input id="rutaImagenFactura" type="hidden" style="font-size:1px;" readonly>
-
-		<div id="datosGenerales" >
-			<div id="datos-entradaFact" class="infoBox">
-				<!-- Datos Empresa-->
-				<div class="row">
-					<div class="col col-80">
-						<ul>
-							<li id="txtNombreEmpresaFact" align="center">
-								Nombre Empresa
-							</li>
-							<li id="txtNitEmpresaFact" align="center">
-								NIT Empresa
-							</li>
-						</ul>
-					</div>
-					<div class="col col-20">
-						<img id="logoEmpresaESP">
-					</div>
-				</div>
+		<div class="row row-center" style="margin-top:-10px">
+			<!-- Usuario Anterior-->
+			<div class="col col-33" align="center">	
+				<input style="background-color: transparent; border: none; font-size:0.8em; height:1.5em; margin:0; padding:0; text-align:center;" id="txtIdUsuarioLecturaAntFact" type="text" readonly>
 			</div>
-			<br>
-			<!-- Datos Generales -->		
-			<div class="infoBox paddingIzquierdo">
-				<ul>
-					<li id="txtFechaFact">
-						Fecha: 01/01/2015
-					</li>
-					<li id="txtNumFact">
-						Factura #: Numero Factura
-					</li>
-					<li id="txtFechaInicialFact">
-						Fecha Incial de Consumo: 01/012015
-					</li>
-					<li id="txtFechaFinalFact">
-						Fecha Final de Consumo: 01/02/2015
-					</li>
-					<li id="txtNomprePeriodoFact">
-						Nombre Periodo: ASDFG
-					</li>
-					<li id="txtFechaLimiteFact">
-						Fecha Lím De Pago: 15/02/2015
-					</li>
-				</ul>
+			<!-- Usuario Actual-->
+			<div class="col col-33" align="center">
+				<input style="font-weight:bold; border: 5px solid #ef473a;  background-color: #ef473a; color:white; width:5em; text-align:center; font-size:1.4em;  margin:0; padding:0; height:1.5em;" id="txtIdUsuarioLecturaFact" type="text" placeholder="Id Usuario" readonly>
 			</div>
-			<br>
-			<div class="infoBox paddingIzquierdo">
-				<ul>
-					<li>DATOS DEL USUARIO:</li>
-					<li><br><li>
-					<li id="txtIdNombreUsuarioFact">
-						ID: 2020     Nombre Usuario
-					</li>
-					<li id="txtDireccionFact">
-						Dirección: Cra 1#1-1
-					</li>
-					<li id="txtMedidorFact">
-						MED.#: asdfwefwa
-					</li>
-
-					<li id="txtUsoCatFact">
-						Uso: RESIDENCIAL Cat: 3
-					</li>
-
-					<li id="txtNumCuentasAcueductoFact">
-						# Cuentas Acued.: 1
-					</li>
-					<li id="txtNumCuentasAlcantarilladoFact">
-						# CUentas Alcant.: 1
-					</li>
-					<li id="txtNumCuentasAseoFact">
-						# Cuentas Aseo: 1
-					</li>
-				</ul>
-			</div>
-			<br>
-			<div class="infoBox paddingIzquierdo">
-				<ul>
-					<li>DATOS SOBRE EL CONSUMO DEL SERVICIO</li>
-					<li><br><li>
-					<li id="txtEdadAcueductoFact">
-						Facturas Pendientes:
-					</li>
-					<li id="txtLecturaAnteriorFact">
-						Lectura Anterior:
-					</li>
-					<li id="txtLecturaActualFact">
-						Lectura Actual:
-					</li>
-					<li id="txtConsumoFact">
-						Consumo:
-					</li>
-					<li id="txtCausalFact">
-						Causal De No Lectura:
-					</li>
-					<li id="txtObservacionFact">
-						Observación
-					</li>
-					<li id="txtConsumoPromedioFact">
-						Consumo Promedio:
-					</li>
-					<li id="txtToneladasProducidasFact">
-						Toneladas Producidas
-					</li>
-				</ul>
-			</div>
-			<br>
-			<div class="infoBox paddingIzquierdo">
-				<ul id="detalleLiquidacionFactura" style="font-size:0.8em;">
-				</ul>
-			</div>
-			<br>
-			<div class="infoBox paddingIzquierdo">
-				<ul id="pieDePaginaFactura">
-				</ul>
-				<img id="codigoDeBarrasFactura" width="300px" height="100px">
-			</div>
-			<br>
-			<div class="infoBox paddingIzquierdo">
-				<ul id="descripcionCargos" class="paddingIzquierdo" style="padding:0;">
-				</ul>
-			</div>
-		</div>
-		<div id="LecturaNoDiligenciada" style="display:none;">
-			<br>
-			<p style="font-size: 1.5em; text-align:center; color:black; font-weight:bold;">LA LECTURA NO SE HA DILIGENCIADO AÚN O NO SE HA IMPRESO EL TIQUETE DE COMPROBANTE DE LECTURA, POR FAVOR DIRIJASE AL MÓDULO DE LECTURA DE MEDIDORES OPRIMIENDO EL BOTÓN <i class="icon ion-arrow-swap" style="color:#Ef473A;"></i> QUE SE ENCUENTRA EN LA PARTE SUPERIOR</p>
+			<!-- Usuario Siguiente-->
+			<div class="col col-33" align="center">
+				<input style="background-color: transparent; border: none; font-size:0.8em;  margin:0; padding:0; height:1.5em; text-align:center;" id="txtIdUsuarioLecturaSigFact" type="text" readonly>
+			</div>			
 		</div>
 	</div>
-</ion-content>
 
-<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
-	<!--Botón imprimir -->
-	<a class="tab-item active" id="imprimirFact">
-		<i  class="icon ion-printer disable larger"></i>
-		Imprimir
-	</a>
-	<!--Botón Lectura Anterior -->
-	<a class="tab-item active" id="btnAntFact">
-		<i class="icon ion-chevron-left larger" style="font-size:3.5em;">
-		</i>
-		Anterior
-	</a>
+	<ion-content padding="true" overflow-scroll="true" id="contentFact" style="margin-top:80px;">
+		<div id="contenidoFact">
+			<!--Input Impreso (Control)-->
+			<input id="txtImpresoFact" type="hidden" style="font-size:1px;" readonly>
 
-	<!--Botón Lectura Siguiente-->
-	<a class="tab-item active" id="btnSigFact">
-		<i class="icon ion-chevron-right larger" style="font-size:3.5em;">
-		</i>
-		Siguiente
-	</a>
+			<!--Input Numero En la BD (Control)-->
+			<input id="txtNumeroFact" type="hidden" style="font-size:1px;" readonly>
 
-	<!--Botón Salir-->
-	<a class="tab-item active" id="btnSalirFact">
-		<i class="icon ion-share larger" style="font-size:3.5em;"></i>
-		Salir
-	</a>
-</ion-footer-bar>
+			<!-- Datos para impresión -->
+
+			<input id="txtNumeroFactReal" type="hidden" style="font-size:1px;" readonly>
+			<input id="txtFechaFactura" type="hidden" style="font-size:1px;" readonly>
+			<input id="txtFechaLimiteDePagoFactura" type="hidden" style="font-size:1px;" readonly>
+
+			<!-- -->
+
+			<input id="txtEdadAcueducto" type="hidden" style="font-size:1px;" readonly>
+			<input id="totalAcueducto" type="hidden" style="font-size:1px;" readonly>
+			<input id="totalAlcantarillado" type="hidden" style="font-size:1px;" readonly>
+			<input id="totalAseo" type="hidden" style="font-size:1px;" readonly>
+			<input id="totalSubsidiosAportes" type="hidden" style="font-size:1px;" readonly>
+
+			<input id="subTotalPresente" type="hidden" style="font-size:1px;" readonly>
+			<input id="subTotalAcumuladosAnteriores" type="hidden" style="font-size:1px;" readonly>
+
+			<input id="totalAPagar" type="hidden" style="font-size:1px;" readonly>
+
+			<!-- Ruta de la imagen para imprimir en el tiquete -->
+
+			<input id="rutaImagenFactura" type="hidden" style="font-size:1px;" readonly>
+
+			<div id="datosGenerales" >
+				<div id="datos-entradaFact" class="infoBox">
+					<!-- Datos Empresa-->
+					<div class="row">
+						<div class="col col-80">
+							<ul>
+								<li id="txtNombreEmpresaFact" align="center">
+									Nombre Empresa
+								</li>
+								<li id="txtNitEmpresaFact" align="center">
+									NIT Empresa
+								</li>
+							</ul>
+						</div>
+						<div class="col col-20">
+							<img id="logoEmpresaESP">
+						</div>
+					</div>
+				</div>
+				<br>
+				<!-- Datos Generales -->		
+				<div class="infoBox paddingIzquierdo">
+					<ul>
+						<li id="txtFechaFact">
+							Fecha: 01/01/2015
+						</li>
+						<li id="txtNumFact">
+							Factura #: Numero Factura
+						</li>
+						<li id="txtFechaInicialFact">
+							Fecha Incial de Consumo: 01/012015
+						</li>
+						<li id="txtFechaFinalFact">
+							Fecha Final de Consumo: 01/02/2015
+						</li>
+						<li id="txtNomprePeriodoFact">
+							Nombre Periodo: ASDFG
+						</li>
+						<li id="txtFechaLimiteFact">
+							Fecha Lím De Pago: 15/02/2015
+						</li>
+					</ul>
+				</div>
+				<br>
+				<div class="infoBox paddingIzquierdo">
+					<ul>
+						<li>DATOS DEL USUARIO:</li>
+						<li><br><li>
+						<li id="txtIdNombreUsuarioFact">
+							ID: 2020     Nombre Usuario
+						</li>
+						<li id="txtDireccionFact">
+							Dirección: Cra 1#1-1
+						</li>
+						<li id="txtMedidorFact">
+							MED.#: asdfwefwa
+						</li>
+
+						<li id="txtUsoCatFact">
+							Uso: RESIDENCIAL Cat: 3
+						</li>
+
+						<li id="txtNumCuentasAcueductoFact">
+							# Cuentas Acued.: 1
+						</li>
+						<li id="txtNumCuentasAlcantarilladoFact">
+							# CUentas Alcant.: 1
+						</li>
+						<li id="txtNumCuentasAseoFact">
+							# Cuentas Aseo: 1
+						</li>
+					</ul>
+				</div>
+				<br>
+				<div class="infoBox paddingIzquierdo">
+					<ul>
+						<li>DATOS SOBRE EL CONSUMO DEL SERVICIO</li>
+						<li><br><li>
+						<li id="txtEdadAcueductoFact">
+							Facturas Pendientes:
+						</li>
+						<li id="txtLecturaAnteriorFact">
+							Lectura Anterior:
+						</li>
+						<li id="txtLecturaActualFact">
+							Lectura Actual:
+						</li>
+						<li id="txtConsumoFact">
+							Consumo:
+						</li>
+						<li id="txtCausalFact">
+							Causal De No Lectura:
+						</li>
+						<li id="txtObservacionFact">
+							Observación
+						</li>
+						<li id="txtConsumoPromedioFact">
+							Consumo Promedio:
+						</li>
+						<li id="txtToneladasProducidasFact">
+							Toneladas Producidas
+						</li>
+					</ul>
+				</div>
+				<br>
+				<div class="infoBox paddingIzquierdo">
+					<ul id="detalleLiquidacionFactura" style="font-size:0.8em;">
+					</ul>
+				</div>
+				<br>
+				<div class="infoBox paddingIzquierdo">
+					<ul id="pieDePaginaFactura">
+					</ul>
+					<img id="codigoDeBarrasFactura" width="90%" height="100px">
+				</div>
+				<br>
+				<div class="infoBox paddingIzquierdo">
+					<ul id="descripcionCargos" class="paddingIzquierdo" style="padding:0;">
+					</ul>
+				</div>
+			</div>
+			<div id="LecturaNoDiligenciada" style="display:none;">
+				<br>
+				<p style="font-size: 1.5em; text-align:center; color:black; font-weight:bold;">LA LECTURA NO SE HA DILIGENCIADO AÚN O NO SE HA IMPRESO EL TIQUETE DE COMPROBANTE DE LECTURA, POR FAVOR DIRIJASE AL MÓDULO DE LECTURA DE MEDIDORES OPRIMIENDO EL BOTÓN <i class="icon ion-arrow-swap" style="color:#Ef473A;"></i> QUE SE ENCUENTRA EN LA PARTE SUPERIOR</p>
+			</div>
+		</div>
+	</ion-content>
+
+	<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
+		<!--Botón imprimir -->
+		<a class="tab-item active" id="imprimirFact">
+			<i  class="icon ion-printer disable larger"></i>
+			Imprimir
+		</a>
+		<!--Botón Lectura Anterior -->
+		<a class="tab-item active" id="btnAntFact">
+			<i class="icon ion-chevron-left larger" style="font-size:3.5em;">
+			</i>
+			Anterior
+		</a>
+
+		<!--Botón Lectura Siguiente-->
+		<a class="tab-item active" id="btnSigFact">
+			<i class="icon ion-chevron-right larger" style="font-size:3.5em;">
+			</i>
+			Siguiente
+		</a>
+
+		<!--Botón Salir-->
+		<a class="tab-item active" id="btnSalirFact">
+			<i class="icon ion-share larger" style="font-size:3.5em;"></i>
+			Salir
+		</a>
+	</ion-footer-bar>
+</div>
+
+<div id="contenedorListaUsuariosServiciosFact">
+	<ion-header-bar align-title="center" class="bar bar-header bar-assertive">
+		<b align="center">BUSQUEDA DE REGISTROS</b>
+		<input ng-model="buscarRegistroFact" style="font-weight:bold; border: none; color:black; font-size:15px; border-radius:30px; text-align:center;" placeholder="Buscar" type="text">
+	</ion-header-bar>
+
+	<ion-header-bar align-title="center" class="bar bar-subheader bar-assertive">
+		<div class="row" style="width:85%; margin:auto;">
+			<div class="col col-20" style="text-align:center;">
+				<b>ID</b>
+			</div>					
+			<div class="col col-40" style="text-align:center;">
+				<b>RUTA</b>
+			</div>
+			<div class="col col-40" style="text-align:center;">
+				<b>CON.</b>
+			</div>
+		</div>
+	</ion-header-bar>
+
+	<ion-content padding="true" overflow-scroll="true">
+		<input id="inputControlFacturas" type="number" readonly style="display:none;">
+		<div id="listaIdFact" class="list">
+			<ul>
+				<li id="listarFacturas" ng-repeat="dato in listaFacturas | filter: buscarRegistroFact">
+					<div id='divLRFact'>
+						<a id='listaUsuariosFact{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistroFacturacion({{dato.ciclo}},{{dato.ruta}},{{dato.idLista}})'>
+							<div class='row'>
+								<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
+								<div class="col col-40" style="text-align:center;">{{dato.ruta}}</div>
+								<div class="col col-40" style="text-align:center;">{{dato.consecutivo}}</div>
+							</div>
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</ion-content>
+
+	<ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
+	 	<a class="tab-item active" onCLick="cambiarAFacturacionEnSitio()">
+			<i class="icon ion-share larger" style="font-size:3.5em;"></i>
+			Regresar
+		</a>
+	</ion-footer-bar>
+</div>
 
 	<script>
+		function cambiarAFacturacionEnSitio() 
+		{
+			$("#contenedorListaUsuariosServiciosFact").hide();
+			$("#contenedorUsuariosLecturasFact").show();
+			$("#botoneraFacturacion").show();
+			$("#contentFact").show();
+		}
+		
+		function contarRegistrosFact()
+		{
+			$("#contenedorUsuariosLecturasFact").hide();
+			$("#botoneraFacturacion").hide();
+			$("#contentFact").hide();
+			$("#contenedorListaUsuariosServiciosFact").show();
+			var ciclo = document.getElementById("txtCiclo").value;
+			var ruta = document.getElementById("txtRuta").value;
+			pintarListaRegFact(ciclo,ruta);
+		}
+
+		function pintarListaRegFact(ciclo,ruta)
+		{
+			$("#listarFacturas div a").removeClass('pintarLR')
+			dbShell.transaction(function(tx) 
+			{            
+				tx.executeSql("SELECT * FROM UsuariosServicios where Ciclo=? and Ruta=?", [ciclo,ruta],                
+				
+				function(tx, result)
+				{
+					for(var i = 0; i < result.rows.length; i++) 
+					{  
+						var idLista = i;
+						var lecturaActual = result.rows.item(i)['LecturaActual'];
+						var causalActual = result.rows.item(i)['CausalActual'];
+						var observacionActual = result.rows.item(i)['ObservacionActual'];
+						var id2 = "#listaUsuariosFact"+idLista;
+
+						if(lecturaActual != "" || causalActual != "" || observacionActual != "")
+						{
+							$(id2).addClass('pintarLRDiligenciado')
+						}
+					}
+					var num = document.getElementById("txtNumRegistro").value;
+					var id = "#listaUsuariosFact"+num;
+
+					$(id).removeClass('pintarLRDiligenciado');
+					$(id).addClass('pintarLR');
+				});    
+			});
+		}
 		$("#btnSalirFact").attr("onClick", "regresarFact()");
 
 		horayfechaFact();

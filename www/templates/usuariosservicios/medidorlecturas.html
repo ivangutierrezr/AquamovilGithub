@@ -253,7 +253,7 @@
 			<ul>
 				<li id="listaLecturas" ng-repeat="dato in estadolectura | filter: buscarRegistro">
 					<div id='divLR'>
-						<a id='{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistro({{dato.idLista}},{{dato.idUsuario}},{{dato.ciclo}},{{dato.ruta}})' href='#/medidorlecturas'>
+						<a id='{{dato.idLista}}' class='item item-divider' ng-click='ubicarRegistro({{dato.idLista}},{{dato.idUsuario}},{{dato.ciclo}},{{dato.ruta}})'>
 							<div class='row'>
 								<div class="col col-20" style="text-align:center;">{{dato.idUsuario}}</div>
 								<div class="col col-20" style="text-align:center;">{{dato.ruta}}</div>
@@ -290,28 +290,6 @@
 			$("#contenedorListaUsuariosServicios").show();
 			var ciclo = document.getElementById("txtCiclo").value;
 			var ruta = document.getElementById("txtRuta").value;
-			var t;
-			/*dbShell.transaction(function(tx) 
-			{    		
-				tx.executeSql("select  Count(*) as Cantidad from UsuariosServicios Where Ciclo=? and Ruta=? ",[ciclo,ruta], 
-				function(tx, result)
-				{	
-					CantidadTotal = parseInt(result.rows.item(0)['Cantidad']);
-					var cantidadLecturas = document.getElementById("inputControlLecturas").value;
-
-					if(CantidadTotal != cantidadLecturas)
-					{
-						t = setTimeout("contarRegistros()", 2000);
-	
-					}
-
-					else
-					{
-						clearTimeout(t);
-						pintarListaReg(ciclo,ruta);
-					}
-				});
-			});*/
 			pintarListaReg(ciclo,ruta);
 		}
 

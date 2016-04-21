@@ -308,7 +308,7 @@ function activarImpresion()
 function Imprimir()
 {
 	var siImprimio = "si";
-	var numero = $('#txtNumero').val();
+	var numero = $('#txtNumRegistro').val();
 
 	dbShell.transaction(function(tx) 
 	{  
@@ -318,7 +318,7 @@ function Imprimir()
 			document.getElementById("txtImpreso").value = "si";
 			permitirEditar();
 			console.log('Guardado Impreso');
-			EjecutarImpresion();
+			//EjecutarImpresion();
 		});
 	});
 }

@@ -46,11 +46,11 @@ angular.module('starter.controladorciclorutafacturacion', [])
 
 	$scope.primeraFactura = function(ciclo,ruta,a)
 	{
+		document.getElementById('txtCiclo').value = parseInt(ciclo);
+		document.getElementById('txtRuta').value = parseInt(ruta);
 		var dato = parseInt(a);
 		console.log(dato);
 		document.getElementById('txtNumRegistro').value = dato;
-		document.getElementById('txtCiclo').value = parseInt(ciclo);
-		document.getElementById('txtRuta').value = parseInt(ruta);
 		dbShell.transaction(function(tx) 
 		{ 	
 			tx.executeSql("select * FROM UsuariosServicios where Ciclo=? and Ruta=?",[ciclo,ruta], 

@@ -49,7 +49,7 @@
 	</div>
 	
 	<div id="contenidoNuevaEncuestaDiv" style="width:80%; margin:25vh auto 0 auto;">
-		<a id="contenidoNuevaEncuesta">
+		<a id="contenidoNuevaEncuesta" ng-click="recargarCatastro()">
 	 		<p style="font-size: 4em; text-align:center; color:#ef473a; font-weight:bold;"><i class="icon ion-android-arrow-down"></i></p>
 			<p style="font-size: 1.5em; text-align:center; color:black; font-weight:bold;">Presione aquí para empezar una nueva encuesta</p>
 		</a>
@@ -63,7 +63,7 @@
 
 <ion-footer-bar align-title="center" class="tabs tabs-assertive tabs-icon-top">
 	<!--Botón Geolocalización -->
-	<a class="tab-item active" id="UbicarCat">
+	<a class="tab-item active" id="UbicarCat" onClick="geolicalizacionCat()">
 		<i  class="icon ion-android-locate larger"></i>
 		Ubicación
 	</a>
@@ -73,280 +73,34 @@
 		Cámara
 	</a>
 	<!--Botón Lectura Anterior -->
-	<a class="tab-item active" id="btnAntCat">
+	<a class="tab-item active" id="btnAntCat" ng-click="anteriorPregunta()">
 		<i class="icon ion-chevron-left larger" style="font-size:3.5em;">
 		</i>
 		Anterior
 	</a>
 
 	<!--Botón Lectura Siguiente-->
-	<a class="tab-item active" id="btnSigCat">
+	<a class="tab-item active" id="btnSigCat" ng-click="siguientePregunta()">
 		<i class="icon ion-chevron-right larger" style="font-size:3.5em;">
 		</i>
 		Siguiente
 	</a>
 
 	<!--Botón Lectura Siguiente-->
-	<a class="tab-item active" id="btnGuardarCat">
+	<a class="tab-item active" id="btnGuardarCat" ng-click="guardarEncuesta()">
 		<i class="icon ion-checkmark-round larger" style="font-size:3.5em;">
 		</i>
 		Guardar
 	</a>
 
 	<!--Botón Salir-->
-	<a class="tab-item active" id="btnSalirCat">
+	<a class="tab-item active" id="btnSalirCat" ng-click="salirDeCatastro()">
 		<i class="icon ion-share larger" style="font-size:3.5em;"></i>
 		Salir
 	</a>
 </ion-footer-bar>
 
 	<script>
-		validarEncuestasIncompletas();
-		$("#UbicarCat").attr("onClick", "geolicalizacionCat()");
-		$("#btnAntCat").attr("onClick", "anteriorPregunta()");
-		$("#btnSigCat").attr("onClick", "siguientePregunta()");
-		$("#btnGuardarCat").attr("onClick", "guardarEncuesta()");
-		$("#btnSalirCat").attr("onClick", "salirDeCatastro()");
-		$("#contenidoNuevaEncuesta").attr("onClick","recargarCatastro()");
-
-		function salirDeCatastro()
-		{
-			swal(
-			{
-				title: "Atención",
-				text: "¿Desea salir al menu principal?",
-				type: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#0088C4",
-				confirmButtonText: "Si",
-				cancelButtonText: "No",
-				closeOnConfirm: false,
-				closeOnCancel: false 
-			}, 
-			function(isConfirm)
-			{
-				if (isConfirm) 
-				{
-					$("#contenidoCat #preguntas #listaPreguntas li").remove();
-					document.getElementById("numeroFotosCat").value = 0;
-					document.getElementById("longitudCat").value = "";
-					document.getElementById("latitudCat").value = "";
-					document.getElementById("altitudCat").value ="" ;
-					document.getElementById("numeroEncuesta").value = 0;
-					document.getElementById("numeroPregunta").value = 0;
-					document.getElementById("totalPreguntas").value = 0;
-					swal({
-					title: "Correcto",
-					text: "Regresando al menu principal",
-					type: "success",
-					timer: 2000,
-					showConfirmButton: false
-					});
-					regresarAlMenuDesdeCatastro();
-					
-				}
-				else 
-				{
-					swal({
-					title: "Correcto",
-					text: "Regresando a la encuesta",
-					type: "success",
-					timer: 2000,
-					showConfirmButton: false
-				});   
-				} 
-			});
-			
-		}
-
-		function validarEncuestasIncompletas()
-		{
-			var idbd = document.getElementById("idOperario").value;
-			dbShell.transaction(function(tx) 
-			{            
-				tx.executeSql("SELECT * FROM InformacionEncuesta WHERE IdOperario=?", [idbd],                
-				function(tx, result)
-				{
-					if(result.rows.length > 0)
-					{
-						for (var i = 0; i < result.rows.length; i++) 
-						{
-							var HoraFinal = result.rows.item(i)['HoraFinal'];
-							if(HoraFinal == "")
-							{
-								var numeroEncuesta = i+1;
-								swal({
-									title: "Atención",
-									text: "La encuesta #"+numeroEncuesta+" no se ha terminado aún, ¿desea continuarla o descartarla?",
-									type: "warning",
-									showCancelButton: true,
-									confirmButtonColor: "#0088C4",
-									confirmButtonText: "Descartar",
-									cancelButtonText: "Continuar",
-									closeOnConfirm: false,
-									closeOnCancel: false 
-								}, function(isConfirm){
-									if (isConfirm) 
-									{
-										eliminarEncuestaIncompleta(idbd,numeroEncuesta);
-									} 
-									else 
-									{
-										var CantidadFotos = result.rows.item(0)['CantidadFotos'];
-										if(CantidadFotos == 0 || CantidadFotos == "")
-										{
-											CantidadFotos = 0;
-										}
-										console.log('Continuar encuesta');
-										swal("Correcto", "Continuar realización de encuesta #"+numeroEncuesta , "success");
-										funcionInicialEncuestaEmpezada(numeroEncuesta,CantidadFotos);
-									} 
-								});
-							}
-
-							if(i+1 == result.rows.length && HoraFinal != "")
-							{
-								console.log('Hizo esto');
-								funcionInicial();
-							}
-					    }
-					}
-
-					else
-					{
-						funcionInicial();
-					}
-				});
-			});
-		}
-
-		function eliminarEncuestaIncompleta(idbd,numeroEncuesta)
-		{
-			dbShell.transaction(function(tx) 
-			{  
-				tx.executeSql("Delete from InformacionEncuesta where IdOperario="+idbd+" and NumeroEncuesta="+numeroEncuesta);
-				tx.executeSql("Delete from RespuestasCerradas where IdOperario="+idbd+" and IdEncuesta="+numeroEncuesta);
-				tx.executeSql("Delete from RespuestasAbiertas where IdOperario="+idbd+" and IdEncuesta="+numeroEncuesta);
-
-				swal("Correcto", "Encuesta #"+numeroEncuesta+" eliminada","success");
-
-				funcionInicial();
-			});
-		}
-
-		function funcionInicial()
-		{
-			console.log("Entro a Catastro");
-			$("#contenidoNuevaEncuestaDiv").hide();
-			$("#contenidoCat").show();
-			
-			dbShell.transaction( function(tx) 
-			{            
-				tx.executeSql("SELECT * FROM ProyectoCatastro",[],                
-				function(tx, result)
-				{
-					for (var i = 0; i < result.rows.length; i++) 
-					{
-						var totalPreguntas = result.rows.length;
-						var idPregunta = result.rows.item(i)['IdPregunta'];
-						var tipoPregunta = result.rows.item(i)['TipoPregunta'];
-						var textoPregunta = result.rows.item(i)['TextoPregunta'];
-						var textoAyuda = result.rows.item(i)['TextoAyuda'];
-						var idEntorno = result.rows.item(i)['IdEntorno'];
-						var validacionTamano = result.rows.item(i)['ValidacionTamano'];
-						var tamanoMinimo = result.rows.item(i)['TamanoMinimo'];
-						var tamanoMaximo = result.rows.item(i)['TamanoMaximo'];
-						var validacionTipoCaracter = result.rows.item(i)['ValidacionTipoCaracter'];
-						var tipoCaracter = result.rows.item(i)['TipoCaracter'];
-						var validacionTabla = result.rows.item(i)['ValidacionTabla'];
-						var nombreTabla = result.rows.item(i)['NombreTabla'];
-						var control = result.rows.item(i)['Control'];
-
-						document.getElementById("totalPreguntas").value = totalPreguntas;
-
-						if(textoAyuda != '')
-						{
-							$("#listaPreguntas").append('<li id="pregunta'+idPregunta+'"><p class="encuestaNumero" style="font-size: 1.5em; text-align:center; color:#ef473a; font-weight:bold;"></p><br><br><p style="font-size:1em; color:#ef473a; font-weight:bold;">PREGUNTA '+ idPregunta +' de '+ totalPreguntas +'</p><div style="border:1.5px solid black; padding:1.2em"><div class="row"><div class"col col-20"><i class="icon ion-help-circled" style="color:#ef473a; text-align:center; font-size:3em; vertical-align:bottom;"></i></div><div class="col col-80"><p style="font-size:1.2em; text-align:justify; color:black; font-weight:bold;">'+ textoPregunta +'</p></div></div><p style="font-size:0.8em; text-align:center;">(Ayuda: '+textoAyuda+')</p><div id="respuestas'+ idPregunta +'" class="list"></div></div></li>');
-						}
-
-						else
-						{
-							$("#listaPreguntas").append('<li id="pregunta'+idPregunta+'"><p class="encuestaNumero" style="font-size: 1.5em; text-align:center; color:#ef473a; font-weight:bold;"></p><br><br><p style="font-size:1em; color:#ef473a; font-weight:bold;">PREGUNTA '+ idPregunta +' de '+ totalPreguntas +'</p><div style="border:1.5px solid black; padding:1.2em"><div class="row"><div class"col col-20"><i class="icon ion-help-circled" style="color:#ef473a; text-align:center; font-size:3em; vertical-align:bottom;"></i></div><div class="col col-80"><p style="font-size:1.2em; text-align:justify; color:black; font-weight:bold;">'+ textoPregunta +'</p></div></div><div id="respuestas'+ idPregunta +'" class="list"></div></div></li>');
-						}
-						
-						cargarRespuestas(idPregunta,idEntorno,tipoPregunta,textoAyuda,validacionTamano,tamanoMinimo,tamanoMaximo,validacionTipoCaracter,tipoCaracter,validacionTabla,nombreTabla);
-					}
-					
-					document.getElementById("numeroPregunta").value = 1;
-					document.getElementById("numeroFotosCat").value = 0;
-					$("#preguntas ul li").hide();
-					$("#preguntas ul #pregunta1").show();
-					$("#preguntas ul #pregunta1"+" li").show();
-					$("#btnSigCat").attr("disabled","disabled");
-					$("#btnGuardarCat").attr("disabled","disabled");
-					$("#btnAntCat").attr("disabled","disabled");
-					cargarnumeroencuesta();
-				});
-			});
-		}
-
-		function funcionInicialEncuestaEmpezada(numeroEncuesta,CantidadFotos)
-		{
-			console.log("Entro a Catastro Sin Terminar");
-			$("#contenidoNuevaEncuestaDiv").hide();
-			$("#contenidoCat").show();
-
-			var numeroEncuesta = parseInt(numeroEncuesta);
-			document.getElementById("numeroEncuesta").value=numeroEncuesta;
-			document.getElementById("numeroFotosCat").value=CantidadFotos;
-			console.log(CantidadFotos);
-			
-			dbShell.transaction( function(tx) 
-			{            
-				tx.executeSql("SELECT * FROM ProyectoCatastro",[],                
-				function(tx, result)
-				{
-					for (var i = 0; i < result.rows.length; i++) 
-					{
-						var totalPreguntas = result.rows.length;
-						var idPregunta = result.rows.item(i)['IdPregunta'];
-						var tipoPregunta = result.rows.item(i)['TipoPregunta'];
-						var textoPregunta = result.rows.item(i)['TextoPregunta'];
-						var textoAyuda = result.rows.item(i)['TextoAyuda'];
-						var idEntorno = result.rows.item(i)['IdEntorno'];
-						var validacionTamano = result.rows.item(i)['ValidacionTamano'];
-						var tamanoMinimo = result.rows.item(i)['TamanoMinimo'];
-						var tamanoMaximo = result.rows.item(i)['TamanoMaximo'];
-						var validacionTipoCaracter = result.rows.item(i)['ValidacionTipoCaracter'];
-						var tipoCaracter = result.rows.item(i)['TipoCaracter'];
-						var validacionTabla = result.rows.item(i)['ValidacionTabla'];
-						var nombreTabla = result.rows.item(i)['NombreTabla'];
-						var control = result.rows.item(i)['Control'];
-
-						document.getElementById("totalPreguntas").value = totalPreguntas;
-
-						if(textoAyuda != '')
-						{
-							$("#listaPreguntas").append('<li id="pregunta'+idPregunta+'"><p class="encuestaNumero" style="font-size: 1.5em; text-align:center; color:#ef473a; font-weight:bold;"></p><br><br><p style="font-size:1em; color:#ef473a; font-weight:bold;">PREGUNTA '+ idPregunta +' de '+ totalPreguntas +'</p><div style="border:1.5px solid black; padding:1.2em"><div class="row"><div class"col col-20"><i class="icon ion-help-circled" style="color:#ef473a; text-align:center; font-size:3em; vertical-align:bottom;"></i></div><div class="col col-80"><p style="font-size:1.2em; text-align:justify; color:black; font-weight:bold;">'+ textoPregunta +'</p></div></div><p style="font-size:0.8em; text-align:center;">(Ayuda: '+textoAyuda+')</p><div id="respuestas'+ idPregunta +'" class="list"></div></div></li>');
-						}
-
-						else
-						{
-							$("#listaPreguntas").append('<li id="pregunta'+idPregunta+'"><p class="encuestaNumero" style="font-size: 1.5em; text-align:center; color:#ef473a; font-weight:bold;"></p><br><p style="font-size:1em; color:#ef473a; font-weight:bold;">PREGUNTA '+ idPregunta +' de '+ totalPreguntas +'</p><div style="border:1.5px solid black; padding:1.2em"><div class="row"><div class"col col-20"><i class="icon ion-help-circled" style="color:#ef473a; text-align:center; font-size:3em; vertical-align:bottom;"></i></div><div class="col col-80"><p style="font-size:1.2em; text-align:justify; color:black; font-weight:bold;">'+ textoPregunta +'</p></div></div><div id="respuestas'+ idPregunta +'" class="list"></div></div></li>');
-						}
-						
-						cargarRespuestasSinTerminar(idPregunta,idEntorno,tipoPregunta,textoAyuda,validacionTamano,tamanoMinimo,tamanoMaximo,validacionTipoCaracter,tipoCaracter,validacionTabla,nombreTabla);
-					}
-					$(".encuestaNumero").append("ENCUESTA No. "+numeroEncuesta);
-				});
-			});
-		}
-
-		function regresarAlMenuDesdeCatastro()
-		{
-			window.location.href = "#/menuprincipal";
-		}
-
 		horayfechaCat();
 		function horayfechaCat()
 		{

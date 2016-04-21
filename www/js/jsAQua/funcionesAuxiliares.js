@@ -276,7 +276,7 @@ function ManejarRoles(idbd,nombresbd,apellidosbd)
 				$('#MenuCatastroUsuarios a').removeClass("disableMP");
 				$('#botonRealizarEncuestas').attr("onClick", "VerificarCargaDeProyectoCatastro()");
 				$('#botonEditarEncuestas').attr("onClick", "VerificarEncuesta()");
-				$('#botonDescargarEncuestas').attr("onClick", "DescargarArchivoCatastro() ");
+				$('#botonDescargarEncuestas').attr("href", "#/descargacatastrousuarios");
 			}		
 
 			if(Habilitado5 == "TRUE" || Habilitado5 == "true" || Habilitado5 == "True" || Habilitado5 == "1" || Habilitado5 == "VERDADERO" || Habilitado5 == "verdadero" || Habilitado5 == "Verdadero" || Habilitado5 == "si" || Habilitado5 == "SI" || Habilitado5 == "Si")

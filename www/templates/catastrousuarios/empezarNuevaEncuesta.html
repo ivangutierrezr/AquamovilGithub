@@ -51,84 +51,33 @@
 		Cámara
 	</a>
 	<!--Botón Lectura Anterior -->
-	<a class="tab-item active" id="btnAntEditar">
+	<a class="tab-item active" id="btnAntEditar" ng-click="anteriorPreguntaEditar()">
 		<i class="icon ion-chevron-left larger" style="font-size:3.5em;">
 		</i>
 		Anterior
 	</a>
 
 	<!--Botón Lectura Siguiente-->
-	<a class="tab-item active" id="btnSigEditar">
+	<a class="tab-item active" id="btnSigEditar" ng-click="siguientePreguntaEditar()">
 		<i class="icon ion-chevron-right larger" style="font-size:3.5em;">
 		</i>
 		Siguiente
 	</a>
 
 	<!--Botón Lectura Siguiente-->
-	<a class="tab-item active" id="btnGuardarEditar">
+	<a class="tab-item active" id="btnGuardarEditar" ng-click="guardarEncuestaEditada()">
 		<i class="icon ion-checkmark-round larger" style="font-size:3.5em;">
 		</i>
 		Guardar Edición
 	</a>
 
 	<!--Botón Salir-->
-	<a class="tab-item active" id="btnSalirEditar">
+	<a class="tab-item active" id="btnSalirEditar" ng-click="salirDeCatastroEditar()">
 		<i class="icon ion-share larger" style="font-size:3.5em;"></i>
 		Salir
 	</a>
 </ion-footer-bar>
 <script>
-	$("#btnAntEditar").attr("onClick", "anteriorPreguntaEditar()");
-	$("#btnSigEditar").attr("onClick", "siguientePreguntaEditar()");
-	$("#btnGuardarEditar").attr("onClick", "guardarEncuestaEditada()");
-	$("#btnSalirEditar").attr("onClick", "salirDeCatastroEditar()");
-
-	function salirDeCatastroEditar()
-	{
-		swal(
-		{
-			title: "Atención",
-			text: "¿Desea salir al menu principal?",
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#0088C4",
-			confirmButtonText: "Si",
-			cancelButtonText: "No",
-			closeOnConfirm: false,
-			closeOnCancel: false 
-		}, 
-		function(isConfirm)
-		{
-			if (isConfirm) 
-			{
-				$("#contenidoEditar #preguntasEditar #listaPreguntasEditar li").remove();
-				document.getElementById("numeroFotosEditar").value = 0;
-				document.getElementById("numeroEncuestaEditar").value = 0;
-				document.getElementById("numeroPreguntaEditar").value = 0;
-				document.getElementById("totalPreguntasEditar").value = 0;
-				swal({
-				title: "Correcto",
-				text: "Regresando al menu principal",
-				type: "success",
-				timer: 2000,
-				showConfirmButton: false
-				});
-				regresarAlMenuDesdeCatastroEditar();			
-			}
-
-			else 
-			{
-				swal({
-				title: "Correcto",
-				text: "Regresando a la encuesta",
-				type: "success",
-				timer: 2000,
-				showConfirmButton: false
-				});   
-			} 
-		});
-	}
-
 	horayfechaEditar();
 	function horayfechaEditar()
 	{

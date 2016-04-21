@@ -1,5 +1,5 @@
 //Definición de las vistas de página
-var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorcicloruta', 'starter.controladorestadolecturas', 'starter.controladorcausales', 'starter.controladorobservacionuno', 'starter.controladorobservaciondos', 'starter.controladorobservaciontres', 'starter.controladorobservacionunocargue', 'starter.controladorobservaciondoscargue', 'starter.controladorobservaciontrescargue', 'starter.controladorciclorutafacturacion', 'starter.controladorcargainicial', 'starter.controladordacturacionensitio', 'starter.controladorcatastrousuarios', 'starter.controladorcatastrousuariosnuevaencuesta', 'starter.controladormapa'])
+var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorcicloruta', 'starter.controladorestadolecturas', 'starter.controladorcausales', 'starter.controladorobservacionuno', 'starter.controladorobservaciondos', 'starter.controladorobservaciontres', 'starter.controladorobservacionunocargue', 'starter.controladorobservaciondoscargue', 'starter.controladorobservaciontrescargue', 'starter.controladorciclorutafacturacion', 'starter.controladorcargainicial', 'starter.controladordacturacionensitio', 'starter.controladorcatastrousuarios', 'starter.controladorcatastrousuariosnuevaencuesta', 'starter.controladormapa', 'starter.controladordescargacatastrousuarios'])
 
 .config(function($stateProvider, $urlRouterProvider)
 {
@@ -118,6 +118,12 @@ var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorc
       url: '/empezarnuevaencuesta',
       templateUrl: 'templates/catastrousuarios/empezarNuevaEncuesta.html',
       controller: 'CatastroUsuariosnuevaencuesta'
+    })
+
+    .state('descargacatastrousuarios', {
+      url: '/descargacatastrousuarios',
+      templateUrl: 'templates/catastrousuarios/descargaCatastroUsuarios.html',
+      controller: 'Descargacatastrousuarios'
     });
 
   $urlRouterProvider.otherwise('/home');

@@ -1237,22 +1237,77 @@ function cargarPieDePagina(AcumuladosAnteriores)
 	var AtotalSubsidiosAporte = document.getElementById('totalSubsidiosAportes').value;
 	var AtotalSubsidiosAportes = parseFloat(AtotalSubsidiosAporte);
 	var subTotalAcumuladosAnteriores = parseFloat(AcumuladosAnteriores);
-	var subTotalAcumuladosAnteriores2 = subTotalAcumuladosAnteriores.toFixed(2);
 
 	var totalAPagarPresente = AsubTotalPresente + AtotalSubsidiosAportes;
-	var totalAPagarPresente2 = parseInt(totalAPagarPresente);
 	var AtotalAPagar = totalAPagarPresente + subTotalAcumuladosAnteriores;
 	var AtotalAPagar2 = parseInt(AtotalAPagar);
 
-	document.getElementById('totalAPagar').value = AtotalAPagar;
+	var textoLiquidacion = document.getElementById("detalleLiquidacionFactura");
+	var textoDescripcionCargos = document.getElementById("descripcionCargos");
+
+	var largo = AtotalAPagar2.length;
+	var trozo1 = AtotalAPagar2.substr(-2,2);
+	var largo1 = largo-2;
+	var trozo2 = AtotalAPagar2.substr(0,largo1);
+	var nuevoNumeroParte2 = parseInt(trozo2);
+	var nuevoNumero = parseInt(trozo1);
+	var primerNumero;
+	var primeraParte;
+	var segundaParte;
+	var parteCompleta;
+	var nuevoNumero;
+
+	if(nuevoNumero >= 50)
+	{
+	  primerNumero = nuevoNumeroParte2+1;
+	  primeraParte = primerNumero+"";
+	  segundaParte = "00"
+	  parteCompleta = primeraParte + segundaParte;
+	  nuevoNumero = parseInt(parteCompleta);
+	}
+
+	else
+	{
+	  primerNumero = nuevoNumeroParte2
+	  primeraParte = primerNumero+"";
+	  segundaParte = "00"
+	  parteCompleta = primeraParte + segundaParte;
+	  nuevoNumero = parseInt(parteCompleta);
+	}
+
+	var diferencia = nuevoNumero - AtotalAPagar2;
+	var nuevaDiferencia;
+	var textoNuevaDiferencia;
+
+	if (diferencia < 0) 
+	{
+		nuevaDiferencia = diferencia * (-1);
+		textoNuevaDiferencia = "(" + nuevaDiferencia + ")";
+	}
+
+	else
+	{
+		textoNuevaDiferencia = diferencia;
+	}
+
+	console.log(nuevoNumero);
+
+	var subTotalPresente = AsubTotalPresente + AtotalSubsidiosAportes + diferencia;
+	var subTotalPresente2 = parseInt(subTotalPresente);
+
+	textoDescripcionCargos.innerHTML += "<li>500 - AJUSTE A LA CENTENA</li>";
+	var mensajeAjuste = "<li><div class='row'><div class='col col-10' align='center'>500</div><div class='liquidacion col col-20' align='center'></div><div class='liquidacion col' align='right'></div><div class='liquidacion col' align='right'>"+textoNuevaDiferencia+"</div><div class='liquidacion col' align='right'></div></div></li>";
+	textoLiquidacion.innerHTML += mensajeAjuste;
+
+	document.getElementById('totalAPagar').value = nuevoNumero;
 
 	var textoPieDePagina = document.getElementById("pieDePaginaFactura");
-	var mensajeSubTotalPeriodo = "<li><div class='row'><div class='col col-50'>Sub Total Periodo: </div><div class='col' align='right'><b>$ "+totalAPagarPresente2+"</b></div></div></li>";
+	var mensajeSubTotalPeriodo = "<li><div class='row'><div class='col col-50'>Sub Total Periodo: </div><div class='col' align='right'><b>$ "+subTotalPresente2+"</b></div></div></li>";
 	textoPieDePagina.innerHTML += mensajeSubTotalPeriodo;
 
 	textoPieDePagina.innerHTML += "<li><b><div class='row'><div class='col col-50'></div><div class='col' align='right'></div></div></b></li>";
 
-	var mensajeTotalAPagar = "<li><b><div class='row totalAPagar'><div class='col col-50'>TOTAL A PAGAR:</div><div class='col' align='right'>$ "+AtotalAPagar2+"</div></div></b></li>";
+	var mensajeTotalAPagar = "<li><b><div class='row totalAPagar'><div class='col col-50'>TOTAL A PAGAR:</div><div class='col' align='right'>$ "+nuevoNumero+"</div></div></b></li>";
 	textoPieDePagina.innerHTML += mensajeTotalAPagar;
 
 	textoPieDePagina.innerHTML += "<li><b><div class='row'><div class='col col-50'></div><div class='col' align='right'></div></div></b></li>";
@@ -1374,7 +1429,7 @@ function setNumeroFactura()
 
 			var largo = noFactura.length;
 			var trozo1 = noFactura.substr(-7,7);
-			var largo1 = largo-8;
+			var largo1 = largo-7;
 			var trozo2 = noFactura.substr(0,largo1);
 			var nuevoNumero = parseInt(trozo1)+1;
 			var nuevoNumeroString = nuevoNumero+"";
