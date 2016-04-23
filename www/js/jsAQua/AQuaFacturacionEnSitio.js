@@ -1098,7 +1098,7 @@ function liquidarIntereses(Acumulado)
 		var TarifaAcueducto2 = TarifaAcueducto.toFixed(2);
 		var liquidacionInteresAcueducto2 = liquidacionInteresAcueducto.toFixed(2);
 
-		var mensajeAcueducto = "<li id='listaFact"+IdAcueducto+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAcueducto+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAcueducto2+"</div><div class='liquidacion col' align='right'>"+AcumuladosAnterioresAcueducto+"</div><div class='liquidacion col' align='right'>"+liquidacionInteresAcueducto2+"</div>";
+		var mensajeAcueducto = "<li id='listaFact"+IdAcueducto+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAcueducto+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAcueducto2+"</div><div class='liquidacion col' align='right'>"+AcumuladosAnterioresAcueducto.toFixed(2)+"</div><div class='liquidacion col' align='right'>"+liquidacionInteresAcueducto2+"</div>";
 
 		textoDescripcionCargos.innerHTML += "<li>"+idCargoAcueducto+" - "+NombreCargoAcueducto+"</li>";
 		mostrarAcumuladosAnteriores(idCargoAcueducto,idUsuario,mensajeAcueducto);
@@ -1137,7 +1137,7 @@ function liquidarIntereses(Acumulado)
 		var TarifaAlcantarillado2 = TarifaAlcantarillado.toFixed(2);
 		var liquidacionInteresAlcantarillado2 = liquidacionInteresAlcantarillado.toFixed(2);
 
-		var mensajeAlcantarillado = "<li id='listaFact"+IdAlcantarillado+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAlcantarillado+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAlcantarillado2+"</div><div class='liquidacion col' align='right'>"+AcumuladosAnterioresAlcantarillado+"</div><div class='liquidacion col' align='right'>"+liquidacionInteresAlcantarillado2+"</div>";
+		var mensajeAlcantarillado = "<li id='listaFact"+IdAlcantarillado+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAlcantarillado+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAlcantarillado2+"</div><div class='liquidacion col' align='right'>"+AcumuladosAnterioresAlcantarillado.toFixed(2)+"</div><div class='liquidacion col' align='right'>"+liquidacionInteresAlcantarillado2+"</div>";
 
 		mostrarAcumuladosAnteriores(idCargoAlcantarillado,idUsuario,mensajeAlcantarillado);
 	}
@@ -1175,7 +1175,7 @@ function liquidarIntereses(Acumulado)
 		var liquidacionInteresAseo2 = liquidacionInteresAseo.toFixed(2);
 
 		textoDescripcionCargos.innerHTML += "<li>"+idCargoAseo+" - "+NombreCargoAseo+"</li>";
-		var mensaje = "<li id='listaFact"+IdAseo+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAseo+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAseo2+"</div><div class='liquidacion col' align='right'>"+AcumuladosAnterioresAseo+"</div><div class='liquidacion col' align='right'>"+liquidacionInteresAseo2+"</div>";
+		var mensaje = "<li id='listaFact"+IdAseo+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAseo+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAseo2+"</div><div class='liquidacion col' align='right'>"+AcumuladosAnterioresAseo.toFixed(2)+"</div><div class='liquidacion col' align='right'>"+liquidacionInteresAseo2+"</div>";
 
 		mostrarAcumuladosAnteriores(idCargoAseo,idUsuario,mensaje);
 	}
