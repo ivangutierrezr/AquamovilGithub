@@ -14,8 +14,8 @@ function validarObservacion()
 			var lect = result.rows.item(0)['LecturaActual'];
 			var cau = result.rows.item(0)['CausalActual'];
 
-			console.log(lect);
-			console.log(cau);
+			//
+			//
 
 			if(lect != '' || cau > 0)
 			{
@@ -84,7 +84,7 @@ function ActualizarObs1(obs)
 	var numero = document.getElementById("txtNumero").value;
 	dbShell.transaction(function(tx) 
 	{
-		console.log(obs);
+		//
 		tx.executeSql("Update UsuariosServicios set ObservacionActual=? where Numero=?",[obs,numero], 
 
 		function(tx, result)
@@ -108,12 +108,12 @@ function validarNuevaObs2(idObservacion)
 			var lect = result.rows.item(0)['LecturaActual'];
 			var cau = result.rows.item(0)['CausalActual'];
 
-			console.log(lect);
-			console.log(cau);
+			//
+			//
 
 			if(lect != '' || cau > 0)
 			{
-				console.log('Lanzada');
+				//
 				ActualizarObs2(obs);
 			}
 			else
@@ -130,7 +130,7 @@ function ActualizarObs2(obs)
 	var numero = document.getElementById("txtNumero").value;
 	dbShell.transaction(function(tx) 
 	{
-		console.log(obs);
+		//
 		tx.executeSql("Update UsuariosServicios set ObservacionDos=? where Numero=?",[obs,numero], 
 
 		function(tx, result)
@@ -172,7 +172,7 @@ function ActualizarObs3(obs)
 	var numero = document.getElementById("txtNumero").value;
 	dbShell.transaction(function(tx) 
 	{
-		console.log(obs);
+		//
 		tx.executeSql("Update UsuariosServicios set ObservacionTres=? where Numero=?",[obs,numero], 
 
 		function(tx, result)

@@ -169,7 +169,7 @@ function Atras(ciclo,ruta,num)
 	$("#btnSig").attr("onClick", "ContarLecturas()");
 
 	var numero = parseInt(num);
-	console.log(numero);
+	//
 
 	if(numero != 0)
 	{
@@ -317,7 +317,7 @@ function Imprimir()
 		{
 			document.getElementById("txtImpreso").value = "si";
 			permitirEditar();
-			console.log('Guardado Impreso');
+			//
 			EjecutarImpresion();
 		});
 	});
@@ -349,10 +349,10 @@ function EjecutarImpresion()
 			        1, 
 			        function() 
 			        {
-			    		console.log('imprimiendo');
+			    		//
 			        },
 			        function (error) {
-			            swal(JSON.stringify(error)); 
+			            //
 			        });
 			    }
 
@@ -369,7 +369,7 @@ function EjecutarImpresion()
 
 			    		window.DatecsPrinter.printText(texto,"ISO-8859-1",function ()
 					    {
-					    	console.log('imprimiendo');
+					    	//
 					    	
 						},
 				        function (error) {
@@ -385,9 +385,9 @@ function EjecutarImpresion()
 					function(tx, result)
 					{
 						var lecturaMedidor = result.rows.item(0)['LecturaActual'];
-						console.log(lecturaMedidor);
+						//
 						var consumo = $("#consumo").val();
-						console.log(consumo);
+						//
 						var consumoImpreso;
 
 						if(consumo == '')
@@ -411,7 +411,7 @@ function EjecutarImpresion()
 
 						var textoSobra = "";
 
-						console.log('\n\n' + 'Fecha: ' + fecha + '\n' + 'Hora: ' + hora + '\n' +'Id Usuario: ' + idUsuario  + '\n' +'Nombre: ' + nombreUsuario + '\n' + 'Medidor: ' + numeroMedidor + '\n' + 'Lectura: ' + lecturaMedidor + '\n\n' + consumoImpreso + '\n' + 'Concepto:' + concepto + '\n\n' + 'Realizado por: ' + operario + '\n\n' + 'Generado por AQuaMóvil 1.4');
+						//
 
 						var texto = '{br}{left}' + '{b}Fecha: {/b}' + fecha + '{br}{b}Hora: {/b}' + hora + '{br}{b}Id Usuario: {/b}' + idUsuario  + '{br}{b}Nombre: {/b}' + nombreUsuario + '{br}{b}Medidor: {/b}' + numeroMedidor + '{br}{b}Lectura: {/b}' + lecturaMedidor + '{br}{br}' + consumoImpreso + '{br}{b}Concepto: {/b}' + concepto + '{br}{br}{b}Realizado por: {/b}' + operario + '{br}{br}{b}Generado por AQuaMóvil 1.5{/b}{br}'+textoSobra;
 
@@ -426,30 +426,30 @@ function EjecutarImpresion()
 
 					    		function()
 					    		{
-									swal(JSON.stringify(error)); 
+									//
 					    		});
 				    		}, 
 				    		function (error)
 						    { 
-						        swal(JSON.stringify(error)); 
+						        //
 						    });
 					    	
 						},
 					    function (error)
 					    { 
-					        swal(JSON.stringify(error)); 
+					        //
 					    });
 
 					    /*cordova.plugins.bixolonPrint.addLine(nombreEmpresa + '\n\n' + 'Fecha: ' + fecha + '\n' + 'Hora: ' + hora + '\n' +'Id Usuario: ' + idUsuario  + '\n' +'Nombre: ' + nombreUsuario + '\n' + 'Medidor: ' + numeroMedidor + '\n' + 'Lectura: ' + lecturaMedidor + '\n\n' + consumoImpreso + '\n' + 'Concepto:' + concepto + '\n\n' + 'Realizado por: ' + operario + '\n\n' + 'Generado por AQuaMóvil 1.4');
 					    cordova.plugins.bixolonPrint.printText(null, null);*/
 
-						console.log('impreso');
+						//
 					});
 				});
 			},
         	function (error)
 		    { 
-		        swal(JSON.stringify(error)); 
+		        //
 		    });
         },
         function (error) {
@@ -533,7 +533,7 @@ function pasarAFacturacion(ciclo,ruta,a)
 {
 	window.location.href = "#/facturacionensitio";
 	var dato = parseInt(a);
-	console.log(dato);
+	//
 	document.getElementById('txtNumRegistro').value = dato;
 	document.getElementById('txtCiclo').value = parseInt(ciclo);
 	document.getElementById('txtRuta').value = parseInt(ruta);

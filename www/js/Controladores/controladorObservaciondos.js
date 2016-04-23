@@ -15,15 +15,15 @@ angular.module('starter.controladorobservaciondos', [])
 				{              
 					for(var i=1; i < result.rows.length; i++) 
 					{
-						var id2 = i;
-						var idObservacion2 = result.rows.item(i)['IdObservacion'];
-						var nombreObservacion2 = result.rows.item(i)['NombreObservacion'];
+						var id = i;
+						var idObs = result.rows.item(i)['IdObservacion'];
+						var nombreObs = result.rows.item(i)['NombreObservacion'];
 
 						$scope.newObs2 =
 						{
-							id2: id2,
-							idObservacion2: idObservacion2,
-							nombreObservacion2: nombreObservacion2
+							id: id,
+							idObs: idObs,
+							nombreObs: nombreObs
 						};
 
 						$scope.obs2.push($scope.newObs2);
@@ -40,9 +40,9 @@ angular.module('starter.controladorobservaciondos', [])
 
 	$scope.mostrarObs2 = function(a)
 	{
-		var idObservacion2 = $scope.obs2[a-1].idObservacion2;
+		var idObservacion2 = $scope.obs2[a-1].idObs;
 		$('#txtCodObservacion2').val(idObservacion2);
-		var nombreObservacion2 = $scope.obs2[a-1].nombreObservacion2;
+		var nombreObservacion2 = $scope.obs2[a-1].nombreObs;
 		$('#txtNomObservacion2').val(nombreObservacion2);
 
 		$("li").css("background-color", "transparent");
@@ -184,17 +184,17 @@ angular.module('starter.controladorobservaciondos', [])
 			$cordovaFile.moveFile(sourceDirectory, sourceFileName, ruta, nombreFoto)
 			.then(function(success) 
 			{
-		 		console.log("Imagen Guardada");
+		 		//
 			}, 
 			function(error) 
 			{
-		 		console.log(error);
+		 		//
 			});
 
 		}, 
 		function(err) 
 		{
-			console.log(err);
+			//
 		});
 	}
 
@@ -207,7 +207,7 @@ angular.module('starter.controladorobservaciondos', [])
 
 		fotosReg = fotosReg + 1;
 
-		console.log(fotosReg);
+		//
 
 		dbShell.transaction(function(tx) 
 		{    		
@@ -215,7 +215,7 @@ angular.module('starter.controladorobservaciondos', [])
 			function(tx, result)
 			{
 				document.getElementById("contadorFotos").value = fotosReg;
-				console.log(fotosReg);
+				//
 				swal({
 					title: "Correcto",
 					text: "Foto Guardada",

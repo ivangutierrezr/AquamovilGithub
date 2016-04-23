@@ -102,8 +102,8 @@ function ListarReporteLecturas()
 function ListarReporte(a,b)
 {
 	var total = b;
-	console.log(total);
-	console.log(a);
+	//
+	//
 	if(a < b)
 	{
 		var numero = a+1;

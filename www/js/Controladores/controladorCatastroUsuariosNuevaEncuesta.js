@@ -5,10 +5,10 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
   funcionInicialEditar();
   angular.element(document).ready(function () 
   {
-      console.log("Logo");
+      //
       $cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/LogoImpresion.png")
       .then(function (archivo) {
-        console.log(archivo);
+        //
         var ruta = archivo.nativeURL;
         $("#logoEmpresaESPNuevaEncuesta").attr('src', ruta);
         $("#logoEmpresaESPNuevaEncuesta").attr('width', "100%");
@@ -20,12 +20,12 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
   {
     var numero = document.getElementById("numeroEncuestaParaEditar").value;
     var numeroFotosEditar = document.getElementById("cantidadFotosParaEditar").value ;
-    console.log('lanzado desde CatastroUsuarios-Editar');
+    //
     var numeroEncuesta = parseInt(numero);
     document.getElementById("numeroEncuesta").value=numeroEncuesta;
     document.getElementById("numeroPregunta").value=1;
     document.getElementById("numeroFotosEditar").value=numeroFotosEditar;
-    console.log(numeroFotosEditar);
+    //
     dbShell.transaction( function(tx) 
     {            
       tx.executeSql("SELECT * FROM ProyectoCatastro ",[],                
@@ -396,7 +396,7 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
     var nombreTabla = $("#nombreTabla"+numero).val();
     $cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/"+nombreTabla+".csv")
       .then(function (archivo) {
-        console.log(archivo);
+        //
         $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/"+nombreTabla+".csv")
         .then(function (archivo) {
           var AuxiliarCatastro = archivo;
@@ -483,7 +483,7 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
         }
         else
         {
-          console.log("No hay respuesta para esta pregunta");
+          //
         }
         
       });
@@ -518,7 +518,7 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
         }
         else
         {
-          console.log('No hay opciones');
+          //
         }
       });
     });
@@ -539,7 +539,7 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
       tx.executeSql("Update InformacionEncuesta set Editado=?,FechaEdicion=?,HoraInicialEdicion=?,HoraFinalEdicion=?,CantidadFotos=? where NumeroEncuesta=?",[editado,fechaEditar,horaInicialEditar,horaFinalEditar,numeroFotosEditar,numeroEncuesta],  
       function(tx, result)
       {
-        console.log('encuesta editada guardada');       
+        //
       });
 
       tx.executeSql("Delete from RespuestasCerradas where IdOperario="+idOperario+" and IdEncuesta="+numeroEncuesta);
@@ -629,7 +629,7 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
 
   $scope.EnviarRespuestasEditadas = function()
   {
-    console.log("Hola");
+    //
     dbShell.transaction( function(tx) 
     {            
       tx.executeSql("SELECT * FROM ProyectoCatastro",[],
@@ -668,12 +668,12 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
                {
                 valor2 = $("#respuesta"+numero+"opcion"+a).val();
                 $scope.guardarRespuestaCerradaEditada(numero,valor2);
-                console.log(valor2);
+                //
                }
                else
                {
                 valor2 = "";
-                console.log(valor2);
+                //
                }
             }
           }
@@ -686,12 +686,12 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
             if(textoIngresado4.length >= 1)
             {
               $scope.guardarRespuestaTextoEditado(numero,textoIngresado4);
-              console.log(textoIngresado4);
+              //
             }
 
             else
             {
-              console.log(textoIngresado4);
+              //
             }
           }
 
@@ -716,12 +716,12 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
             if(textoIngresado5.length >= 1)
             {
               $scope.guardarRespuestaTextoEditado(numero,textoIngresado);
-              console.log(textoIngresado5);
+              //
             }
 
             else
             {
-              console.log(textoIngresado5);
+              //
             }
           }
 
@@ -758,7 +758,7 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
     {
       tx.executeSql("Insert Into RespuestasAbiertas (Numero, idOperario, IdEncuesta, IdPregunta, TextoRespuesta) Values(?,?,?,?,?)",[numeroControl,idOperario,idEncuesta,idPregunta,textoRespuesta]);
     });
-    console.log("RA"+numeroControl);
+    //
   }
 
   $scope.guardarRespuestaCerradaEditada = function(numero,texto)
@@ -785,7 +785,7 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
     {
       tx.executeSql("Insert Into RespuestasCerradas (Numero, idOperario, IdEncuesta, IdPregunta, idOpcion) Values(?,?,?,?,?)",[numeroControl,idOperario,idEncuesta,idPregunta,textoRespuesta]);
     });
-    console.log("RC"+numeroControl);
+    //
   }
 
   $scope.regresarAlMenuDesdeCatastroEditar = function()
@@ -842,17 +842,17 @@ angular.module('starter.controladorcatastrousuariosnuevaencuesta', [])
       $cordovaFile.moveFile(sourceDirectory, sourceFileName, ruta, newFileName)
       .then(function(success) 
       {
-        console.log("Imagen Guardada");
+        //
       }, 
       function(error) 
       {
-        console.log(error);
+        //
       });
 
     }, 
     function(err) 
     {
-      console.log(err);
+      //
     });
   }
 

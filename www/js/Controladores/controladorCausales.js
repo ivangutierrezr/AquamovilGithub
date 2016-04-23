@@ -170,17 +170,17 @@ angular.module('starter.controladorcausales', [])
 			$cordovaFile.moveFile(sourceDirectory, sourceFileName, ruta, nombreFoto)
 			.then(function(success) 
 			{
-		 		console.log("Imagen Guardada");
+		 		//
 			}, 
 			function(error) 
 			{
-		 		console.log(error);
+		 		//
 			});
 
 		}, 
 		function(err) 
 		{
-			console.log(err);
+			//
 		});
 	}
 
@@ -191,7 +191,7 @@ angular.module('starter.controladorcausales', [])
 
 		fotosReg = fotosReg + 1;
 
-		console.log(fotosReg);
+		//
 
 		dbShell.transaction(function(tx) 
 		{    		
@@ -199,7 +199,7 @@ angular.module('starter.controladorcausales', [])
 			function(tx, result)
 			{
 				document.getElementById("contadorFotos").value = fotosReg;
-				console.log(fotosReg);
+				//
 				swal({
 						title: "Correcto",
 						text: "Foto Guardada",

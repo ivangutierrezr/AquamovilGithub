@@ -542,23 +542,6 @@ function ActualizarArchivo()
 	var consumo = document.getElementById("consumo").value;
 	var conceptoCritica = document.getElementById("conceptoCritica").value;
 
-	console.log(CodigoObservacion);
-	console.log(CodigoObservacion2);
-	console.log(CodigoObservacion3);
-	console.log(txtCausal);
-	console.log(ciclo);
-	console.log(ruta);
-	console.log(txtIdUsuario);
-	console.log(txtLectura);
-	console.log(fecha);
-	console.log(hora);
-	console.log(usuario);
-	console.log(latitud);
-	console.log(longitud);
-	console.log(altitud);
-	console.log(consumo);
-	console.log(conceptoCritica);
-
 	dbShell.transaction(function(tx) 
 	{
 		tx.executeSql("Update UsuariosServicios set Consumo=?, ConceptoCritica=?, Fecha=?, Hora=?, latitud=?, longitud=?, altura=?, LecturaActual=?, CausalActual=?, ObservacionActual=?, ObservacionDos=?, ObservacionTres=?, Usuario=? where Numero=?",[consumo,conceptoCritica,fecha,hora,latitud,longitud,altitud,txtLectura,txtCausal,CodigoObservacion,CodigoObservacion2,CodigoObservacion3,usuario,reg], 

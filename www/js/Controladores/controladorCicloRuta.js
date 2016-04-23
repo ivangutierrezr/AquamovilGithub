@@ -5,7 +5,7 @@ angular.module('starter.controladorcicloruta', [])
 	$scope.listacicloruta = [];
     angular.element(document).ready(function () 
     {
-    	console.log('lanzado desde CicloRuta');
+    	//
     	var idbd = document.getElementById("idOperario").value;
     	dbShell.transaction( function(tx) 
 		{            
@@ -55,7 +55,7 @@ angular.module('starter.controladorcicloruta', [])
 		document.getElementById('txtCiclo').value = ciclo;
 		document.getElementById('txtRuta').value = ruta;
 		var dato = a;
-		console.log(dato); 
+		//
 		dbShell.transaction(function(tx) 
 		{ 	
 			tx.executeSql("select * FROM UsuariosServicios where Ciclo=? and Ruta=?",[ciclo,ruta], 
@@ -92,7 +92,7 @@ angular.module('starter.controladorcicloruta', [])
 	function MostrarPrimeraLectura(ciclo,ruta,a)
 	{
 		var dato = a;
-		console.log(dato);
+		//
 		dbShell.transaction(function(tx) 
 		{ 	
 			tx.executeSql("select * FROM UsuariosServicios where Ciclo=? and Ruta=?",[ciclo,ruta], 
@@ -325,7 +325,7 @@ angular.module('starter.controladorcicloruta', [])
 			.then(function (success) {
 			 	$scope.crearArchivoLecturas();
 			}, function (error) {
-				console.log('Archivo No Existe');
+				//
 			});
 		}
 
@@ -345,7 +345,7 @@ angular.module('starter.controladorcicloruta', [])
 
 			$cordovaFile.writeExistingFile(ruta, nombreArchivo, textoEncabezado)
 			.then(function (success) {
-				console.log('Encabezado Agregado');
+				//
 				$scope.escrbirArchivoLecturas(0);
 			}, function (error) {
 				alert("Error al escribir linea")

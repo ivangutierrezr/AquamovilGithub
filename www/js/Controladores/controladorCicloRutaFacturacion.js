@@ -2,7 +2,7 @@ angular.module('starter.controladorciclorutafacturacion', [])
 
 .controller('Ciclorutafacturacion', function($scope, $ionicLoading)
 {
-	console.log('lanzado desde ciclo ruta Fact');
+	//
 	$scope.listaciclorutafact = [];
     angular.element(document).ready(function () 
     {
@@ -49,7 +49,7 @@ angular.module('starter.controladorciclorutafacturacion', [])
 		document.getElementById('txtCiclo').value = parseInt(ciclo);
 		document.getElementById('txtRuta').value = parseInt(ruta);
 		var dato = parseInt(a);
-		console.log(dato);
+		//
 		document.getElementById('txtNumRegistro').value = dato;
 		dbShell.transaction(function(tx) 
 		{ 	

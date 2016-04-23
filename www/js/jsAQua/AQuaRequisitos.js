@@ -13,14 +13,14 @@ function VerificarCargaDeParametros()
 			if(result.rows.length > 0)
 			{
 				mensaje = "";
-				console.log(mensaje);
+				//
 				VerificarCargaDeUsuariosServicios(mensaje);
 
 			}
 			else
 			{
 				mensaje = "Parámetros \n";
-				console.log(mensaje);
+				//
 				VerificarCargaDeUsuariosServicios(mensaje);
 			}
 		});
@@ -30,7 +30,7 @@ function VerificarCargaDeParametros()
 function VerificarCargaDeUsuariosServicios(m)
 {
 	var mensajeAnterior = m;
-	console.log(mensajeAnterior);
+	//
 	var mensaje = "";
 	dbShell.transaction( function(tx) 
 	{            

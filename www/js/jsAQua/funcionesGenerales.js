@@ -3,7 +3,6 @@ var CantidadCausal=0;
 var CantidadLecturas=0;
 function CrearTabla(tx)
 {
-	console.log('CrearTabla');
 	dbShell.transaction(function(tx) 
 	{
 		tx.executeSql("CREATE  TABLE IF NOT EXISTS  TipoMedidor (IdTipo NUMERIC PRIMARY KEY  NOT NULL, RangoMayor NUMERIC)");

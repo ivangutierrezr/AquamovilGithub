@@ -5,10 +5,10 @@ angular.module('starter.controladorcatastrousuarios', [])
   validarEncuestasIncompletas();
   angular.element(document).ready(function () 
   {
-      console.log("Logo");
+      //
       $cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/LogoImpresion.png")
       .then(function (archivo) {
-        console.log(archivo);
+        //
         var ruta = archivo.nativeURL;
         $("#logoEmpresaESPCatastro").attr('src', ruta);
         $("#logoEmpresaESPCatastro").attr('width', "100%");
@@ -104,7 +104,7 @@ angular.module('starter.controladorcatastrousuarios', [])
                   {
                     CantidadFotos = 0;
                   }
-                  console.log('Continuar encuesta');
+                  //
                   swal("Correcto", "Continuar realización de encuesta #"+numeroEncuesta , "success");
                   $scope.funcionInicialEncuestaEmpezada(numeroEncuesta,CantidadFotos);
                 } 
@@ -113,7 +113,7 @@ angular.module('starter.controladorcatastrousuarios', [])
 
             if(i+1 == result.rows.length && HoraFinal != "")
             {
-              console.log('Hizo esto');
+              //
               $scope.funcionInicial();
             }
             }
@@ -143,7 +143,7 @@ angular.module('starter.controladorcatastrousuarios', [])
 
   $scope.funcionInicial = function()
   {
-    console.log("Entro a Catastro");
+    //
     $("#contenidoNuevaEncuestaDiv").hide();
     $("#contenidoCat").show();
     
@@ -199,14 +199,14 @@ angular.module('starter.controladorcatastrousuarios', [])
 
   $scope.funcionInicialEncuestaEmpezada = function(numeroEncuesta,CantidadFotos)
   {
-    console.log("Entro a Catastro Sin Terminar");
+    //
     $("#contenidoNuevaEncuestaDiv").hide();
     $("#contenidoCat").show();
 
     var numeroEncuesta = parseInt(numeroEncuesta);
     document.getElementById("numeroEncuesta").value=numeroEncuesta;
     document.getElementById("numeroFotosCat").value=CantidadFotos;
-    console.log(CantidadFotos);
+    //
     
     dbShell.transaction( function(tx) 
     {            
@@ -369,7 +369,7 @@ angular.module('starter.controladorcatastrousuarios', [])
       function(tx, result)
       {                
         var numeroAnterior = result.rows.length;
-        console.log(numeroAnterior);
+        //
 
         var numeroEncuesta = numeroAnterior + 1;
 
@@ -381,7 +381,7 @@ angular.module('starter.controladorcatastrousuarios', [])
 
   $scope.EnviarRespuestas = function(idPregunta)
   {
-    console.log("Hola");
+    //
     dbShell.transaction( function(tx) 
     {            
       tx.executeSql("SELECT * FROM ProyectoCatastro where IdPregunta=?",[idPregunta],
@@ -418,12 +418,12 @@ angular.module('starter.controladorcatastrousuarios', [])
              {
               valor2 = $("#respuesta"+numero+"opcion"+a).val();
               $scope.guardarRespuestaCerrada(numero,valor2);
-              console.log(valor2);
+              //
              }
              else
              {
               valor2 = "";
-              console.log(valor2);
+              //
              }
           }
         }
@@ -436,12 +436,12 @@ angular.module('starter.controladorcatastrousuarios', [])
           if(textoIngresado4.length >= 1)
           {
             $scope.guardarRespuestaTexto(numero,textoIngresado4);
-            console.log(textoIngresado4);
+            //
           }
 
           else
           {
-            console.log(textoIngresado4);
+            //
           }
         }
 
@@ -466,12 +466,12 @@ angular.module('starter.controladorcatastrousuarios', [])
           if(textoIngresado5.length >= 1)
           {
             $scope.guardarRespuestaTexto(numero,textoIngresado);
-            console.log(textoIngresado5);
+            //
           }
 
           else
           {
-            console.log(textoIngresado5);
+            //
           }
         }
 
@@ -494,7 +494,7 @@ angular.module('starter.controladorcatastrousuarios', [])
 
     if(textoRespuesta == "" || textoRespuesta=="Escoja una opción")
     {
-      console.log('No hay texto para guardar'); 
+      //
     }
 
     else
@@ -532,7 +532,7 @@ angular.module('starter.controladorcatastrousuarios', [])
     {
       tx.executeSql("Insert Into RespuestasAbiertas (Numero, idOperario, IdEncuesta, IdPregunta, TextoRespuesta) Values(?,?,?,?,?)",[numeroControl,idOperario,idEncuesta,idPregunta,textoRespuesta]);
     });
-    console.log("RA"+numeroControl);
+    //
   }
 
   $scope.guardarRespuestaCerrada = function(numero,texto)
@@ -546,7 +546,7 @@ angular.module('starter.controladorcatastrousuarios', [])
 
     if(textoRespuesta == "")
     {
-      console.log('No hay texto para guardar'); 
+      //
     }
 
     else
@@ -557,7 +557,7 @@ angular.module('starter.controladorcatastrousuarios', [])
         function(tx, result)
         {
           var total = result.rows.length;
-          console.log(total);
+          //
           if(total >= 1)
           {
             tx.executeSql("Delete from RespuestasCerradas where IdOperario="+idOperario+" and IdEncuesta="+idEncuesta+" and IdPregunta="+idPregunta);
@@ -585,7 +585,7 @@ angular.module('starter.controladorcatastrousuarios', [])
     {
       tx.executeSql("Insert Into RespuestasCerradas (Numero, idOperario, IdEncuesta, IdPregunta, idOpcion) Values(?,?,?,?,?)",[numeroControl,idOperario,idEncuesta,idPregunta,textoRespuesta]);
     });
-    console.log("RC"+numeroControl);
+    //
   }
 
   $scope.guardarEncuesta = function()
@@ -628,7 +628,7 @@ angular.module('starter.controladorcatastrousuarios', [])
         tx.executeSql("Update InformacionEncuesta set HoraFinal=?, Latitud=?, Longitud=?, Altitud=?, Editado=?, FechaEdicion=?, HoraInicialEdicion=?, HoraFinalEdicion=?, CantidadFotos=? where NumeroEncuesta=?",[horaFinalCat,latitudCat,longitudCat,altitudCat,"No","","","",numeroFotosCat,numeroEncuesta],
           function(tx,result)
           {
-            console.log("Encuesta"+numeroControl);;
+            //
             swal({
               title: "Correcto",
             text: "Encuesta Guardada",
@@ -657,7 +657,7 @@ angular.module('starter.controladorcatastrousuarios', [])
     {
       tx.executeSql("Insert Into InformacionEncuesta (Numero,IdOperario,NumeroEncuesta,Fecha,HoraInicial,HoraFinal,Latitud,Longitud,Altitud,Editado,FechaEdicion,HoraInicialEdicion,HoraFinalEdicion,CantidadFotos) Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",[numeroControl,idOperario,numeroEncuesta,fechaCat,horaInicialCat,"","","","","","","","",""]); 
 
-        console.log("Encuesta"+numeroControl);;
+        //
     });
   }
 
@@ -894,7 +894,7 @@ angular.module('starter.controladorcatastrousuarios', [])
     var nombreTabla = $("#nombreTabla"+numero).val();
     $cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/"+nombreTabla+".csv")
       .then(function (archivo) {
-        console.log(archivo);
+        //
         $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/"+nombreTabla+".csv")
         .then(function (archivo) {
           var AuxiliarCatastro = archivo;
@@ -1103,7 +1103,7 @@ angular.module('starter.controladorcatastrousuarios', [])
         }
         else
         {
-          console.log("No hay respuesta para esta pregunta");
+          //
         }
         
       });
@@ -1142,7 +1142,7 @@ angular.module('starter.controladorcatastrousuarios', [])
         }
         else
         {
-          console.log('No hay opciones');
+          //
         }
       });
     });
@@ -1154,7 +1154,7 @@ angular.module('starter.controladorcatastrousuarios', [])
     var numeroPregunta = document.getElementById("numeroPregunta").value;
     var num = parseInt(numeroPregunta);
     document.getElementById("numeroPregunta").value = num;
-    console.log(num);
+    //
     $("#preguntas ul li").hide();
     $("#preguntas ul #pregunta"+num).show();
     $("#preguntas ul #pregunta"+num+" li").show();
@@ -1211,17 +1211,17 @@ angular.module('starter.controladorcatastrousuarios', [])
       $cordovaFile.moveFile(sourceDirectory, sourceFileName, ruta, newFileName)
       .then(function(success) 
       {
-        console.log("Imagen Guardada");
+        //
       }, 
       function(error) 
       {
-        console.log(error);
+        //
       });
 
     }, 
     function(err) 
     {
-      console.log(err);
+      //
     });
   }
 });

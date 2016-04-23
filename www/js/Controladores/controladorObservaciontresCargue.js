@@ -40,9 +40,9 @@ angular.module('starter.controladorobservaciontrescargue', [])
 	$scope.mostrarObs3Cargue = function(a)
 	{
 		var idObservacion3Cargue = $scope.obs3cargue[a-1].idObs;
-		$('#txtCodObservacion3Cargue').val(idObs);
+		$('#txtCodObservacion3Cargue').val(idObservacion3Cargue);
 		var nombreObservacion3Cargue = $scope.obs3cargue[a-1].nombreObs;
-		$('#txtNomObservacion3Cargue').val(nombreObs);
+		$('#txtNomObservacion3Cargue').val(nombreObservacion3Cargue);
 
 		$("li").css("background-color", "transparent");
 		$("li a div").css("color", "#000");
@@ -182,17 +182,17 @@ angular.module('starter.controladorobservaciontrescargue', [])
 			$cordovaFile.moveFile(sourceDirectory, sourceFileName, ruta, nombreFoto)
 			.then(function(success) 
 			{
-		 		console.log("Imagen Guardada");
+		 		//
 			}, 
 			function(error) 
 			{
-		 		console.log(error);
+		 		//
 			});
 
 		}, 
 		function(err) 
 		{
-			console.log(err);
+			//
 		});
 	}
 
@@ -204,7 +204,7 @@ angular.module('starter.controladorobservaciontrescargue', [])
 
 		fotosReg = fotosReg + 1;
 
-		console.log(fotosReg);
+		//
 
 		dbShell.transaction(function(tx) 
 		{    		
@@ -212,7 +212,7 @@ angular.module('starter.controladorobservaciontrescargue', [])
 			function(tx, result)
 			{
 				document.getElementById("contadorFotos").value = fotosReg;
-				console.log(fotosReg);
+				//
 				swal({
 					title: "Correcto",
 					text: "Foto Guardada",

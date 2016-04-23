@@ -19,7 +19,6 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Usuarios.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Usuarios.csv")
 		      .then(function (archivo) {
 		        var usuarios = archivo;
@@ -39,15 +38,7 @@ angular.module('starter.controladorcargainicial', [])
 								var SeperarDato = Dato.split(','); // Se determina que cada dato a incluir en la BD se separa con ","
 
 								tx.executeSql("Insert Into Usuarios (Id, Nombres, Apellidos, Login, Pass, UltimoNoFactura, Control)Values(?,?,?,?,?,?,?)",[SeperarDato[0],SeperarDato[1],SeperarDato[2],SeperarDato[3],SeperarDato[4],SeperarDato[5],i]);
-
-								console.log(SeperarDato[0]);
-								console.log(SeperarDato[1]);
-								console.log(SeperarDato[2]);
-								console.log(SeperarDato[3]);
-								console.log(SeperarDato[4]);
-								console.log(SeperarDato[5]);
-								console.log(i);
-															
+									
 								usuarios=usuarios.substring(UltimoDato+1,usuarios.length); 
 								usuariosSubidos = i+1;
 							}
@@ -81,7 +72,7 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/PermisosAQuamovil.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/PermisosAQuamovil.csv")
 		      .then(function (archivo) {
 		       	var permisosAquamovil=archivo;		
@@ -107,13 +98,6 @@ angular.module('starter.controladorcargainicial', [])
 									SepararDato[2],
 									SepararDato[3],
 									"a"]);
-
-								console.log(SepararDato[0]);
-								console.log(SepararDato[1]);
-								console.log(SepararDato[2]);
-								console.log(SepararDato[3]);
-								console.log(SepararDato[4]);
-								console.log(i);
 								
 								permisosAquamovil=permisosAquamovil.substring(UltimoDato+1,permisosAquamovil.length); 
 								permisosAquamovilSubidos = i+1;
@@ -190,10 +174,10 @@ angular.module('starter.controladorcargainicial', [])
 
 	$scope.UsuariosServicios = function ()
 	{
-		console.log("Entro");
+		
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/UsuariosServicios.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/UsuariosServicios.csv")
 		      .then(function (archivo) {
 		       	var UsuariosServicios = archivo;			
@@ -292,7 +276,7 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/AsignacionRutas.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/AsignacionRutas.csv")
 		      .then(function (archivo) {
 		        var AsignacionRutas = archivo;
@@ -352,7 +336,7 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/ParametrosAQuamovil.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/ParametrosAQuamovil.csv")
 		      .then(function (archivo) {
 		        var parametros = archivo;
@@ -375,11 +359,7 @@ angular.module('starter.controladorcargainicial', [])
 									SepararDato[0],
 									SepararDato[1],
 									SepararDato[2],
-									i]);
-
-								console.log(SepararDato[0]);
-								console.log(SepararDato[1]);
-								console.log(SepararDato[2]);
+									i]);		
 								
 								parametros=parametros.substring(UltimoDato+1,parametros.length); 
 								parametrosSubidos = i+1;
@@ -415,7 +395,7 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Causales.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Causales.csv")
 		      .then(function (archivo) {
 		        var causal=archivo;	
@@ -475,7 +455,7 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Observaciones.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Observaciones.csv")
 		      .then(function (archivo) {
 		        var observacion = archivo;
@@ -534,7 +514,7 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/AcumuladosAnteriores.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/AcumuladosAnteriores.csv")
 		      .then(function (archivo) {
 		        var AcumuladosAnteriores = archivo;			
@@ -594,7 +574,7 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/CargosFacturacion.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/CargosFacturacion.csv")
 		      .then(function (archivo) {
 		        var CargosFacturacion = archivo;			
@@ -655,7 +635,7 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/IndicesSubsidiosAportes.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/IndicesSubsidiosAportes.csv")
 		      .then(function (archivo) {
 		        var IndicesSubsidiosAportes = archivo;			
@@ -680,13 +660,7 @@ angular.module('starter.controladorcargainicial', [])
 									SepararDato[1],  //IdSevicio
 									SepararDato[2],  //NombreCargo
 									SepararDato[3],  //Tarifa
-									0]); //Control
-
-								console.log(i);
-								console.log(SepararDato[0]);
-								console.log(SepararDato[1]);
-								console.log(SepararDato[2]);
-								console.log(SepararDato[3]);
+									0]); //Control								
 								
 								IndicesSubsidiosAportes=IndicesSubsidiosAportes.substring(UltimoDato+1,IndicesSubsidiosAportes.length); 
 								IndicesSubsidiosAportesSubidos = i+1;
@@ -722,10 +696,10 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Periodos.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Periodos.csv")
 		      .then(function (archivo) {
-		      	console.log(archivo);
+		      	
 		        var Periodos = archivo;			
 				dbShell.transaction(function(tx) 
 				{   
@@ -750,13 +724,6 @@ angular.module('starter.controladorcargainicial', [])
 									SepararDato[3],  //FechaFinal
 									SepararDato[4],  //FechaLimite
 									0]); //Control
-
-								console.log(i);
-								console.log(SepararDato[0]);
-								console.log(SepararDato[1]);
-								console.log(SepararDato[2]);
-								console.log(SepararDato[3]);
-								console.log(SepararDato[4]);
 								
 								Periodos=Periodos.substring(UltimoDato+1,Periodos.length); 
 								PeriodosSubidos = i+1;
@@ -840,7 +807,7 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/ProyectoCatastro.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
+	        
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/ProyectoCatastro.csv")
 		      .then(function (archivo) {
 		        var ProyectoCatastro = archivo;			
@@ -879,7 +846,7 @@ angular.module('starter.controladorcargainicial', [])
 									SepararDato[15],  //PreguntaDepende
 									SepararDato[16]]); //IdOpcionDepende
 								
-								console.log(i+","+SepararDato[0]+","+SepararDato[1]+","+SepararDato[2]+","+SepararDato[3]+","+SepararDato[4]+","+SepararDato[5]+","+SepararDato[6]+","+SepararDato[7]+","+SepararDato[8]+","+SepararDato[9]+","+SepararDato[10]+","+SepararDato[11]+","+SepararDato[12]+","+SepararDato[13]+","+SepararDato[14]+","+SepararDato[15]+","+SepararDato[16]);
+								
 								ProyectoCatastro=ProyectoCatastro.substring(UltimoDato+1,ProyectoCatastro.length); 
 								ProyectoCatastroSubidos = i+1;
 							}
@@ -915,7 +882,6 @@ angular.module('starter.controladorcargainicial', [])
 	{
 		$cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/OpcionesCatastro.csv")
 	      .then(function (archivo) {
-	        console.log(archivo);
 	        $cordovaFile.readAsText(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/OpcionesCatastro.csv")
 		      .then(function (archivo) {
 		        var OpcionesCatastro = archivo;			
@@ -942,7 +908,6 @@ angular.module('starter.controladorcargainicial', [])
 									SepararDato[3],  //TextoOpcion
 									0]); //Control
 								
-								console.log(i+","+SepararDato[0]+","+SepararDato[1]+","+SepararDato[2]+","+SepararDato[3]);
 								OpcionesCatastro=OpcionesCatastro.substring(UltimoDato+1,OpcionesCatastro.length); 
 								OpcionesCatastroSubidos = i+1;
 							}

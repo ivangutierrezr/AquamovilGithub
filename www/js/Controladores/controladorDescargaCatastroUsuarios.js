@@ -2,7 +2,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 
 .controller('Descargacatastrousuarios', function($scope, $ionicLoading, $cordovaFile)
 {	
-	console.log('Entro a Descarga');
+	//
 	DescargarArchivoCatastro();
     //FUnciones para descarga archivos de catastro
 
@@ -255,7 +255,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 	{
 		var idOperario = document.getElementById("idOperario").value;
 	    var numPKG = document.getElementById("numeroPaquete").value;
-	    console.log(numPKG);
+	    //
 
 	    var nombreArchivo = "C-RA" + "" + idOperario + "PKG" + numPKG + ".csv";
 	    var ruta = cordova.file.externalRootDirectory + "AQuaMovil/Salidas/";
@@ -290,7 +290,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 		.then(function (success) {
 		 	$scope.crearArchivoInformacionEncuestas(ruta,nombreArchivo);
 		}, function (error) {
-			console.log('Archivo No Existe');
+			//
 		});
 	}
 
@@ -300,7 +300,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 		.then(function (success) {
 		 	$scope.crearArchivoRespuestasAbiertas(ruta,nombreArchivo);
 		}, function (error) {
-			console.log('Archivo No Existe');
+			//
 		});
 	}
 
@@ -310,7 +310,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 		.then(function (success) {
 		 	$scope.crearArchivoRespuestasCerradas(ruta,nombreArchivo);
 		}, function (error) {
-			console.log('Archivo No Existe');
+			//
 		});
 	}
 
@@ -350,7 +350,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 
 		$cordovaFile.writeExistingFile(ruta, nombreArchivo, textoEncabezado)
 		.then(function (success) {
-			console.log('Encabezado Agregado');
+			//
 			$scope.escrbirArchivoInformacionEncuestas(0,ruta,nombreArchivo);
 		}, function (error) {
 			alert("Error al escribir linea")
@@ -363,7 +363,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 
 		$cordovaFile.writeExistingFile(ruta, nombreArchivo, textoEncabezado)
 		.then(function (success) {
-			console.log('Encabezado Agregado');
+			//
 			$scope.escrbirArchivoRespuestasAbiertas(0,ruta,nombreArchivo);
 		}, function (error) {
 			alert("Error al escribir linea")
@@ -376,7 +376,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 
 		$cordovaFile.writeExistingFile(ruta, nombreArchivo, textoEncabezado)
 		.then(function (success) {
-			console.log('Encabezado Agregado');
+			//
 			$scope.escrbirArchivoRespuestasCerradas(0,ruta,nombreArchivo);
 		}, function (error) {
 			alert("Error al escribir linea")
@@ -430,7 +430,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 						}, 
 						function (error) 
 						{
-							console.log('Error al escribir linea: '+error);
+							//
 						});
 	                }
 
@@ -487,7 +487,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 						}, 
 						function (error) 
 						{
-							console.log('Error al escribir linea: '+error);
+							//
 						});
 	                }
 
@@ -544,7 +544,7 @@ angular.module('starter.controladordescargacatastrousuarios', [])
 						}, 
 						function (error) 
 						{
-							console.log('Error al escribir linea: '+error);
+							//
 						});
 	                }
 

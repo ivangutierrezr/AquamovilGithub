@@ -15,15 +15,15 @@ angular.module('starter.controladorobservaciontres', [])
 				{              
 					for(var i=1; i < result.rows.length; i++) 
 					{
-						var id3 = i;
-						var idObservacion3 = result.rows.item(i)['IdObservacion'];
-						var nombreObservacion3 = result.rows.item(i)['NombreObservacion'];
+						var id = i;
+						var idObs = result.rows.item(i)['IdObservacion'];
+						var nombreObs = result.rows.item(i)['NombreObservacion'];
 
 						$scope.newObs3 =
 						{
-							id3: id3,
-							idObservacion3: idObservacion3,
-							nombreObservacion3: nombreObservacion3
+							id: id,
+							idObs: idObs,
+							nombreObs: nombreObs
 						};
 
 						$scope.obs3.push($scope.newObs3);
@@ -41,9 +41,9 @@ angular.module('starter.controladorobservaciontres', [])
 
 	$scope.mostrarObs3 = function(a)
 	{
-		var idObservacion3 = $scope.obs3[a-1].idObservacion3;
+		var idObservacion3 = $scope.obs3[a-1].idObs;
 		$('#txtCodObservacion3').val(idObservacion3);
-		var nombreObservacion3 = $scope.obs3[a-1].nombreObservacion3;
+		var nombreObservacion3 = $scope.obs3[a-1].nombreObs;
 		$('#txtNomObservacion3').val(nombreObservacion3);
 
 		$("li").css("background-color", "transparent");
@@ -184,17 +184,17 @@ angular.module('starter.controladorobservaciontres', [])
 			$cordovaFile.moveFile(sourceDirectory, sourceFileName, ruta, nombreFoto)
 			.then(function(success) 
 			{
-		 		console.log("Imagen Guardada");
+		 		//
 			}, 
 			function(error) 
 			{
-		 		console.log(error);
+		 		//
 			});
 
 		}, 
 		function(err) 
 		{
-			console.log(err);
+			//
 		});
 	}
 
@@ -207,7 +207,7 @@ angular.module('starter.controladorobservaciontres', [])
 
 		fotosReg = fotosReg + 1;
 
-		console.log(fotosReg);
+		//
 
 		dbShell.transaction(function(tx) 
 		{    		
@@ -215,7 +215,7 @@ angular.module('starter.controladorobservaciontres', [])
 			function(tx, result)
 			{
 				document.getElementById("contadorFotos").value = fotosReg;
-				console.log(fotosReg);
+				//
 				swal({
 					title: "Correcto",
 					text: "Foto Guardada",

@@ -1,6 +1,6 @@
 function validarRespuestas()
 {
-	console.log('Validando');
+	//
 	var numeroPregunta = document.getElementById("numeroPregunta").value;
 	var numero = parseInt(numeroPregunta);
 	var totalPreguntas = parseInt(document.getElementById("totalPreguntas").value);
@@ -22,7 +22,7 @@ function validarRespuestas()
 	      if(tipoPregunta == 1 || tipoPregunta == "1")
 	      {
 	        var textoIngresado = $("#respuestaAbierta"+numero).val();
-	        console.log(textoIngresado);
+	        //
 
 	        if(textoIngresado != "")
 	        {
@@ -141,7 +141,7 @@ function validarRespuestas()
 	      if(tipoPregunta == 2 || tipoPregunta == "2")
 	      {
 	        var valor = $("input[name=opcionPregunta"+numero+"]:checked").val();
-	        console.log(valor);
+	        //
 
 	        if(valor)
 	        {
@@ -167,7 +167,7 @@ function validarRespuestas()
 	           if($("#respuesta"+numero+"opcion"+i).is(":checked"))
 	           {
 	            valor2 += $("#respuesta"+numero+"opcion"+i).val();
-	            console.log(valor2);
+	            //
 
 	            $("#mensajeError").text("");
 
@@ -188,7 +188,7 @@ function validarRespuestas()
 	           {
 	            $("#btnSigCat").attr("disabled","disabled");
 	            $("#btnGuardarCat").attr("disabled","disabled");
-	            console.log("No hay selección");
+	            //
 	           }
 	        }
 	      }
@@ -196,7 +196,7 @@ function validarRespuestas()
 	      if(tipoPregunta == 4 || tipoPregunta == "4")
 	      {
 	        var valor = $("input[name=opcionPregunta"+numero+"]:checked").val();
-	        console.log(valor);
+	        //
 
 	        if(valor)
 	        {
@@ -227,7 +227,7 @@ function validarRespuestas()
 	           if($("#respuesta"+numero+"opcion"+i).is(":checked"))
 	           {
 	            valor2 += $("#respuesta"+numero+"opcion"+i).val();
-	            console.log(valor2);
+	            //
 
 	            $("#mensajeError").text("");
 
@@ -248,7 +248,7 @@ function validarRespuestas()
 	           {
 	            $("#btnSigCat").attr("disabled","disabled");
 	            $("#btnGuardarCat").attr("disabled","disabled");
-	            console.log("No hay selección");
+	            //
 	           }
 	        }
 
@@ -265,7 +265,7 @@ function validarRespuestas()
 	        }
 	        else
 	        {
-	          console.log(opcionSelect);            
+	          //
 	          $("#mensajeError").text("");
 	          if(numero == totalPreguntas)
 	          {
@@ -303,7 +303,7 @@ function validarRespuestas()
 function validarRespuestasEditar()
   {
     var numeroPregunta = document.getElementById("numeroPregunta").value;
-    console.log(numeroPregunta);
+    //
     var numero = parseInt(numeroPregunta);
     var numeroEncuesta = document.getElementById("numeroEncuesta").value;
     var totalPreguntasEditar = parseInt(document.getElementById("totalPreguntasEditar").value);
@@ -325,7 +325,7 @@ function validarRespuestasEditar()
           if(tipoPregunta == 1 || tipoPregunta == "1")
           {
             var textoIngresado = $("#respuestaAbierta"+numero).val();
-            console.log(textoIngresado);
+            //
 
             if(textoIngresado != "")
             {
@@ -444,7 +444,7 @@ function validarRespuestasEditar()
           if(tipoPregunta == 2 || tipoPregunta == "2")
           {
             var valor = $("input[name=opcionPregunta"+numero+"]:checked").val();
-            console.log(valor);
+            //
 
             if(valor)
             {
@@ -470,7 +470,7 @@ function validarRespuestasEditar()
                if($("#respuesta"+numero+"opcion"+i).is(":checked"))
                {
                 valor2 += $("#respuesta"+numero+"opcion"+i).val();
-                console.log(valor2);
+                //
 
                 $("#mensajeErrorEditar").text("");
 
@@ -491,7 +491,7 @@ function validarRespuestasEditar()
                {
                 $("#btnSigEditar").attr("disabled","disabled");
                 $("#btnGuardarEditar").attr("disabled","disabled");
-                console.log("No hay selección");
+                //
                }
             }
           }
@@ -499,7 +499,7 @@ function validarRespuestasEditar()
           if(tipoPregunta == 4 || tipoPregunta == "4")
           {
             var valor = $("input[name=opcionPregunta"+numero+"]:checked").val();
-            console.log(valor);
+            //
 
             if(valor)
             {
@@ -530,7 +530,7 @@ function validarRespuestasEditar()
                if($("#respuesta"+numero+"opcion"+i).is(":checked"))
                {
                 valor2 += $("#respuesta"+numero+"opcion"+i).val();
-                console.log(valor2);
+                //
 
                 $("#mensajeErrorEditar").text("");
 
@@ -551,7 +551,7 @@ function validarRespuestasEditar()
                {
                 $("#btnSigEditar").attr("disabled","disabled");
                 $("#btnGuardarEditar").attr("disabled","disabled");
-                console.log("No hay selección");
+                //
                }
             }
 
@@ -568,7 +568,7 @@ function validarRespuestasEditar()
             }
             else
             {
-              console.log(opcionSelect);            
+              //
               $("#mensajeErrorEditar").text("");
               if(numero == totalPreguntasEditar)
               {

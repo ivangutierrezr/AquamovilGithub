@@ -63,31 +63,31 @@ var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorc
     .state('observaciondos', {
       url: '/observaciondos',
       templateUrl: 'templates/usuariosservicios/observaciondos.html',
-      controller: 'Observacionuno'
+      controller: 'Observaciondos'
     })
 
     .state('observaciontres', {
       url: '/observaciontres',
       templateUrl: 'templates/usuariosservicios/observaciontres.html',
-      controller: 'Observacionuno'
+      controller: 'Observaciontres'
     })
 
     .state('observacionunocargue', {
       url: '/observacionunocargue',
       templateUrl: 'templates/usuariosservicios/observacionunocargue.html',
-      controller: 'Observacionuno'
+      controller: 'Observacionunocargue'
     })
 
     .state('observaciondoscargue', {
       url: '/observaciondoscargue',
       templateUrl: 'templates/usuariosservicios/observaciondoscargue.html',
-      controller: 'Observacionuno'
+      controller: 'Observaciondoscargue'
     })
 
     .state('observaciontrescargue', {
       url: '/observaciontrescargue',
       templateUrl: 'templates/usuariosservicios/observaciontrescargue.html',
-      controller: 'Observacionuno'
+      controller: 'Observaciontrescargue'
     })
 
     .state('Ciclorutafacturacion', {
@@ -149,7 +149,7 @@ var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorc
 {
   $ionicPlatform.ready(function() 
   {
-    console.log('lanzado desde app.js');
+    //
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
       dbShell = window.openDatabase("AQUAMOVIL","1.1", "AQUAMOVIL BD", 2000000);
@@ -158,9 +158,9 @@ var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorc
 
     $cordovaFile.checkFile(cordova.file.externalRootDirectory, "AQuaMovil/Entradas/Logo.png")
     .then(function (archivo) {
-      console.log(archivo);
+      //
       var ruta = archivo.nativeURL;
-      console.log(ruta);
+      //
       $("#imglogoMisionVida").attr('src', ruta);
       $("#imglogoMisionVida").attr('width', "35%");
       }, function (error) {
@@ -174,38 +174,38 @@ var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controladorc
     $cordovaFile.createDir(cordova.file.externalRootDirectory, "AQuaMovil", false)
     .then(function (success) {
       if (success) {
-        console.log(success)
-        console.log('Directorio Creado')
+        //
+        //
       }
       }, function (error) {
-        console.log('Directorio Existente');
+        //
     });
 
     $cordovaFile.createDir(cordova.file.externalRootDirectory, "AQuaMovil/Entradas", false)
     .then(function (success) {
       if (success) {
-        console.log('Directorio Creado')
+        //
       }
       }, function (error) {
-        console.log('Directorio Existente');
+        //
     });
 
     $cordovaFile.createDir(cordova.file.externalRootDirectory, "AQuaMovil/Salidas", false)
     .then(function (success) {
       if (success) {
-        console.log('Directorio Creado')
+        //
       }
       }, function (error) {
-        console.log('Directorio Existente');
+        //
     });
 
     $cordovaFile.createDir(cordova.file.externalRootDirectory, "AQuaMovil/Salidas/Fotos", false)
     .then(function (success) {
       if (success) {
-        console.log('Directorio Creado')
+        //
       }
       }, function (error) {
-        console.log('Directorio Existente');
+        //
     });
   });
 

@@ -15,15 +15,15 @@ angular.module('starter.controladorobservaciondoscargue', [])
 				{              
 					for(var i=1; i < result.rows.length; i++) 
 					{
-						var id2Cargue = i;
-						var idObservacion2Cargue = result.rows.item(i)['IdObservacion'];
-						var nombreObservacion2Cargue = result.rows.item(i)['NombreObservacion'];
+						var id = i;
+						var idObs = result.rows.item(i)['IdObservacion'];
+						var nombreObs = result.rows.item(i)['NombreObservacion'];
 
 						$scope.newObs2Cargue =
 						{
-							id2Cargue: id2Cargue,
-							idObservacion2Cargue: idObservacion2Cargue,
-							nombreObservacion2Cargue: nombreObservacion2Cargue
+							id: id,
+							idObs: idObs,
+							nombreObs: nombreObs
 						};
 
 						$scope.obs2cargue.push($scope.newObs2Cargue);
@@ -41,9 +41,9 @@ angular.module('starter.controladorobservaciondoscargue', [])
 
 	$scope.mostrarObs2Cargue = function(a)
 	{
-		var idObservacion2Cargue = $scope.obs2cargue[a-1].idObservacion2Cargue;
+		var idObservacion2Cargue = $scope.obs2cargue[a-1].idObs;
 		$('#txtCodObservacion2Cargue').val(idObservacion2Cargue);
-		var nombreObservacion2Cargue = $scope.obs2cargue[a-1].nombreObservacion2Cargue;
+		var nombreObservacion2Cargue = $scope.obs2cargue[a-1].nombreObs;
 		$('#txtNomObservacion2Cargue').val(nombreObservacion2Cargue);
 
 		$("li").css("background-color", "transparent");
@@ -185,17 +185,17 @@ angular.module('starter.controladorobservaciondoscargue', [])
 			$cordovaFile.moveFile(sourceDirectory, sourceFileName, ruta, nombreFoto)
 			.then(function(success) 
 			{
-		 		console.log("Imagen Guardada");
+		 		//
 			}, 
 			function(error) 
 			{
-		 		console.log(error);
+		 		//
 			});
 
 		}, 
 		function(err) 
 		{
-			console.log(err);
+			//
 		});
 	}
 
@@ -207,7 +207,7 @@ angular.module('starter.controladorobservaciondoscargue', [])
 
 		fotosReg = fotosReg + 1;
 
-		console.log(fotosReg);
+		//
 
 		dbShell.transaction(function(tx) 
 		{    		
@@ -215,7 +215,7 @@ angular.module('starter.controladorobservaciondoscargue', [])
 			function(tx, result)
 			{
 				document.getElementById("contadorFotos").value = fotosReg;
-				console.log(fotosReg);
+				//
 				swal({
 					title: "Correcto",
 					text: "Foto Guardada",

@@ -27,7 +27,7 @@ angular.module('starter.controladormapa', [])
 		},	
 		function(err)
 		{
-			console.log(err);
+			//
 		});
     });
 
