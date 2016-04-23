@@ -687,7 +687,7 @@ function liquidacionFactura(Consumo,Aseo,Uso,Categoria,IdUsuario,NumeroCuentasAc
 	if (consumo > limiteSuperiorComplementario) 
 	{
 		consumoBasico = limiteSuperiorBasico;
-		consumoComplementario = limiteSuperiorComplementario;
+		consumoComplementario = limiteSuperiorComplementario - limiteSuperiorBasico;
 		consumoSuntuario = parseInt(consumo) - limiteSuperiorComplementario;
 	}
 
@@ -1052,8 +1052,156 @@ function liquidacionFactura(Consumo,Aseo,Uso,Categoria,IdUsuario,NumeroCuentasAc
 			}
 				
 			sumarAcumuladosAnteriores(idUsuario);
+			sumarSubToTalPresente();
 		});
 	});
+}
+
+function liquidarIntereses(Acumulado)
+{
+	var sumarAcumulado = Acumulado;
+	var idUso = document.getElementById("txtUsoFact").value;
+	var idUsuario = document.getElementById("txtIdUsuarioLecturaFact").value;
+	var interesResidencial = parseFloat(document.getElementById("tasaInteresResidencial").value);
+	var interesNoResidencial = parseFloat(document.getElementById("tasaInteresNoResidencial").value);
+	var AcumuladosAnterioresAcueducto = parseFloat(document.getElementById("AcumuladosAnterioresAcueducto").value);
+	var AcumuladosAnterioresAlcantarillado = parseFloat(document.getElementById("AcumuladosAnterioresAlcantarillado").value);
+	var AcumuladosAnterioresAseo = parseFloat(document.getElementById("AcumuladosAnterioresAseo").value);
+
+	var sumarAcumuladosIntereses = 0;
+	var textoDescripcionCargos = document.getElementById("descripcionCargos");
+
+	var liquidacionInteresAcueducto = 0;
+	var liquidacionInteresAlcantarillado = 0;
+	var liquidacionInteresAseo = 0;
+
+	if (AcumuladosAnterioresAcueducto > 0) 
+	{
+		var TarifaAcueducto;
+		if (idUso == 1) 
+		{
+			liquidacionInteresAcueducto = interesResidencial * AcumuladosAnterioresAcueducto;
+			TarifaAcueducto = interesResidencial;
+		}
+
+		else
+		{
+			liquidacionInteresAcueducto = interesNoResidencial * AcumuladosAnterioresAcueducto;
+			TarifaAcueducto = interesNoResidencial;
+		}
+
+		console.log(liquidacionInteresAcueducto);
+		var IdAcueducto = "a";
+		var idCargoAcueducto = 205;
+		var NombreCargoAcueducto = "RECARGO ACUEDUCTO";
+
+		var TarifaAcueducto2 = TarifaAcueducto.toFixed(2);
+		var liquidacionInteresAcueducto2 = liquidacionInteresAcueducto.toFixed(2);
+
+		var mensajeAcueducto = "<li id='listaFact"+IdAcueducto+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAcueducto+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAcueducto2+"</div><div class='liquidacion col' align='right'>"+AcumuladosAnterioresAcueducto+"</div><div class='liquidacion col' align='right'>"+liquidacionInteresAcueducto2+"</div>";
+
+		textoDescripcionCargos.innerHTML += "<li>"+idCargoAcueducto+" - "+NombreCargoAcueducto+"</li>";
+		mostrarAcumuladosAnteriores(idCargoAcueducto,idUsuario,mensajeAcueducto);
+	}
+
+	else
+	{
+		var Id205 = "a";
+		var idCargo205 = "205";
+		var NombreCargo205 = "RECARGO ACUEDUCTO";
+		mostrarOtrosAcumuladosAnteriores(Id205,idCargo205,idUsuario,NombreCargo205);
+	}
+
+	if (AcumuladosAnterioresAlcantarillado > 0) 
+	{
+		var TarifaAlcantarillado;
+		if (idUso == 1) 
+		{
+			liquidacionInteresAlcantarillado = interesResidencial * AcumuladosAnterioresAlcantarillado;
+			TarifaAlcantarillado = interesResidencial;
+		}
+
+		else
+		{
+			liquidacionInteresAlcantarillado = interesNoResidencial * AcumuladosAnterioresAlcantarillado;
+			TarifaAlcantarillado = interesNoResidencial;
+		}
+
+		console.log(liquidacionInteresAlcantarillado);
+
+		var IdAlcantarillado = "b";
+		var idCargoAlcantarillado = "206";
+		var NombreCargo = "RECARGO ALCANTARILLADO";
+		
+		textoDescripcionCargos.innerHTML += "<li>"+idCargoAlcantarillado+" - "+NombreCargo+"</li>";
+		var TarifaAlcantarillado2 = TarifaAlcantarillado.toFixed(2);
+		var liquidacionInteresAlcantarillado2 = liquidacionInteresAlcantarillado.toFixed(2);
+
+		var mensajeAlcantarillado = "<li id='listaFact"+IdAlcantarillado+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAlcantarillado+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAlcantarillado2+"</div><div class='liquidacion col' align='right'>"+AcumuladosAnterioresAlcantarillado+"</div><div class='liquidacion col' align='right'>"+liquidacionInteresAlcantarillado2+"</div>";
+
+		mostrarAcumuladosAnteriores(idCargoAlcantarillado,idUsuario,mensajeAlcantarillado);
+	}
+
+	else
+	{
+		var Id206 = "b";
+		var idCargo206 = "206";
+		var NombreCargo206 = "RECARGO ALCANTARILLADO";
+		mostrarOtrosAcumuladosAnteriores(Id206,idCargo206,idUsuario,NombreCargo206);
+	}
+
+	if (AcumuladosAnterioresAseo > 0) 
+	{
+		var TarifaAseo;
+		if (idUso == 1) 
+		{
+			liquidacionInteresAseo = interesResidencial * AcumuladosAnterioresAseo;
+			TarifaAseo = interesResidencial;
+		}
+
+		else
+		{
+			liquidacionInteresAseo = interesNoResidencial * AcumuladosAnterioresAseo;
+			TarifaAseo = interesNoResidencial;
+		}
+
+		console.log(liquidacionInteresAseo);
+
+		var IdAseo = "c";
+		var idCargoAseo = "207";
+		var NombreCargoAseo = "RECARGO ASEO";
+
+		var TarifaAseo2 = TarifaAseo.toFixed(2);
+		var liquidacionInteresAseo2 = liquidacionInteresAseo.toFixed(2);
+
+		textoDescripcionCargos.innerHTML += "<li>"+idCargoAseo+" - "+NombreCargoAseo+"</li>";
+		var mensaje = "<li id='listaFact"+IdAseo+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAseo+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAseo2+"</div><div class='liquidacion col' align='right'>"+AcumuladosAnterioresAseo+"</div><div class='liquidacion col' align='right'>"+liquidacionInteresAseo2+"</div>";
+
+		mostrarAcumuladosAnteriores(idCargoAseo,idUsuario,mensaje);
+	}
+
+	else
+	{
+		var Id207 = "c";
+		var idCargo207 = "207";
+		var NombreCargo207 = "RECARGO ASEO";
+		mostrarOtrosAcumuladosAnteriores(Id207,idCargo207,idUsuario,NombreCargo207);
+	}
+
+	sumarAcumuladosIntereses = liquidacionInteresAcueducto + liquidacionInteresAlcantarillado + liquidacionInteresAseo;
+	console.log(sumarAcumuladosIntereses);
+
+	if (sumarAcumuladosIntereses > 0) 
+	{
+		return cargarPieDePagina(sumarAcumulado,sumarAcumuladosIntereses);
+	}
+
+	else
+	{
+		return cargarPieDePagina(sumarAcumulado,0);
+	}
+
+	
 }
 
 function sumarAcueducto(valor)
@@ -1078,6 +1226,16 @@ function sumarAseo(valor)
 	var acumulado = parseFloat(document.getElementById('totalAseo').value);
 	var suma = num + acumulado;
 	document.getElementById('totalAseo').value = suma;
+}
+
+function sumarSubToTalPresente()
+{
+	var totalAcueducto = parseFloat(document.getElementById('totalAcueducto').value);
+	var totalAlcantarillado = parseFloat(document.getElementById('totalAlcantarillado').value);
+	var totalAseo = parseFloat(document.getElementById('totalAseo').value);
+
+	var suma = totalAcueducto + totalAlcantarillado + totalAseo;
+	document.getElementById('subTotalPresente').value = suma;
 }
 
 function mostrarValoresConsumo(IdCargo,idUsuario,Id,NombreCargo,cantidad,Tarifa,valorConsumo)
@@ -1166,7 +1324,7 @@ function sumarAcumuladosAnteriores(IdUsuario)
 {
 	var idUsuario = IdUsuario;
 	var sumarAcumulado = 0;
-	
+	var textoPieDePagina = document.getElementById("pieDePaginaFactura");
 	dbShell.transaction(function(tx) 
 	{ 	
 		tx.executeSql("select * FROM AcumuladosAnteriores where IdUsuario=?",[idUsuario], 
@@ -1178,24 +1336,23 @@ function sumarAcumuladosAnteriores(IdUsuario)
 				{
 					var ValorAnterior = result.rows.item(i)['ValorAnterior'];
 					var valorAcumulado = parseFloat(ValorAnterior);
-					sumarAcumuladosAnterioresInput(valor);
-
-					if (i == result.rows.length-1) 
-					{
-						liquidarIntereses();
-					}
+					sumarAcumulado = sumarAcumulado + valorAcumulado;
 				}
+
+				document.getElementById('subTotalAcumuladosAnteriores').value = sumarAcumulado;
+				var sumarAcumulado2 = parseInt(sumarAcumulado);
+				var mensajeSubTotalAcumuladosAnteriores = "<li><div class='row'><div class='col col-50'>Sub Acum. Anterior:</div><div class='col' align='right'><b>$ "+sumarAcumulado2+"</b></div></div></li>";
+				textoPieDePagina.innerHTML = mensajeSubTotalAcumuladosAnteriores;
+				return liquidarIntereses(sumarAcumulado);	
+			}
+
+			else
+			{
+				textoPieDePagina.innerHTML = "";
+				liquidarIntereses(0);
 			}
 		});
 	});
-}
-
-function sumarAcumuladosAnterioresInput(valor)
-{
-	var num = valor;
-	var acumulado = parseFloat(document.getElementById('subTotalAcumuladosAnteriores').value);
-	var suma = num + acumulado;
-	document.getElementById('subTotalAcumuladosAnteriores').value = suma;
 }
 
 function mostrarIndicesSubsidiosAportesConsumo(Id,IdCargo,Uso,Categoria,IdUsuario,NombreCargo,Consumo)
@@ -1283,157 +1440,10 @@ function mostrarOtrosAcumuladosAnteriores(Id,IdCargo,IdUsuario,NombreCargo)
 	});
 }
 
-function liquidarIntereses()
-{
-	var textoPieDePagina = document.getElementById("pieDePaginaFactura");
-	var acumulado = parseFloat(document.getElementById('subTotalAcumuladosAnteriores').value);
-	var sumarAcumulado2 = parseInt(acumulado);
-	var mensajeSubTotalAcumuladosAnteriores = "<li><div class='row'><div class='col col-50'>Sub Acum. Anterior:</div><div class='col' align='right'><b>$ "+sumarAcumulado2+"</b></div></div></li>";
-	textoPieDePagina.innerHTML = mensajeSubTotalAcumuladosAnteriores;
-	var sumarAcumulado = acumulado;
-	console.log(sumarAcumulado);
-	var idUso = document.getElementById("txtUsoFact").value;
-	var idUsuario = document.getElementById("txtIdUsuarioLecturaFact").value;
-	var interesResidencial = document.getElementById("tasaInteresResidencial").value;
-	var interesNoResidencial = document.getElementById("tasaInteresNoResidencial").value;
-	var AcumuladosAnterioresAcueducto = parseFloat(document.getElementById("AcumuladosAnterioresAcueducto").value);
-	var AcumuladosAnterioresAlcantarillado = parseFloat(document.getElementById("AcumuladosAnterioresAlcantarillado").value);
-	var AcumuladosAnterioresAseo = parseFloat(document.getElementById("AcumuladosAnterioresAseo").value);
-
-	var sumarAcumuladosIntereses = 0;
-	var textoDescripcionCargos = document.getElementById("descripcionCargos");
-
-	var liquidacionInteresAcueducto = 0;
-	var liquidacionInteresAlcantarillado = 0;
-	var liquidacionInteresAseo = 0;
-
-	if (AcumuladosAnterioresAcueducto > 0) 
-	{
-		var TarifaAcueducto;
-		if (idUso == 1) 
-		{
-			liquidacionInteresAcueducto = interesResidencial * AcumuladosAnterioresAcueducto;
-			TarifaAcueducto = interesResidencial;
-		}
-
-		else
-		{
-			liquidacionInteresAcueducto = interesNoResidencial * AcumuladosAnterioresAcueducto;
-			TarifaAcueducto = interesNoResidencial;
-		}
-
-		var IdAcueducto = "a";
-		var idCargoAcueducto = 205;
-		var NombreCargoAcueducto = "RECARGO ACUEDUCTO";
-
-		var TarifaAcueducto2 = TarifaAcueducto.toFixed(2);
-		var liquidacionInteresAcueducto2 = liquidacionInteresAcueducto.toFixed(2);
-
-		var mensajeAcueducto = "<li id='listaFact"+IdAcueducto+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAcueducto+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAcueducto2+"</div><div class='liquidacion col' align='right'></div><div class='liquidacion col' align='right'>"+liquidacionInteresAcueducto2+"</div>";
-
-		textoDescripcionCargos.innerHTML += "<li>"+idCargoAcueducto+" - "+NombreCargoAcueducto+"</li>";
-		mostrarAcumuladosAnteriores(idCargoAcueducto,idUsuario,mensajeAcueducto);
-	}
-
-	if (AcumuladosAnterioresAlcantarillado > 0) 
-	{
-		var TarifaAlcantarillado;
-		if (idUso == 1) 
-		{
-			liquidacionInteresAlcantarillado = interesResidencial * AcumuladosAnterioresAlcantarillado;
-			TarifaAlcantarillado = interesResidencial;
-		}
-
-		else
-		{
-			liquidacionInteresAlcantarillado = interesNoResidencial * AcumuladosAnterioresAlcantarillado;
-			TarifaAlcantarillado = interesNoResidencial;
-		}
-
-		var IdAlcantarillado = "b";
-		var idCargoAlcantarillado = "206";
-		var NombreCargo = "RECARGO ALCANTARILLADO";
-		
-		textoDescripcionCargos.innerHTML += "<li>"+idCargoAlcantarillado+" - "+NombreCargo+"</li>";
-		var TarifaAlcantarillado2 = TarifaAlcantarillado.toFixed(2);
-		var liquidacionInteresAlcantarillado2 = liquidacionInteresAlcantarillado.toFixed(2);
-
-		var mensajeAlcantarillado = "<li id='listaFact"+IdAlcantarillado+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAlcantarillado+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAlcantarillado2+"</div><div class='liquidacion col' align='right'></div><div class='liquidacion col' align='right'>"+liquidacionInteresAlcantarillado2+"</div>";
-
-		mostrarAcumuladosAnteriores(idCargoAlcantarillado,idUsuario,mensajeAlcantarillado);
-	}
-
-	if (AcumuladosAnterioresAseo > 0) 
-	{
-		var TarifaAseo;
-		if (idUso == 1) 
-		{
-			liquidacionInteresAseo = interesResidencial * AcumuladosAnterioresAseo;
-			TarifaAseo = interesResidencial;
-		}
-
-		else
-		{
-			liquidacionInteresAseo = interesNoResidencial * AcumuladosAnterioresAseo;
-			TarifaAseo = interesNoResidencial;
-		}
-
-		var IdAseo = "c";
-		var idCargoAseo = "207";
-		var NombreCargoAseo = "RECARGO ASEO";
-
-		var TarifaAseo2 = TarifaAseo.toFixed(2);
-		var liquidacionInteresAseo2 = liquidacionInteresAseo.toFixed(2);
-
-		textoDescripcionCargos.innerHTML += "<li>"+idCargoAseo+" - "+NombreCargoAseo+"</li>";
-		var mensaje = "<li id='listaFact"+IdAseo+"'><div class='row'><div class='col col-10' align='center'>"+idCargoAseo+"</div><div class='liquidacion col col-20' align='center'>"+TarifaAseo2+"</div><div class='liquidacion col' align='right'></div><div class='liquidacion col' align='right'>"+liquidacionInteresAseo2+"</div>";
-
-		mostrarAcumuladosAnteriores(idCargoAseo,idUsuario,mensaje);
-	}
-
-	else
-	{
-		var Id205 = "a";
-		var idCargo205 = "205";
-		var NombreCargo205 = "RECARGO ACUEDUCTO";
-		var Id206 = "b";
-		var idCargo206 = "206";
-		var NombreCargo206 = "RECARGO ALCANTARILLADO";
-		var Id207 = "c";
-		var idCargo207 = "207";
-		var NombreCargo207 = "RECARGO ASEO";
-		mostrarOtrosAcumuladosAnteriores(Id205,idCargo205,idUsuario,NombreCargo205);
-		mostrarOtrosAcumuladosAnteriores(Id206,idCargo206,idUsuario,NombreCargo206);
-		mostrarOtrosAcumuladosAnteriores(Id207,idCargo207,idUsuario,NombreCargo207);
-	}
-
-	sumarAcumuladosIntereses = liquidacionInteresAcueducto + liquidacionInteresAlcantarillado + liquidacionInteresAseo;
-
-	if (sumarAcumuladosIntereses > 0) 
-	{
-		sumarSubToTalPresente(sumarAcumulado,sumarAcumuladosIntereses);
-	}
-
-	else
-	{
-		sumarSubToTalPresente(sumarAcumulado,0);
-	}	
-}
-
-function sumarSubToTalPresente(sumarAcumulado,sumarAcumuladosIntereses)
-{
-	var totalAcueducto = parseFloat(document.getElementById('totalAcueducto').value);
-	var totalAlcantarillado = parseFloat(document.getElementById('totalAlcantarillado').value);
-	var totalAseo = parseFloat(document.getElementById('totalAseo').value);
-
-	var suma = totalAcueducto + totalAlcantarillado + totalAseo;
-	document.getElementById('subTotalPresente').value = suma;
-
-	cargarPieDePagina(sumarAcumulado,sumarAcumuladosIntereses);
-}
-
 function cargarPieDePagina(AcumuladosAnteriores,AcumuladosIntereses)
 {
+	console.log(AcumuladosAnteriores);
+	console.log(AcumuladosIntereses);
 	var AsubTotalPresente = parseFloat(document.getElementById('subTotalPresente').value);
 	var AtotalSubsidiosAporte = document.getElementById('totalSubsidiosAportes').value;
 	var AtotalSubsidiosAportes = parseFloat(AtotalSubsidiosAporte);
@@ -1497,14 +1507,14 @@ function cargarPieDePagina(AcumuladosAnteriores,AcumuladosIntereses)
 	var subTotalPresente = AsubTotalPresente + AtotalSubsidiosAportes + acumuladosIntereses + diferencia;
 	var subTotalPresente2 = parseInt(subTotalPresente)+"";
 
-	var largoSubTP = subTotalPresente2.length;
+	/*var largoSubTP = subTotalPresente2.length;
 	var trozo1SubTP = subTotalPresente2.substr(-2,2);
 	var largotrozo2SubTP = largoSubTP-2;
 	var trozo2SubTP = subTotalPresente2.substr(0,largotrozo2SubTP);
 	var numConPunto = trozo2SubTP + "." + trozo1SubTP;
 	var numConPuntoParse = parseFloat(numConPunto);
 	var numRed = Math.round(numConPuntoParse);
-	var numEnteroSubTotalPresente = numRed + "00";
+	var numEnteroSubTotalPresente = numRed + "00";*/
 
 	textoDescripcionCargos.innerHTML += "<li>500 - AJUSTE A LA CENTENA</li>";
 	var mensajeAjuste = "<li><div class='row'><div class='col col-10' align='center'>500</div><div class='liquidacion col col-20' align='center'></div><div class='liquidacion col' align='right'></div><div class='liquidacion col' align='right'>"+textoNuevaDiferencia+"</div><div class='liquidacion col' align='right'></div></div></li>";
@@ -1513,8 +1523,8 @@ function cargarPieDePagina(AcumuladosAnteriores,AcumuladosIntereses)
 	document.getElementById('totalAPagar').value = NumeroFinal;
 	var NumeroTotal = parseInt(NumeroFinal);
 
-	
-	var mensajeSubTotalPeriodo = "<li><div class='row'><div class='col col-50'>Sub Total Periodo: </div><div class='col' align='right'><b>$ "+numEnteroSubTotalPresente+"</b></div></div></li>";
+	var textoPieDePagina = document.getElementById("pieDePaginaFactura");
+	var mensajeSubTotalPeriodo = "<li><div class='row'><div class='col col-50'>Sub Total Periodo: </div><div class='col' align='right'><b>$ "+subTotalPresente2+"</b></div></div></li>";
 	textoPieDePagina.innerHTML += mensajeSubTotalPeriodo;
 
 	textoPieDePagina.innerHTML += "<li><b><div class='row'><div class='col col-50'></div><div class='col' align='right'></div></div></b></li>";
